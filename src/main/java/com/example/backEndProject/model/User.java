@@ -1,8 +1,6 @@
 package com.example.backEndProject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
@@ -18,7 +16,12 @@ public class User {
     private String interests;
     private String password;
     private String date_of_birth;
+
+//    Relationship Mapping
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private ArrayList<Post> allPostsByUser;
+
 
 //    Constructors
 
@@ -33,6 +36,7 @@ public class User {
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
     }
+
 
 //    Getters and Setters
 
