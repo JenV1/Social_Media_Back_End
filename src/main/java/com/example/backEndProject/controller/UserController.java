@@ -1,12 +1,11 @@
 package com.example.backEndProject.controller;
 
+import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,5 +38,24 @@ public class UserController {
     public User findById(@PathVariable Long id){
         return userService.findById(id);
     }
+
+////    Put Method
+//
+//    @PutMapping("/user_like_a_post")
+//    public @ResponseBody String likePost(User user, Post post) {
+//
+////        Find the number of likes on a current post
+////        +1 the number of likes on post
+////        !Check |user methods| for liking a post method!
+//
+//        user.likePost(post);
+//
+////        Update the data to reflect likes +1
+//
+//        postService
+//
+////        Response
+//        return "Like added";
+//    }
 
 }

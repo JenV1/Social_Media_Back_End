@@ -106,4 +106,11 @@ public class User {
 
 //    Methods
 
+//    Adding this to Post, simply add like to post to begin
+
+    public void likePost(Post post) {
+        int newLikeTotal = post.getNumber_of_likes() + 1;
+        post.setNumber_of_likes(newLikeTotal);
+    }
+
 }
