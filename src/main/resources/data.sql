@@ -8,4 +8,4 @@ INSERT INTO users (company,date_of_birth,interests,name,password) VALUES ('BNTA'
 com.example.backEndProject.model.Interests.AI, 'Lewis', 'koolkode');
 
 INSERT INTO users (company,date_of_birth,interests,name,password) VALUES ('BNTA', '23/01/2004',
-com.example.backEndProject.model.Interests.AI, 'Mohamed', 'CLIlover')
+com.example.backEndProject.model.Interests.AI, 'Mohamed', 'CLIlover');
