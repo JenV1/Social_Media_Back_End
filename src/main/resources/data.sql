@@ -1,1 +1,1 @@
-INSERT INTO users ()
+INSERT INTO users (company,date_of_birth,interests,name,password) VALUES ('Bright','today',%s,'Jem','qqqqq').
