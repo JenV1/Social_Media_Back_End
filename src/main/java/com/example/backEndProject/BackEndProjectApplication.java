@@ -7,8 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootApplication
-public class BackEndProjectApplication {
+public class BackEndProjectApplication implements CommandLineRunner {
 
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackEndProjectApplication.class, args);
@@ -16,6 +18,9 @@ public class BackEndProjectApplication {
 
 	//first commit test cem branch
 
-
+	@Override
+	public void run (String... args) throws Exception {
+		String sql = "";
+	}
 
 }
