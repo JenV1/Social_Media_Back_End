@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
+@Table(name = "users")
 public class User {
 
 //    Attributes
