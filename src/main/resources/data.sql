@@ -1,2 +1,4 @@
-INSERT INTO users (company,date_of_birth,interests,name,password) VALUES ('Bright','today'
-,com.example.backEndProject.model.Interests.AI,'Jem','qqqqq');
+INSERT INTO users (company,date_of_birth,interests,name,password)
+VALUES ('Bright','Wednesday','coding','jem','password');
+
+INSERT INTO posts (content_text,number_of_likes) VALUES ('hellooo',200)
