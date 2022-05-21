@@ -13,8 +13,12 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    @Autowired
+
     private UserService userService;
+
+    public UserController(UserService userService){
+        this.userService = userService;
+    }
 
 //    Mapping Methods
 
