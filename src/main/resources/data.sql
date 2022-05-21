@@ -1,3 +1,16 @@
-INSERT INTO users (company,date_of_birth,interests,name,password) VALUES ('Bright','today',%s,'Jem','qqqqq');
+INSERT INTO users (company,date_of_birth,name,password)
+VALUES ('Bright','Wednesday','jem','password');
 
-INSERT INTO post (id, content_text, number_of_likes, user_id) VALUES (1, 'Wow, I love coding with Java', 4, 1);
+INSERT INTO posts (content_text,number_of_likes) VALUES ('hellooo',200)
+
+INSERT INTO users (company,date_of_birth,name,password)
+VALUES ('BNTA', '13/09/1998', 'Scott', 'chickenfella');
+
+INSERT INTO users (company,date_of_birth,name,password)
+VALUES ('BNTA', '11/07/1864', 'Lewis', 'koolkode');
+
+INSERT INTO users (company,date_of_birth,name,password)
+VALUES ('BNTA', '23/01/2004', 'Mohamed', 'CLIlover');
+
+INSERT INTO users (company,date_of_birth,name,password)
+VALUES ('GOD', '25/12/2000BC', 'Jesus', 'bigboi');

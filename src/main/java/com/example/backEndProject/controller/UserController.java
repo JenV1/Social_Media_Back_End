@@ -39,7 +39,12 @@ public class UserController {
         return userService.findById(id);
     }
 
-////    Put Method
+    @PostMapping("/users")
+    public void createUser(@RequestBody User user){
+        User savedUser = userService.save(user);
+    }
+
+///    Put Method
 //
 //    @PutMapping("/user_like_a_post")
 //    public @ResponseBody String likePost(User user, Post post) {
