@@ -3,6 +3,7 @@ package com.example.backEndProject.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class User {
     private Long id;
     private String name;
     private String company;
-    private String interests;
+    private List<Interests> interestsList;
     private String password;
     private String date_of_birth;
 
@@ -32,12 +33,12 @@ public class User {
 
     public User() {}
 
-    public User(Long id, String name, String company, String interests, String password,
+    public User(Long id, String name, String company, List<Interests> interestsList, String password,
                 String date_of_birth, ArrayList<Post> allPostsByUser) {
         this.id = id;
         this.name = name;
         this.company = company;
-        this.interests = interests;
+        this.interestsList = interestsList;
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
@@ -71,12 +72,12 @@ public class User {
         this.company = company;
     }
 
-    public String getInterests() {
-        return interests;
+    public List<Interests> getInterests() {
+        return interestsList;
     }
 
-    public void setInterests(String interests) {
-        this.interests = interests;
+    public void setInterests(List<Interests> interests) {
+        this.interestsList = interests;
     }
 
     public String getPassword() {
@@ -99,7 +100,7 @@ public class User {
         return allPostsByUser;
     }
 
-    public void setAllPostsByUser(ArrayList<Post> allPostsByUser) {
+    public void setAllPostsByUser(List<Post> allPostsByUser) {
         this.allPostsByUser = allPostsByUser;
     }
 
