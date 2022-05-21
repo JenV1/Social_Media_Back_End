@@ -11,3 +11,6 @@ VALUES ('BNTA', '11/07/1864', 'Lewis', 'koolkode');
 
 INSERT INTO users (company,date_of_birth,name,password)
 VALUES ('BNTA', '23/01/2004', 'Mohamed', 'CLIlover');
+
+INSERT INTO users (company,date_of_birth,name,password)
+VALUES ('GOD', '25/12/2000BC', 'Jesus', 'bigboi');
