@@ -3,6 +3,7 @@ package com.example.backEndProject.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "posts")
 public class Post {
 
 
