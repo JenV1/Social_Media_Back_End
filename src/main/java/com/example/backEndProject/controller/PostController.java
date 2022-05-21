@@ -11,8 +11,12 @@ import java.util.List;
 @RestController
 public class PostController {
 
-    @Autowired
+
     private PostService postService;
+
+    public PostController(PostService postService){
+        this.postService = postService;
+    }
 
 //    Mapping Methods
 
