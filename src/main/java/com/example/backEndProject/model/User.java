@@ -18,7 +18,7 @@ public class User {
     private Long id;
     private String name;
     private String company;
-    private List<Interests> interestsList;
+    private Interests interests;
     private String password;
     private String date_of_birth;
 
@@ -33,12 +33,12 @@ public class User {
 
     public User() {}
 
-    public User(Long id, String name, String company, List<Interests> interestsList, String password,
+    public User(Long id, String name, String company, Interests interests, String password,
                 String date_of_birth, ArrayList<Post> allPostsByUser) {
         this.id = id;
         this.name = name;
         this.company = company;
-        this.interestsList = interestsList;
+        this.interests = interests;
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
@@ -72,12 +72,12 @@ public class User {
         this.company = company;
     }
 
-    public List<Interests> getInterests() {
-        return interestsList;
+    public Interests getInterests() {
+        return interests;
     }
 
-    public void setInterests(List<Interests> interests) {
-        this.interestsList = interests;
+    public void setInterests(Interests interests) {
+        this.interests = interests;
     }
 
     public String getPassword() {
