@@ -16,7 +16,6 @@ public class BackEndProjectApplication implements CommandLineRunner {
 		SpringApplication.run(BackEndProjectApplication.class, args);
 	}
 
-	//first commit test cem branch
 
 	@Override
 	public void run (String... args) throws Exception {

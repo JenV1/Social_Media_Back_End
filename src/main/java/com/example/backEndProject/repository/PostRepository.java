@@ -8,4 +8,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query(value = "SELECT * FROM posts WHERE id = ?",nativeQuery = true)
     Post findPostByID(Long id);
+
+    @Query(value = "UPDATE posts SET number_of_likes = newLikeCount",nativeQuery = true)
+    Post addLikeToPost(Long id);
 }

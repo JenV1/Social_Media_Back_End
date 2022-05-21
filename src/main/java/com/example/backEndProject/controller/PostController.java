@@ -43,8 +43,6 @@ public class PostController {
 
 //        Update the data to reflect likes +1
 
-//         int postNewLikeCount = postService.findPostByID(id).getNumber_of_likes() + 1;
-//         postService.findPostByID(id).setNumber_of_likes(postNewLikeCount);
 
         postService.getAll()
                 .forEach(post -> {
