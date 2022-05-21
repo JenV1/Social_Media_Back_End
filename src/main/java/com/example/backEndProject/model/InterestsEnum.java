@@ -1,6 +1,6 @@
 package com.example.backEndProject.model;
 
-public enum Interests {
+public enum InterestsEnum {
     SOFTWARE_ENGINEERING,
     MACHINE_LEARNING,
     AI,

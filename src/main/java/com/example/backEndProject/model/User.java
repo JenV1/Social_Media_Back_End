@@ -3,7 +3,6 @@ package com.example.backEndProject.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +18,12 @@ public class User {
     private String name;
     private String company;
 
-    @Column(columnDefinition = "ENUM('SOFTWARE_ENGINEERING', 'MACHINE_LEARNING', " +
-            "'AI,ROBOTICS', 'FULL_STACK_DEVELOPMENT', 'BACK_END_DEVELOPMENT' , 'FRONT_END_DEVELOPMENT'," +
-            "'BUSINESS_DEVELOPMENT', 'ENTREPRENEURSHIP', 'ART,LITERATURE', 'LOCAL_EVENTS'," +
-            "INVESTING,STARTING_A_BUSINESS,WOMEN_IN_TECH,BAME_IN_TECH," +
-            "VETERANS_IN_TECH,BANKING_AND_FINANCE,MEDITATION_AND_SPIRITUALITY,PHOTOGRAPHY)"
-    private Interests interests;
+//    @Column(columnDefinition = "ENUM('SOFTWARE_ENGINEERING', 'MACHINE_LEARNING', " +
+//            "'AI,ROBOTICS', 'FULL_STACK_DEVELOPMENT', 'BACK_END_DEVELOPMENT' , 'FRONT_END_DEVELOPMENT'," +
+//            "'BUSINESS_DEVELOPMENT', 'ENTREPRENEURSHIP', 'ART,LITERATURE', 'LOCAL_EVENTS'," +
+//            "INVESTING,STARTING_A_BUSINESS,WOMEN_IN_TECH,BAME_IN_TECH," +
+//            "VETERANS_IN_TECH,BANKING_AND_FINANCE,MEDITATION_AND_SPIRITUALITY,PHOTOGRAPHY)"
+
     private String password;
     private String date_of_birth;
 
@@ -34,17 +33,26 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> allPostsByUser;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value = {"users"})
+    @JoinTable(
+            name="interests_map",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name="interest_id")
+    )
+    private List<Interest> interests;
+
 
 //    Constructors
 
     public User() {}
 
-    public User(Long id, String name, String company, Interests interests, String password,
+    public User(Long id, String name, String company, InterestsEnum interestsEnum, String password,
                 String date_of_birth, ArrayList<Post> allPostsByUser) {
         this.id = id;
         this.name = name;
         this.company = company;
-        this.interests = interests;
+
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
@@ -78,13 +86,7 @@ public class User {
         this.company = company;
     }
 
-    public Interests getInterests() {
-        return interests;
-    }
 
-    public void setInterests(Interests interests) {
-        this.interests = interests;
-    }
 
     public String getPassword() {
         return password;
