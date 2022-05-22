@@ -1,5 +1,6 @@
 package com.example.backEndProject.controller;
 
+import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.UserRepository;
 import org.springframework.ui.Model;
@@ -45,6 +46,21 @@ public class UserController {
     @PostMapping("/users")
     public void createUser(@RequestBody User user){
         User savedUser = userRepository.save(user);
+    }
+
+    @GetMapping("/searchForKeyword/{keyword}")
+    public List searchUsersForKeyword(@PathVariable("keyword") String keyword) {
+
+//        Gets all users and converts to a stream
+//        Extracts the name from each user and maps them
+//        Filters name dependent on whether they contain the specified keyword
+//        Returns list of posts
+
+        return userRepository.findAll().stream()
+                .map(User::getName)
+                .filter(s -> s.contains(keyword))
+                .toList();
+
     }
 
 ///    Put Methods
