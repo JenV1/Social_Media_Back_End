@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PostController {
@@ -84,5 +85,10 @@ public class PostController {
     public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
         Post post = postRepository.deletePostByID(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deletePost/{id}")
+    public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id){
+        return postService.deletePostByID(id);
     }
 }
