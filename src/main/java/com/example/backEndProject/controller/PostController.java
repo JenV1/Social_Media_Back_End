@@ -50,6 +50,17 @@ public class PostController {
         return current.getNumber_of_likes();
     }
 
+    @GetMapping("/searchForKeyword/{keyword}")
+    public List searchPostsForKeyword(@PathVariable("keyword") String keyword) {
+
+        return postRepository.findAll().stream()
+                .map(Post::getContent_text)
+                .filter(s -> s.contains(keyword))
+                .toList();
+
+
+    }
+
 
     //    Put Mapping Methods
 
