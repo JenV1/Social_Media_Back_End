@@ -2,27 +2,31 @@ package com.example.backEndProject.controller;
 
 import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
+import com.example.backEndProject.repository.PostRepository;
 import com.example.backEndProject.service.PostService;
+import org.apache.tomcat.jni.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 @RestController
 public class PostController {
 
-
+    private PostRepository postRepository;
     private PostService postService;
 
-    public PostController(PostService postService){
-        this.postService = postService;
+    public PostController(PostRepository postRepository){
+        this.postRepository = postRepository;
     }
 
-//    Mapping Methods
+//    Get Mapping Methods
 
     @GetMapping("/list_all_posts")
     public List<Post> getAll() {
-        return postService.getAll();
+        return postRepository.findAll();
     }
 
     @GetMapping("/post/{id}")
@@ -30,46 +34,67 @@ public class PostController {
         return findPostByID(id);
     }
 
-    //    Put Method
+    @GetMapping("/numberOfLikesOnPost/{id}")
+    public int findLikesByID(@PathVariable("id") Long id) {
 
-    @PutMapping("/user_like_a_post")
-    public @ResponseBody String likePost(Long id) {
+//        Inspired by the way likes are shown on posts on social media applications
 
-//        Find the number of likes on a current post
-//        +1 the number of likes on post
-//        !Check |user methods| for liking a post method!
+        Post current = null;
+        try {
+            current = postRepository.findById(id).get();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
 
-//        user.likePost(post);
-
-//        Update the data to reflect likes +1
-
-
-        postService.getAll()
-                .forEach(post -> {
-                    if (post.getId().equals(id)) {
-                        int updatedLikes = post.getNumber_of_likes() + 1;
-                        post.setNumber_of_likes(updatedLikes);
-                    }
-                });
-
-//        Response
-        return "Like added";
+        return current.getNumber_of_likes();
     }
 
-//    @GetMapping("/post_likes/{id}")
-//    public int find_likes_of_post(@PathVariable("id") Long id){
-//
-////        Get the current post by ID
-//        postService.getAll()
-//                .forEach(post -> {
-//                    if (post.getId().equals(id)) {
-//                        return post.getNumber_of_likes();
-//                    }
-//                });
-//
-//
-////        Return the number of likes
-//        return post.getNumber_of_likes();
-//    }
+
+    //    Put Mapping Methods
+
+    @PutMapping("/addLikeToPost/{id}")
+    public Post updateLikeCount(@PathVariable("id") Long id) throws NoSuchElementException {
+
+//        Adds like to specific post by id.
+//        Try catch statement for the scenario where id is not found.
+//        Created current outide of try catch to ensure it was within scope for the return statement.
+
+        Post current = null;
+        try {
+            current = postRepository.findById(id).get();
+            current.setNumber_of_likes(current.getNumber_of_likes() + 1);
+            postRepository.save(current);
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        return current;
+    }
+
+    @PutMapping("/editOldPost/{id}")
+    public Post editPost(@PathVariable("id") Long id,
+                         @PathVariable("New Content") String new_content) throws NoSuchElementException {
+
+//        Edits already established post by id.
+//        Try catch statement for the scenario where id is not found.
+//        Created current outside of try catch to ensure it was within scope for the return statement.
+
+        Post current = null;
+        try {
+            current = postRepository.findById(id).get();
+            current.setContent_text(new_content);
+            postRepository.save(current);
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        return current;
+    }
+
 
 }

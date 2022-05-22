@@ -65,11 +65,4 @@ public class Post {
     }
 
 
-//    Methods
-
-//    public void likePost(Post post) {
-//        int newLikeTotal = post.getNumber_of_likes() + 1;
-//        post.setNumber_of_likes(newLikeTotal);
-//    }
-
 }
