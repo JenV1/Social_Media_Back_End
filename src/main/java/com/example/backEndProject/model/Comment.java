@@ -1,6 +1,8 @@
 package com.example.backEndProject.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,12 +19,19 @@ public class Comment {
 
     private Boolean heartByUser;
 
+    private String commentContent;
+
 
     @ManyToOne
     private Post post;
 
     @ManyToOne
     private User user;
+
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"comment"})
+    private List<Reply> commentReplies;
+
 
     public Comment() {
     }

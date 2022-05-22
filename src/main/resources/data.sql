@@ -9,5 +9,8 @@
 --INSERT INTO users (company,date_of_birth,name,password) VALUES
 --('Peppermint','1998','John','password');
 
---INSERT INTO comment (number_of_likes,replies,post_id,user_id) VALUES
---(12,'cool man',1,2);
+--INSERT INTO comments (number_of_likes,post_id,user_id,comment_content) VALUES
+--(12,1,2,'coooooool man');
+
+--INSERT INTO replies (reply,comment_id,number_of_likes) VALUES
+--('hello',2,12);
