@@ -68,8 +68,4 @@ public class Post {
     }
 
 
-//    Methods
-
-// Yay I've added Postgres stuff to our project!
-
 }

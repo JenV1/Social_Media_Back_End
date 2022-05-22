@@ -1,12 +1,15 @@
 package com.example.backEndProject.controller;
 
+import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
+import com.example.backEndProject.repository.UserRepository;
 import com.example.backEndProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 public class UserController {
@@ -36,6 +39,52 @@ public class UserController {
     @GetMapping("/users/{id}")
     public User findById(@PathVariable Long id){
         return userService.findById(id);
+    }
+
+    @PostMapping("/users")
+    public void createUser(@RequestBody User user){
+        User savedUser = userService.save(user);
+    }
+
+    @GetMapping("/searchForUserByName/{keyword}")
+    public List<String> searchUsersForKeyword(@PathVariable("keyword") String keyword) {
+        return userService.searchUsersForKeyword(keyword);
+    }
+
+
+///    Put Methods
+
+
+    @PutMapping("/editName/{id}")
+    public User editName(@PathVariable("id") Long id,
+                         @RequestBody String new_name){
+
+        return userService.editName(id, new_name);
+    }
+
+    @PutMapping("/editCompany/{id}")
+    public User editCompany(@PathVariable("id") Long id,
+                         @RequestBody String new_company) {
+
+        return userService.editCompany(id, new_company);
+    }
+
+    @PutMapping("/editPassword/{id}")
+    public User editPassword(@PathVariable("id") Long id,
+                            @RequestBody String new_password)
+                            throws NoSuchElementException {
+
+        return userService.editPassword(id, new_password);
+
+    }
+
+    @PutMapping("/editDOB/{id}")
+    public User editDOB(@PathVariable("id") Long id,
+                             @RequestBody String new_DOB)
+            throws NoSuchElementException {
+
+        return userService.editDOB(id, new_DOB);
+
     }
 
 

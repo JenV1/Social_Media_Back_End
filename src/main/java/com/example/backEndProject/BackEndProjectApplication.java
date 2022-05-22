@@ -12,13 +12,7 @@ public class BackEndProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackEndProjectApplication.class, args);
-
-
 	}
-
-
-
-
 
 	//first commit test cem branch
 
