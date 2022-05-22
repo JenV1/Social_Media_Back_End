@@ -13,14 +13,14 @@ public class Comment {
     @Column(name = "number_of_likes")
     private int likes;
 
-    private String heartByUser;
+    private Boolean heartByUser;
 
     private String replies;
 
     public Comment() {
     }
 
-    public Comment(Long id, int likes, String heartByUser, String replies) {
+    public Comment(Long id, int likes, Boolean heartByUser, String replies) {
         this.id = id;
         this.likes = likes;
         this.heartByUser = heartByUser;
@@ -43,11 +43,11 @@ public class Comment {
         this.likes = likes;
     }
 
-    public String getHeartByUser() {
+    public Boolean getHeartByUser() {
         return heartByUser;
     }
 
-    public void setHeartByUser(String heartByUser) {
+    public void setHeartByUser(Boolean heartByUser) {
         this.heartByUser = heartByUser;
     }
 }
