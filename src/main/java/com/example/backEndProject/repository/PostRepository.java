@@ -4,6 +4,7 @@ import com.example.backEndProject.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.ResponseEntity;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
@@ -11,7 +12,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Post findPostByID(Long id);
 
     @Query(value = "DELETE FROM posts WHERE post_id = ?", nativeQuery = true)
-    Post deletePostByID(Long id);
+    ResponseEntity<Long> deletePostByID(Long id);
 
     // delete query to delete a post by a specific post_id
 }

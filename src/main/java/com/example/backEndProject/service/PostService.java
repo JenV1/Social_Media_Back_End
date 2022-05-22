@@ -24,7 +24,7 @@ import java.util.Map;
 @Service
 public class PostService {
 
-
+    @Autowired
     private PostRepository postRepository;
 
     public PostService(PostRepository postRepository) {
