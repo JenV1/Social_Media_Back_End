@@ -30,7 +30,7 @@ INSERT INTO posts (user_id, content_text,number_of_likes) VALUES (3, '(1) Yester
 INSERT INTO posts (user_id, content_text,number_of_likes) VALUES (3, '(2) ... So I fed the dog, bathed and clothed it. Found a rescue centre nearby. Of course, I missed the interview, but I was confident I did the right thing, despite missing out on my dream job.', 34);
 INSERT INTO posts (user_id, content_text,number_of_likes) VALUES (3, '(3) ... But the next day, a funny thing happened. The office called me and I told them what happened. They asked me if I would like to come down to the office that day, so I did... ', 47)
 INSERT INTO posts (user_id, content_text,number_of_likes) VALUES (3, '(4) ... I was called into the boardroom after waiting nervously for some time. Then I saw the interviewer. It was the dog.', 700)
-INSERT INTO posts (user_id, content_text,number_of_likes) VALUES (5, 'Thanks for all the birthday messages! Havent been on this account in months!',
+INSERT INTO posts (user_id, content_text,number_of_likes) VALUES (5, 'Thanks for all the birthday messages! Havent been on this account in months!', 100)
 INSERT INTO posts (user_id, content_text,number_of_likes) VALUES (6, 'Wow. The most aMAzing fillet mignon, lathered in THE most incredible peppercorn sauce. THAT is food!',1000);
 INSERT INTO posts (user_id, content_text,number_of_likes) VALUES (6, 'Wow. Seriously? Wow. No come on. The post is RAWWWW!', 1000)
 INSERT INTO posts (user_id, content_text,number_of_likes) VALUES (7, '𝐍𝐨𝐭𝐫𝐞 𝐡𝐢𝐬𝐭𝐨𝐢𝐫𝐞 𝐬’𝐞́𝐜𝐫𝐢𝐭 𝐢𝐜𝐢. 𝐈𝐜𝐢 𝐜’𝐞𝐬𝐭 𝐏𝐚𝐫𝐢𝐬 (et l argent hehe!)', 200000);
