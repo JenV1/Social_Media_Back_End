@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS interests_mapper;
 DROP TABLE IF EXISTS interest_types;
-DROP TABLE IF EXISTS post_types;
+DROP TABLE IF EXISTS post_types CASCADE;
 DROP TYPE IF EXISTS interests_career;
 DROP TYPE IF EXISTS posts_type;
 
@@ -74,6 +74,9 @@ CREATE TABLE post_types (
     id SERIAL PRIMARY KEY,
     post_type posts_type
 );
+
+
+ALTER TABLE posts ADD FOREIGN KEY (post_types_id) REFERENCES post_types (id);
 
 INSERT INTO post_types (post_type) VALUES ('ADVERTISEMENT');
 INSERT INTO post_types (post_type) VALUES ('EVENT');

@@ -13,6 +13,9 @@ public class Post {
     private String content_text;
     private int number_of_likes;
 
+    @Column(name = "post_types_id")
+    private int post_types_id;
+
 //    Relationship Mapping
 
     @ManyToOne
