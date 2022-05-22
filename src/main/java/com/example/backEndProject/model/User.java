@@ -27,14 +27,11 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> allPostsByUser;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JsonIgnoreProperties(value = {"users"})
-//    @JoinTable(
-//            name="interests_map",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name="interest_id")
-//    )
-//    private List<Interest> interests;
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comment> allCommentsByUser;
+
+
 
 
 //    Constructors

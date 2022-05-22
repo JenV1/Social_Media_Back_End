@@ -2,8 +2,10 @@ package com.example.backEndProject.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "comments")
 public class Comment {
 
     @Id
@@ -15,7 +17,12 @@ public class Comment {
 
     private Boolean heartByUser;
 
-    private String replies;
+
+    @ManyToOne
+    private Post post;
+
+    @ManyToOne
+    private User user;
 
     public Comment() {
     }
@@ -24,7 +31,7 @@ public class Comment {
         this.id = id;
         this.likes = likes;
         this.heartByUser = heartByUser;
-        this.replies = replies;
+
     }
 
     public Long getId() {

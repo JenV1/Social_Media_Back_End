@@ -1,6 +1,9 @@
 package com.example.backEndProject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -20,6 +23,10 @@ public class Post {
 
     @ManyToOne
     private User user;
+
+    @JsonIgnoreProperties({"post"})
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comment> postComments;
 
 //    Constructors
 
