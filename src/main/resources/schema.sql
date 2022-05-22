@@ -28,6 +28,13 @@ CREATE TYPE interests_career AS ENUM ('SOFTWARE_ENGINEERING',
                                           'MEDITATION_AND_SPIRITUALITY',
                                           'PHOTOGRAPHY');
 
+
+--CREATE TYPE posts AS ENUM
+
+
+
+
+
 CREATE TABLE interests_table (
 
     id SERIAL PRIMARY KEY,
@@ -68,7 +75,7 @@ CREATE TABLE interests_mapper (
     interests_id INTEGER ,
     user_id INTEGER ,
     FOREIGN KEY (interests_id) REFERENCES interests_table (id),
-    FOREIGN KEY (USER_id) REFERENCES users (id)
+    FOREIGN KEY (user_id) REFERENCES users (id)
 
 );
 
