@@ -1,5 +1,6 @@
 package com.example.backEndProject.controller;
 
+import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,23 @@ public class UserController {
         User savedUser = userService.save(user);
     }
 
-
-
+///    Put Method
+//
+//    @PutMapping("/user_like_a_post")
+//    public @ResponseBody String likePost(User user, Post post) {
+//
+////        Find the number of likes on a current post
+////        +1 the number of likes on post
+////        !Check |user methods| for liking a post method!
+//
+//        user.likePost(post);
+//
+////        Update the data to reflect likes +1
+//
+//        postService
+//
+////        Response
+//        return "Like added";
+//    }
 
 }

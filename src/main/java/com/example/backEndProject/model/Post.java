@@ -67,6 +67,9 @@ public class Post {
 
 //    Methods
 
-// Yay I've added Postgres stuff to our project!
+//    public void likePost(Post post) {
+//        int newLikeTotal = post.getNumber_of_likes() + 1;
+//        post.setNumber_of_likes(newLikeTotal);
+//    }
 
 }
