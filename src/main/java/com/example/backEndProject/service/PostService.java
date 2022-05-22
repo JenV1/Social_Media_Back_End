@@ -4,8 +4,20 @@ import com.example.backEndProject.model.Post;
 import com.example.backEndProject.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.yaml.snakeyaml.events.Event;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Map;
 
 @Service
 public class PostService {
@@ -27,5 +39,20 @@ public class PostService {
 
     public Post findPostByID(Long id){
         return postRepository.findPostByID(id);
+    }
+
+    public int findLikesByID(Long id) {
+    }
+
+    public List searchPostsForKeyword(String keyword) {
+    }
+
+    public Post updateLikeCount(Long id) {
+    }
+
+    public Post editPost(Long id, String new_content) {
+    }
+
+    public void deletePostByID(Long id) {
     }
 }
