@@ -12,6 +12,7 @@ public class PostService {
 
 
     private PostRepository postRepository;
+    private Post post;
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
@@ -27,5 +28,9 @@ public class PostService {
 
     public Post findPostByID(Long id){
         return postRepository.findPostByID(id);
+    }
+
+    public boolean deletePostByID(Long id) {
+        return false;
     }
 }
