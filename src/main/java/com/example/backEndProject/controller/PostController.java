@@ -76,7 +76,7 @@ public class PostController {
 
     @PutMapping("/editOldPost/{id}")
     public Post editPost(@PathVariable("id") Long id,
-                         @PathVariable("New Content") String new_content) throws NoSuchElementException {
+                         @RequestBody String new_content) throws NoSuchElementException {
 
 //        Edits already established post by id.
 //        Try catch statement for the scenario where id is not found.

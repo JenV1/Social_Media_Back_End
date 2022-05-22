@@ -1,50 +1,124 @@
 package com.example.backEndProject.controller;
 
-import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
-import com.example.backEndProject.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.backEndProject.repository.UserRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 public class UserController {
 
 
-    private UserService userService;
+    private UserRepository userRepository;
 
-    public UserController(UserService userService){
-        this.userService = userService;
+//    private UserService userService;
+
+    public UserController(UserRepository userRepository){
+        this.userRepository = userRepository;
     }
+//    public UserController(UserService userService) {this.userService = userService;}
 
 //    Mapping Methods
 
     @GetMapping("/list_all_users")
     public List<User> getAll() {
-        return userService.getAll();
+        return userRepository.findAll();
     }
 
     @GetMapping("/users_postgres")
     public String listAll(Model model) {
-        List<User> listUsers = userService.getAll();
+        List<User> listUsers = userRepository.findAll();
         model.addAttribute("listUsers", listUsers);
 
         return "students";
     }
 
     @GetMapping("/users/{id}")
-    public User findById(@PathVariable Long id){
-        return userService.findById(id);
+    public Optional<User> findById(@PathVariable Long id){
+        return userRepository.findById(id);
     }
 
     @PostMapping("/users")
     public void createUser(@RequestBody User user){
-        User savedUser = userService.save(user);
+        User savedUser = userRepository.save(user);
     }
 
-///    Put Method
+///    Put Methods
+
+    @PutMapping("/editName/{id}")
+    public User editName(@PathVariable("id") Long id,
+                         @RequestBody String new_name) throws NoSuchElementException {
+
+//        Edits already established post by id.
+//        Try catch statement for the scenario where id is not found.
+//        Created current outside of try catch to ensure it was within scope for the return statement.
+
+        User current = null;
+        try {
+            current = userRepository.findById(id).get();
+            current.setName(new_name);
+            userRepository.save(current);
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        return current;
+    }
+
+    @PutMapping("/editCompany/{id}")
+    public User editCompany(@PathVariable("id") Long id,
+                         @RequestBody String new_company) throws NoSuchElementException {
+
+//        Edits already established post by id.
+//        Try catch statement for the scenario where id is not found.
+//        Created current outside of try catch to ensure it was within scope for the return statement.
+
+        User current = null;
+        try {
+            current = userRepository.findById(id).get();
+            current.setCompany(new_company);
+            userRepository.save(current);
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        return current;
+    }
+
+    @PutMapping("/editPassword/{id}")
+    public User editPassword(@PathVariable("id") Long id,
+                            @RequestBody String new_password) throws NoSuchElementException {
+
+//        Edits already established post by id.
+//        Try catch statement for the scenario where id is not found.
+//        Created current outside of try catch to ensure it was within scope for the return statement.
+
+        User current = null;
+        try {
+            current = userRepository.findById(id).get();
+            current.setPassword(new_password);
+            userRepository.save(current);
+
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        return current;
+    }
+
+
+
+
 //
 //    @PutMapping("/user_like_a_post")
 //    public @ResponseBody String likePost(User user, Post post) {
