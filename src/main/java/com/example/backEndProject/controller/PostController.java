@@ -8,6 +8,11 @@ import org.apache.tomcat.jni.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -86,7 +91,7 @@ public class PostController {
 
     @PutMapping("/editOldPost/{id}")
     public Post editPost(@PathVariable("id") Long id,
-                         @RequestBody String new_content) throws NoSuchElementException {
+                         @RequestBody String new_content) throws NoSuchElementException, IOException {
 
 //        Edits already established post by id.
 //        Try catch statement for the scenario where id is not found.
@@ -102,6 +107,25 @@ public class PostController {
             e.printStackTrace();
             System.out.println("No matching post could be found for id: " + id);
         }
+
+        File myFile = new File("src/all_posts_and_post_edits.txt");
+        if (!myFile.exists()) {
+            try {
+                myFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+        FileWriter fileWriter = new FileWriter(myFile, true);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.println(current.getContent_text());
+        printWriter.println(LocalDateTime.now());
+        printWriter.println(current.getUser().getName());
+        printWriter.println("");
+
+        printWriter.close();
 
         return current;
     }
