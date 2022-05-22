@@ -6,9 +6,8 @@ import com.example.backEndProject.repository.UserRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 public class UserController {
@@ -48,18 +47,25 @@ public class UserController {
         User savedUser = userRepository.save(user);
     }
 
-    @GetMapping("/searchForKeyword/{keyword}")
-    public List searchUsersForKeyword(@PathVariable("keyword") String keyword) {
+    @GetMapping("/searchForUserByName/{keyword}")
+    public Set<String> searchUsersForKeyword(@PathVariable("keyword") String keyword) {
 
 //        Gets all users and converts to a stream
 //        Extracts the name from each user and maps them
 //        Filters name dependent on whether they contain the specified keyword
 //        Returns list of posts
 
-        return userRepository.findAll().stream()
+        Set<String> foundUsers = userRepository.findAll().stream()
                 .map(User::getName)
                 .filter(s -> s.contains(keyword))
-                .toList();
+                .collect(Collectors.toSet());
+
+        if (foundUsers.isEmpty()) {
+            foundUsers.add("No users found :(");
+        }
+
+        return foundUsers;
+
 
     }
 
