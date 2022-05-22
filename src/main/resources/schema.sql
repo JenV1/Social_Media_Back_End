@@ -76,13 +76,15 @@ CREATE TABLE post_types (
 );
 
 
-ALTER TABLE posts ADD FOREIGN KEY (post_types_id) REFERENCES post_types (id);
+
 
 INSERT INTO post_types (post_type) VALUES ('ADVERTISEMENT');
 INSERT INTO post_types (post_type) VALUES ('EVENT');
 INSERT INTO post_types (post_type) VALUES ('LIFESTYLE');
 INSERT INTO post_types (post_type) VALUES ('FUNDRAISER');
 INSERT INTO post_types (post_type) VALUES ('EVENT_PLAN');
+
+ALTER TABLE posts ADD FOREIGN KEY (post_types_id) REFERENCES post_types (id);
 
 
 
