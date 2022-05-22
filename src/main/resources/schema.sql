@@ -33,3 +33,5 @@ CREATE TABLE interests_table (
 );
 
 INSERT INTO interests_table (interests) VALUES ('AI');
+INSERT INTO interests_table (interests) VALUES ('ROBOTICS');
+
