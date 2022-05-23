@@ -5,6 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Message {
 
+//    ATTRIBUTES START
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,6 +17,13 @@ public class Message {
     @ManyToOne
     private User user;
 
+
+//    ATTRIBUTES END
+//
+//
+//    CONSTRUCTORS START
+
+
     public Message() {
     }
 
@@ -22,7 +32,11 @@ public class Message {
         this.nameOfSender = nameOfSender;
     }
 
-//    Getters and setters
+
+//    CONSTRUCTORS END
+//
+//
+//    Getters and setters START
 
 
     public Long getId() {
@@ -56,4 +70,10 @@ public class Message {
     public void setUser(User user) {
         this.user = user;
     }
+
+
+//    GETTERS AND SETTERS END
+//
+//
+//    END OF FILE
 }

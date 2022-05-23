@@ -9,6 +9,8 @@ import java.util.List;
 @Table(name = "posts")
 public class Post {
 
+//    ATTRIBUTES START
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +27,6 @@ public class Post {
 //    @Column(name = "business_acc_id")
 //    private int businessAccID;
 
-//    Relationship Mapping
-
     @ManyToOne
     private User user;
 
@@ -34,7 +34,16 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> postComments;
 
-//    Constructors
+    public boolean isBusinessAccount() {
+        return isBusinessAccount;
+    }
+
+
+//    ATTRIBUTES END
+//
+//
+//    CONSTRUCTORS START
+
 
     public Post() {}
 
@@ -47,7 +56,10 @@ public class Post {
     }
 
 
-//    Getters and Setters
+//    CONSTRUCTORS END
+//
+//
+//    GETTERS AND SETTERS START
 
 
     public Long getId() {
@@ -90,13 +102,16 @@ public class Post {
         this.post_types_id = post_types_id;
     }
 
-    public boolean isBusinessAccount() {
-        return isBusinessAccount;
-    }
-
     public void setBusinessAccount(boolean businessAccount) {
         isBusinessAccount = businessAccount;
     }
+
+
+//    GETTERS AND SETTERS END
+//
+//
+//    CODE BEING TESTED...
+
 
 //    public int getBusinessAccID() {
 //        return businessAccID;
@@ -105,4 +120,10 @@ public class Post {
 //    public void setBusinessAccID(int businessAccID) {
 //        this.businessAccID = businessAccID;
 //    }
+
+
+//    CODE BEING TESTED...
+//
+//
+//    END OF FILE
 }
