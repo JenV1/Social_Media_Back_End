@@ -1,6 +1,7 @@
 package com.example.backEndProject.service;
 
 import com.example.backEndProject.model.Post;
+import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -163,4 +164,21 @@ public class PostService {
 
         return "Deleted";
     }
+
+    public List searchForAllBusinessAccountPosts(boolean isBusinessAccount) {
+
+//        Returns the posts that contain the company and isBusinessAccount = true
+
+        return postRepository.findAll().stream()
+                .map(Post::isBusinessAccount)
+                .filter(s -> s.equals(isBusinessAccount))
+                .toList();
+    }
+
+//    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
+//        return postRepository.findAll().stream()
+//                .map(Post::isBusinessAccount)
+//                .filter(s -> s.equals(isBusinessAccount))
+//                .toList();
+//    }
 }

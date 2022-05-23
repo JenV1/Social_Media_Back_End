@@ -42,10 +42,13 @@ public class PostController {
         return postService.searchPostsForKeyword(keyword);
     }
 
-//    @GetMapping("/searchForBusinessAccountPosts/{id}")
-//    public List searchForBusinessAccountPosts
-////
-////    @GetMapping("/searchAllBusinessAccountPosts/{id}")
+    @GetMapping("/searchForAllBusinessAccountPosts/{is_business_account}")
+    public List searchForBusinessAccountPosts(@PathVariable("is_business_account") boolean isBusinessAccount) {
+        return postService.searchForAllBusinessAccountPosts(isBusinessAccount);
+    }
+
+//    @GetMapping("/searchAllBusinessAccountPosts/{post_type_id}")
+//    public List search
 
 
 

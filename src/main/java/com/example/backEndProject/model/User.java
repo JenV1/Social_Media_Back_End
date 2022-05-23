@@ -29,12 +29,16 @@ public class User {
     private List<Post> allPostsByUser;
 
 
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
+    private boolean isBusinessAccount;
+
+
 //    Constructors
 
     public User() {}
 
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Post> allPostsByUser) {
+                String date_of_birth, ArrayList<Post> allPostsByUser, boolean isBusinessAccount) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -42,14 +46,22 @@ public class User {
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
+        this.isBusinessAccount = isBusinessAccount;
     }
 
-    public User(Long id, String company, String password) {
+    public User(Long id, String company, String password, boolean isBusinessAccount) {
     }
 
 
 //    Getters and Setters
 
+    public boolean isBusinessAccount() {
+        return isBusinessAccount;
+    }
+
+    public void setBusinessAccount(boolean businessAccount) {
+        isBusinessAccount = businessAccount;
+    }
 
     public Long getId() {
         return id;
