@@ -34,30 +34,32 @@ public class CommentService {
 
     public String heartComment(Long user_id, String user_name, String password, Long postId, Long commentId){
 
+        try{
+            User result_user = userRepository.findByID(user_id);
+            Post result_post = postRepository.findPostByID(postId);
+            Comment result_comment = commentRepository.findCommentByID(commentId);
+
+
+            if(result_user.getName().equals(user_name)
+                    && result_user.getPassword().equals(password)
+                    && result_post.getUser().getId().equals(user_id)
+                    && result_comment.getPost().getId().equals(postId)){
+
+                result_comment.setHeartByUser(Boolean.TRUE);
+                commentRepository.save(result_comment);
 
 
 
-        User result_user = userRepository.findByID(user_id);
-        Post result_post = postRepository.findPostByID(postId);
-        Comment result_comment = commentRepository.findCommentByID(commentId);
+                return "hearted";
 
 
-        if(result_user.getName().equals(user_name)
-                && result_user.getPassword().equals(password)
-                && result_post.getUser().getId().equals(user_id)
-                && result_comment.getPost().getId().equals(postId)){
+            }
 
-            result_comment.setHeartByUser(Boolean.TRUE);
-            commentRepository.save(result_comment);
-
-
-
-            return "hearted";
-
-
+        }catch(NullPointerException e){
+            return "user does not exist";
         }
 
-            return "not hearted";
+           return "Incorrect login details";
 
 
     }
