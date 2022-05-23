@@ -66,4 +66,20 @@ public class Comment {
     public void setHeartByUser(Boolean heartByUser) {
         this.heartByUser = heartByUser;
     }
+
+    public String getCommentContent() {
+        return commentContent;
+    }
+
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 }
