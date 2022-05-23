@@ -3,6 +3,7 @@ package com.example.backEndProject.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 

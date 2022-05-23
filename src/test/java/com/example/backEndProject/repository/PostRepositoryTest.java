@@ -1,6 +1,8 @@
 package com.example.backEndProject.repository;
 
+import com.example.backEndProject.model.Post;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
@@ -11,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class PostRepositoryTest {
 
+//    @Autowired
     private PostRepository postRepository;
 
 
@@ -19,9 +22,9 @@ class PostRepositoryTest {
     void findPostByID() {
     }
 
-//   @Test
+//    @Test
 //    void deletePostById() {
-//        ArrayList<String> postList = new ArrayList<>();
+//        ArrayList<Post> postList = new ArrayList<>();
 //        Post post1 = new Post(1L, "this is a post", 10);
 //        Post post2 = new Post(2L, "this is a post", 9);
 //        postList.add(1, post1);

@@ -3,7 +3,6 @@ package com.example.backEndProject.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,14 +18,26 @@ public class User {
     private String name;
     private String company;
     private String role;
+
     private String password;
     private String date_of_birth;
+
+//    Inbox/Messages
+
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Message> inbox;
 
 //    Relationship Mapping
 
     @JsonIgnoreProperties({"user"})
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> allPostsByUser;
+
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comment> allCommentsByUser;
+
 
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
@@ -37,6 +48,16 @@ public class User {
 
     public User() {}
 
+
+//    private final ArrayList<Post> adminPosts = new ArrayList<>();
+////    @Transient
+////    User admin = new User(999, "admin", "Connect", "password", "now", adminPosts);
+//
+////    public User getAdmin() {
+////        return admin;
+////    }
+
+
     public User(Long id, String name, String company, String role, String password,
                 String date_of_birth, ArrayList<Post> allPostsByUser, Boolean isBusinessAccount) {
         this.id = id;
@@ -46,11 +67,10 @@ public class User {
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
+        this.inbox = new ArrayList<Message>();
         this.isBusinessAccount = isBusinessAccount;
     }
 
-    public User(Long id, String company, String password, boolean isBusinessAccount) {
-    }
 
 
 //    Getters and Setters
@@ -95,6 +115,8 @@ public class User {
         this.role = role;
     }
 
+
+
     public String getPassword() {
         return password;
     }
@@ -119,7 +141,15 @@ public class User {
         this.allPostsByUser = allPostsByUser;
     }
 
-//    Methods
+    public List<Message> getInbox() {
+        return inbox;
+    }
+
+    public void setInbox(List<Message> inbox) {
+        this.inbox = inbox;
+    }
+
+    //    Methods
 
 //    Adding this to Post, simply add like to post to begin
 

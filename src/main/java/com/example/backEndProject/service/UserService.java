@@ -134,4 +134,10 @@ public class UserService {
         return current;
     }
 
+//    MESSAGING METHODS
+
+//    public List<String> getAllMessagesFromInbox() {
+//        return userRepository.findByID(1L).getInbox();
+//    }
+
 }

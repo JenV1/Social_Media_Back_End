@@ -1,11 +1,34 @@
-----INSERT INTO interests_mapper (interests_id,user_id) VALUES (9,1);
---
---INSERT INTO users (company,date_of_birth,name,password) VALUES
---('Peppermint','1999','Cem','password');
---
---INSERT INTO posts (content_text,number_of_likes,post_types_id,user_id) VALUES
---('hello','1',3,1);
---
+--users here
+
+-- For ENUM tables
+INSERT INTO post_types (post_type) VALUES ('ADVERTISEMENT');
+INSERT INTO post_types (post_type) VALUES ('EVENT');
+INSERT INTO post_types (post_type) VALUES ('LIFESTYLE');
+INSERT INTO post_types (post_type) VALUES ('FUNDRAISER');
+INSERT INTO post_types (post_type) VALUES ('EVENT_PLAN');
+
+INSERT INTO interest_types (interests) VALUES ('SOFTWARE_ENGINEERING');
+INSERT INTO interest_types (interests) VALUES ('MACHINE_LEARNING');
+INSERT INTO interest_types (interests) VALUES ('AI');
+INSERT INTO interest_types (interests) VALUES ('ROBOTICS');
+INSERT INTO interest_types (interests) VALUES ('FULL_STACK_DEVELOPMENT');
+INSERT INTO interest_types (interests) VALUES ('BACK_END_DEVELOPMENT');
+INSERT INTO interest_types (interests) VALUES ('FRONT_END_DEVELOPMENT');
+INSERT INTO interest_types (interests) VALUES ('BUSINESS_DEVELOPMENT');
+INSERT INTO interest_types (interests) VALUES ('ENTREPRENEURSHIP');
+INSERT INTO interest_types (interests) VALUES ('ART');
+INSERT INTO interest_types (interests) VALUES ('LITERATURE');
+INSERT INTO interest_types (interests) VALUES ('LOCAL_EVENTS');
+INSERT INTO interest_types (interests) VALUES ('INVESTING');
+INSERT INTO interest_types (interests) VALUES ('STARTING_A_BUSINESS');
+INSERT INTO interest_types (interests) VALUES ('WOMEN_IN_TECH');
+INSERT INTO interest_types (interests) VALUES ('BAME_IN_TECH');
+INSERT INTO interest_types (interests) VALUES ('VETERANS_IN_TECH');
+INSERT INTO interest_types (interests) VALUES ('BANKING_AND_FINANCE');
+INSERT INTO interest_types (interests) VALUES ('MEDITATION_AND_SPIRITUALITY');
+INSERT INTO interest_types (interests) VALUES ('PHOTOGRAPHY');
+
+
 --users here
 
 INSERT INTO users (company,role,date_of_birth,name,password)
@@ -41,7 +64,10 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES 
 
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Filling out a database can be monotonous. Thats why its fun to be creative! Adding users with a personality makes it worthwhile.', 1, 3, 2);
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Java, SQL, DeleteMapping, the holy trinity of big scotty', 1021, 3, 2);
-INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Spring is honestly so rewarding!', 52, 3, 2);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Im posting more than the postman, I am PostMapping', 8911, 3, 4);
+
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Theres a reason why Java has the symbol as a coffee...', 1053236, 3, 3);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('As King SQL, I must be head of the round table', 5043, 3, 1);
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Spring is honestly so rewarding!', 52, 3, 2);
 
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Theres a reason why Java has the symbol as a coffee...', 1053236, 3, 3);
@@ -83,3 +109,6 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_busi
 
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account) VALUES ('Why have they put Atos first in the table? Still impressed though', 252, 3, 12, 'true');
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account) VALUES ('Hosting a fundraiser for Ukraine this weekend!', 71143, 4, 12, 'true');
+
+
+

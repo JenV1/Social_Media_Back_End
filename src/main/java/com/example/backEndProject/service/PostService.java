@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.yaml.snakeyaml.events.Event;
 
+import javax.net.ssl.SSLEngineResult;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Map;
@@ -28,6 +28,7 @@ public class PostService {
 
 
     private PostRepository postRepository;
+
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
@@ -116,6 +117,7 @@ public class PostService {
 
         return current;
     }
+
 
     public Post editPost(Long id,
                          String new_content)
