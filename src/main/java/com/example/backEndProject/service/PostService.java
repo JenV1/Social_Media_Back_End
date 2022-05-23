@@ -3,9 +3,18 @@ package com.example.backEndProject.service;
 import com.example.backEndProject.model.Post;
 import com.example.backEndProject.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.net.ssl.SSLEngineResult;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class PostService {
@@ -58,6 +67,7 @@ public class PostService {
     //    Put Methods
 
 
+
     public Post updateLikeCount(Long id)
             throws NoSuchElementException {
 
@@ -100,6 +110,7 @@ public class PostService {
 
         return current;
     }
+
 
     public Post editPost(Long id,
                          String new_content)
@@ -155,4 +166,5 @@ public class PostService {
 
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
 }

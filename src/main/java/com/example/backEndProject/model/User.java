@@ -19,7 +19,7 @@ public class User {
     private String name;
     private String company;
     private String role;
-    private Interests interests;
+    private InterestsEnum interests;
     private String password;
     private String date_of_birth;
 
@@ -34,7 +34,7 @@ public class User {
 
     public User() {}
 
-    public User(Long id, String name, String company, String role, Interests interests, String password,
+    public User(Long id, String name, String company, String role, InterestsEnum interests, String password,
                 String date_of_birth, ArrayList<Post> allPostsByUser) {
         this.id = id;
         this.name = name;
@@ -82,11 +82,11 @@ public class User {
         this.role = role;
     }
 
-    public Interests getInterests() {
+    public InterestsEnum getInterests() {
         return interests;
     }
 
-    public void setInterests(Interests interests) {
+    public void setInterests(InterestsEnum interests) {
         this.interests = interests;
     }
 

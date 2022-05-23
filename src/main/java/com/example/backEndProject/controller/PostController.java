@@ -50,6 +50,12 @@ public class PostController {
         return postService.updateLikeCount(id);
     }
 
+    @PutMapping("/addSuperlikeToPost/{id}")
+    public Post superLikePost(@PathVariable("id") Long id) throws NoSuchElementException {
+
+        return postService.superLikePost(id);
+    }
+
     @PutMapping("/editOldPost/{id}")
     public Post editPost(@RequestBody String new_content, @PathVariable("id") Long id)
             throws NoSuchElementException, IOException {

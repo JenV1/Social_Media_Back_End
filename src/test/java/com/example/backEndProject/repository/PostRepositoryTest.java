@@ -1,6 +1,8 @@
 package com.example.backEndProject.repository;
 
+import com.example.backEndProject.model.Post;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
@@ -13,7 +15,6 @@ class PostRepositoryTest {
 
     @Autowired
     private PostRepository postRepository;
-
 
 
     @Test
@@ -29,4 +30,5 @@ class PostRepositoryTest {
         postList.add(2, post2);
         postRepository.deletePostByID(post1.getId());
         assertThat(postRepository.count()).isEqualTo(1);
+    }
 }
