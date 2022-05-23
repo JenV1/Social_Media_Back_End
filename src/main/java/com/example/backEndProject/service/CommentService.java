@@ -64,5 +64,18 @@ public class CommentService {
 
     }
 
+    public void addComment(
+                             int numberOfLikes,
+                             Long post_id,
+                             Long user_id,
+                             String commentContent){
+
+
+        commentRepository.addComment(numberOfLikes,post_id,user_id,commentContent);
+
+
+    }
+
+
 
 }

@@ -36,5 +36,14 @@ public class CommentController {
 
     }
 
+    @PostMapping("postComment")
+    public void addComment(
+                             @RequestParam int numberOfLikes,
+                             @RequestParam Long post_id,
+                             @RequestParam Long user_id,
+                             @RequestParam String commentContent){
+
+        commentService.addComment(numberOfLikes,post_id,user_id,commentContent);
+    }
 
 }
