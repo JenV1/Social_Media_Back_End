@@ -42,6 +42,16 @@ public class PostController {
         return postService.searchPostsForKeyword(keyword);
     }
 
+    @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}")
+    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") boolean isBusinessAccount) {
+        return postService.searchAllBusinessAccountPosts(isBusinessAccount);
+    }
+
+//    @GetMapping("/searchAllBusinessAccountPosts/{post_type_id}")
+//    public List search
+
+
+
 //    Put Methods
 
     @PutMapping("/addLikeToPost/{id}")
@@ -63,7 +73,7 @@ public class PostController {
     }
 
     @DeleteMapping("/deletePost/{id}")
-    public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
+    public String deletePostByID(@PathVariable("id") Long id) {
         return postService.deletePostByID(id);
     }
 }
