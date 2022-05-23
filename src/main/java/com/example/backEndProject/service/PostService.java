@@ -171,7 +171,7 @@ public class PostService {
 
         return postRepository.findAll().stream()
                 .map(Post::isBusinessAccount)
-                .filter(s -> s.equals(isBusinessAccount))
+                .filter(s -> s.)
                 .toList();
     }
 
