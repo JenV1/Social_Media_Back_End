@@ -10,7 +10,9 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-//    Attributes
+
+//    ATTRIBUTES START
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,25 +40,17 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> allCommentsByUser;
 
-
-
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private boolean isBusinessAccount;
 
 
-//    Constructors
+//    ATTRIBUTES END
+//
+//
+//    CONSTRUCTORS START
+
 
     public User() {}
-
-
-//    private final ArrayList<Post> adminPosts = new ArrayList<>();
-////    @Transient
-////    User admin = new User(999, "admin", "Connect", "password", "now", adminPosts);
-//
-////    public User getAdmin() {
-////        return admin;
-////    }
-
 
     public User(Long id, String name, String company, String role, String password,
                 String date_of_birth, ArrayList<Post> allPostsByUser, boolean isBusinessAccount) {
@@ -72,8 +66,11 @@ public class User {
     }
 
 
+//    CONSTRUCTORS ENDS
+//
+//
+//    GETTERS AND SETTERS START
 
-//    Getters and Setters
 
     public boolean isBusinessAccount() {
         return isBusinessAccount;
@@ -115,8 +112,6 @@ public class User {
         this.role = role;
     }
 
-
-
     public String getPassword() {
         return password;
     }
@@ -149,13 +144,9 @@ public class User {
         this.inbox = inbox;
     }
 
-    //    Methods
 
-//    Adding this to Post, simply add like to post to begin
-
-    public void likePost(Post post) {
-        int newLikeTotal = post.getNumber_of_likes() + 1;
-        post.setNumber_of_likes(newLikeTotal);
-    }
-
+//    GETTERS AND SETTERS END
+//
+//
+//    FILE END
 }
