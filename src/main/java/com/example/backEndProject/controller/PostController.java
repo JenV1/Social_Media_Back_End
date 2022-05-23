@@ -26,13 +26,11 @@ public class PostController {
 
 //    Dependency Injection START
 
-
     private PostService postService;
 
     public PostController(PostService postService) {
         this.postService = postService;
     }
-
 
 //    Dependency Injection END
 //
@@ -65,11 +63,6 @@ public class PostController {
         return postService.searchAllBusinessAccountPosts(isBusinessAccount);
     }
 
-//    @GetMapping("/searchAllBusinessAccountPosts/{post_type_id}")
-//    public List search
-
-
-
 
 //    Get Methods END
 //
@@ -95,20 +88,21 @@ public class PostController {
         return postService.editPost(id, new_content);
     }
 
-    @DeleteMapping("/post/{id}")
-    public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
-        postService.deletePostByID(id);
-        return new ResponseEntity<>(id, HttpStatus.OK);
-    }
 
 //    Put Methods END
 //
 //
 //    Delete Methods START
 
-    @DeleteMapping("/deletePost/{id}")
-    public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
-        return postService.deletePostByID(id);
+//    @DeleteMapping("/deletePost/{id}")
+//    public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
+//        return postService.deletePostByID(id);
+//    }
+
+    @DeleteMapping("/post/{id}")
+    public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
+        postService.deletePostByID(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
 //    Delete Methods END
