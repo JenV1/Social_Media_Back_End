@@ -42,6 +42,13 @@ public class PostController {
         return postService.searchPostsForKeyword(keyword);
     }
 
+//    @GetMapping("/searchForBusinessAccountPosts/{id}")
+//    public List searchForBusinessAccountPosts
+////
+////    @GetMapping("/searchAllBusinessAccountPosts/{id}")
+
+
+
 //    Put Methods
 
     @PutMapping("/addLikeToPost/{id}")
@@ -57,7 +64,7 @@ public class PostController {
     }
 
     @DeleteMapping("/deletePost/{id}")
-    public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
+    public String deletePostByID(@PathVariable("id") Long id) {
         return postService.deletePostByID(id);
     }
 }
