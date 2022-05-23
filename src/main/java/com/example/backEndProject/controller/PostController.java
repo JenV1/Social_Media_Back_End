@@ -58,10 +58,10 @@ public class PostController {
         return postService.searchPostsForKeyword(keyword);
     }
 
-    @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}")
-    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount) {
-        return postService.searchAllBusinessAccountPosts(isBusinessAccount);
-    }
+//    @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}")
+//    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount) {
+//        return postService.searchAllBusinessAccountPosts(isBusinessAccount);
+//    }
 
 
 //    Get Methods END
