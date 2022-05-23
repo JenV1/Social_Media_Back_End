@@ -56,7 +56,6 @@ public class PostController {
 
     @PutMapping("/addLikeToPost/{id}")
     public Post updateLikeCount(@PathVariable("id") Long id) throws NoSuchElementException {
-
         return postService.updateLikeCount(id);
     }
 
@@ -71,7 +70,6 @@ public class PostController {
         postService.deletePostByID(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
-
     @DeleteMapping("/deletePost/{id}")
     public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
         return postService.deletePostByID(id);

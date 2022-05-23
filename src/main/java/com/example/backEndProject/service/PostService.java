@@ -3,6 +3,8 @@ package com.example.backEndProject.service;
 import com.example.backEndProject.model.Post;
 import com.example.backEndProject.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,17 +44,129 @@ public class PostService {
     }
 
     public int findLikesByID(Long id) {
+
+//        Inspired by the way likes are shown on posts on social media applications
+
+        Post current = null;
+        try {
+            current = postRepository.findById(id).get();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        return current.getNumber_of_likes();
     }
 
     public List searchPostsForKeyword(String keyword) {
+
+//        Returns the posts that contain the relevant keyword
+
+        return postRepository.findAll().stream()
+                .map(Post::getContent_text)
+                .filter(s -> s.contains(keyword))
+                .toList();
     }
 
-    public Post updateLikeCount(Long id) {
+
+    //    Put Methods
+
+
+    public Post updateLikeCount(Long id)
+            throws NoSuchElementException {
+
+//        Adds like to specific post by id.
+//        Try catch statement for the scenario where id is not found.
+//        Created current outside of try catch to ensure it was within scope for the return statement.
+
+        Post current = null;
+        try {
+            current = postRepository.findById(id).get();
+            current.setNumber_of_likes(current.getNumber_of_likes() + 1);
+            postRepository.save(current);
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        return current;
     }
 
-    public Post editPost(Long id, String new_content) {
+    public Post superLikePost(Long id)
+            throws NoSuchElementException {
+
+//        Same as above but with 2 likes added.
+//        Adds like to specific post by id.
+//        Try catch statement for the scenario where id is not found.
+//        Created current outside of try catch to ensure it was within scope for the return statement.
+
+        Post current = null;
+        try {
+            current = postRepository.findById(id).get();
+            current.setNumber_of_likes(current.getNumber_of_likes() + 2);
+            postRepository.save(current);
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        return current;
     }
 
-    public void deletePostByID(Long id) {
+    public Post editPost(Long id,
+                         String new_content)
+            throws NoSuchElementException, IOException {
+
+//        Edits already established post by id.
+//        Try catch statement for the scenario where id is not found.
+//        Created current outside of try catch to ensure it was within scope for the return statement.
+
+        Post current = null;
+        try {
+            current = postRepository.findById(id).get();
+            current.setContent_text(new_content);
+            postRepository.save(current);
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        File myFile = new File("src/all_posts_and_post_edits.txt");
+        if (!myFile.exists()) {
+            try {
+                myFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+        FileWriter fileWriter = new FileWriter(myFile, true);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.println(current.getContent_text());
+        printWriter.println(LocalDateTime.now());
+        printWriter.println(current.getUser().getName());
+        printWriter.println("");
+
+        printWriter.close();
+
+        return current;
+    }
+
+    public ResponseEntity<Long> deletePostByID(Long id) {
+
+        try{
+            Post result = postRepository.findPostByID(id);
+            postRepository.delete(result);
+
+        }
+        catch (IllegalArgumentException e){
+            new Exception("Post does not exist!");
+        }
+
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }
