@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+// THIS IS FOR AUTHENTICATION LOGIN! PLEASE DON'T TOUCH!
+
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -27,3 +29,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 }
+
+// THIS IS FOR AUTHENTICATION LOGIN! PLEASE DON'T TOUCH!

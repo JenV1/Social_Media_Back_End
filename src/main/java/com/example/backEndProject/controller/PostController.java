@@ -24,13 +24,21 @@ import java.util.NoSuchElementException;
 public class PostController {
 
 
+//    Dependency Injection START
+
+
     private PostService postService;
 
     public PostController(PostService postService) {
         this.postService = postService;
     }
 
-//    Get Mapping Methods
+
+//    Dependency Injection END
+//
+//
+//    Get Methods START
+
 
     @GetMapping("/list_all_posts")
     public List<Post> getAll() {
@@ -62,7 +70,12 @@ public class PostController {
 
 
 
-//    Put Methods
+
+//    Get Methods END
+//
+//
+//    Put Methods START
+
 
     @PutMapping("/addLikeToPost/{id}")
     public Post updateLikeCount(@PathVariable("id") Long id) throws NoSuchElementException {
@@ -88,9 +101,16 @@ public class PostController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
+//    Put Methods END
+//
+//
+//    Delete Methods START
+
     @DeleteMapping("/deletePost/{id}")
     public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
         return postService.deletePostByID(id);
     }
+
+//    Delete Methods END
 }
 

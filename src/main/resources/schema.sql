@@ -33,22 +33,16 @@ CREATE TABLE interest_types (
     interests interests_career
 );
 
-
-
 CREATE TABLE interests_mapper (
-
-
     interests_id INTEGER ,
     user_id INTEGER ,
     FOREIGN KEY (interests_id) REFERENCES interest_types (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
-
 );
 
 CREATE TYPE posts_type AS ENUM ('ADVERTISEMENT','EVENT','LIFESTYLE','FUNDRAISER','EVENT_PLAN');
 
 CREATE TABLE post_types (
-
     id SERIAL PRIMARY KEY,
     post_type posts_type
 );
@@ -56,6 +50,14 @@ CREATE TABLE post_types (
 
 
 ALTER TABLE posts ADD FOREIGN KEY (post_types_id) REFERENCES post_types (id);
+
+
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    messageContent VARCHAR(255),
+    sender_id REFERENCES user_id(id) FOREIGN KEY,
+    receiver_id REFERENCES user_id(id) FOREIGN KEY
+);
 
 
 
