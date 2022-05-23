@@ -69,7 +69,7 @@ VALUES ('Lloyds','Recruiter','05/07/1990', 'Amazing', 'iAgreeAtos, TheseGuysKnow
 
 
 -- posts here
-INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Damn, Pingu inspires to be a better person everyday', 55, 3, 1);
+INSERT INTO posts (content_text, is_business_account, number_of_likes, post_types_id, user_id) VALUES ('Damn, Pingu inspires to be a better person everyday', True, 55, 3, 1);
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('wow. the most aMAzing fillet mignon, lathered in THE most incredible peppercorn sauce. THAT is food!', 10230, 3, 2);
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('delighted to be partaking in the BNTA back-end API project. Excited to work with some of the biggest names in the business on this!', 203400, 3, 3);
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('yesterday i missed an interview to feed a dog. the next day i got a call. it was the interviwer offering me the job. i walked in on my first day and met my new boss. it was the dog.', 1856, 3, 4);
@@ -114,4 +114,9 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES 
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Hosting a fundraiser for Ukraine this weekend!', 71143, 4, 12);
 
 
+INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('This is a test message!', 'Lewis', 3);
+
+INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('Letsss gooooooo', 'Mohamed', 5);
+INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('Projects going great so far, loving this messaging service', 'Scott', 3);
+INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('Wow, Connect is such a good social media app!', 'Cem', 2);
 
