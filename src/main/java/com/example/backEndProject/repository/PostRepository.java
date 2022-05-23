@@ -16,7 +16,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     // delete query to delete a post by a specific post_id
     @Query(value = "SELECT * FROM posts WHERE is_business_account = true", nativeQuery = true)
-    Post searchAllBusinessAccountPosts(boolean isBusinessAccount);
+    Post searchAllBusinessAccountPosts(Boolean isBusinessAccount);
 
 //    @Query(value = "SELECT * FROM posts WHERE is_business_account = true && company = ?", nativeQuery = true)
 //    Post searchForBusinessAccountPosts(boolean isBusinessAccount, int business_Id);

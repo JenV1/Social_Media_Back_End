@@ -43,7 +43,7 @@ public class PostController {
     }
 
     @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}")
-    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") boolean isBusinessAccount) {
+    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount) {
         return postService.searchAllBusinessAccountPosts(isBusinessAccount);
     }
 

@@ -17,7 +17,7 @@ public class Post {
     private int post_types_id;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
-    private boolean isBusinessAccount;
+    private Boolean isBusinessAccount;
 
 //    @Column(name = "business_acc_id")
 //    private int businessAccID;
@@ -31,7 +31,7 @@ public class Post {
 
     public Post() {}
 
-    public Post(Long id, String content_text, int number_of_likes, boolean isBusinessAccount) {
+    public Post(Long id, String content_text, int number_of_likes, Boolean isBusinessAccount) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
@@ -83,11 +83,11 @@ public class Post {
         this.post_types_id = post_types_id;
     }
 
-    public boolean isBusinessAccount() {
+    public Boolean isBusinessAccount() {
         return isBusinessAccount;
     }
 
-    public void setBusinessAccount(boolean businessAccount) {
+    public void setBusinessAccount(Boolean businessAccount) {
         isBusinessAccount = businessAccount;
     }
 

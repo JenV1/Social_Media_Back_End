@@ -6,6 +6,7 @@ import com.example.backEndProject.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -165,13 +166,13 @@ public class PostService {
         return "Deleted";
     }
 
-    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
+    public List searchAllBusinessAccountPosts(Boolean isBusinessAccount) {
 
 //        Returns the posts that contain the company and isBusinessAccount = true
 
         return postRepository.findAll().stream()
                 .map(Post::isBusinessAccount)
-                .filter(s -> s.)
+                .filter(s -> s == Boolean.TRUE)
                 .toList();
     }
 
