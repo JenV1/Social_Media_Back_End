@@ -22,14 +22,14 @@ public class CommentController {
 
 
     @PutMapping("heartComment")
-    public String heartComment(@RequestParam Long user_id_of_user_that_made_post,
+    public String heartComment(@RequestParam Long user_id,
                                @RequestParam String user_name,
                                @RequestParam String password,
                                @RequestParam Long postId,
-                               @RequestParam Long commentId_of_comment_on_post
+                               @RequestParam Long Id_of_comment_to_be_hearted
                                ){
 
-        return commentService.heartComment(user_id_of_user_that_made_post,user_name,password,postId,commentId_of_comment_on_post);
+        return commentService.heartComment(user_id,user_name,password,postId,Id_of_comment_to_be_hearted);
 
 
 
