@@ -17,9 +17,16 @@ public class User {
     private Long id;
     private String name;
     private String company;
+    private String role;
 
     private String password;
     private String date_of_birth;
+
+//    Inbox/Messages
+
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Message> inbox;
 
 //    Relationship Mapping
 
@@ -27,34 +34,54 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> allPostsByUser;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JsonIgnoreProperties(value = {"users"})
-//    @JoinTable(
-//            name="interests_map",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name="interest_id")
-//    )
-//    private List<Interest> interests;
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Comment> allCommentsByUser;
+
+
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
+    private boolean isBusinessAccount;
 
 
 //    Constructors
 
     public User() {}
 
-    public User(Long id, String name, String company, InterestsEnum interestsEnum, String password,
-                String date_of_birth, ArrayList<Post> allPostsByUser) {
+
+//    private final ArrayList<Post> adminPosts = new ArrayList<>();
+////    @Transient
+////    User admin = new User(999, "admin", "Connect", "password", "now", adminPosts);
+//
+////    public User getAdmin() {
+////        return admin;
+////    }
+
+
+    public User(Long id, String name, String company, String role, String password,
+                String date_of_birth, ArrayList<Post> allPostsByUser, boolean isBusinessAccount) {
         this.id = id;
         this.name = name;
         this.company = company;
-
+        this.role = role;
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
+        this.inbox = new ArrayList<Message>();
+        this.isBusinessAccount = isBusinessAccount;
     }
+
 
 
 //    Getters and Setters
 
+    public boolean isBusinessAccount() {
+        return isBusinessAccount;
+    }
+
+    public void setBusinessAccount(boolean businessAccount) {
+        isBusinessAccount = businessAccount;
+    }
 
     public Long getId() {
         return id;
@@ -78,6 +105,14 @@ public class User {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 
@@ -106,7 +141,15 @@ public class User {
         this.allPostsByUser = allPostsByUser;
     }
 
-//    Methods
+    public List<Message> getInbox() {
+        return inbox;
+    }
+
+    public void setInbox(List<Message> inbox) {
+        this.inbox = inbox;
+    }
+
+    //    Methods
 
 //    Adding this to Post, simply add like to post to begin
 

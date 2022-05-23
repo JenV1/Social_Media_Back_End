@@ -1,9 +1,13 @@
 package com.example.backEndProject.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "comments")
 public class Comment {
 
     @Id
@@ -13,18 +17,30 @@ public class Comment {
     @Column(name = "number_of_likes")
     private int likes;
 
-    private String heartByUser;
+    private Boolean heartByUser;
 
-    private String replies;
+    private String commentContent;
+
+
+    @ManyToOne
+    private Post post;
+
+    @ManyToOne
+    private User user;
+
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"comment"})
+    private List<Reply> commentReplies;
+
 
     public Comment() {
     }
 
-    public Comment(Long id, int likes, String heartByUser, String replies) {
+    public Comment(Long id, int likes, Boolean heartByUser, String replies) {
         this.id = id;
         this.likes = likes;
         this.heartByUser = heartByUser;
-        this.replies = replies;
+
     }
 
     public Long getId() {
@@ -43,11 +59,27 @@ public class Comment {
         this.likes = likes;
     }
 
-    public String getHeartByUser() {
+    public Boolean getHeartByUser() {
         return heartByUser;
     }
 
-    public void setHeartByUser(String heartByUser) {
+    public void setHeartByUser(Boolean heartByUser) {
         this.heartByUser = heartByUser;
+    }
+
+    public String getCommentContent() {
+        return commentContent;
+    }
+
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }

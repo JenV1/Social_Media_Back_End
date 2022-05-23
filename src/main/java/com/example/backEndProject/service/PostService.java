@@ -1,6 +1,7 @@
 package com.example.backEndProject.service;
 
 import com.example.backEndProject.model.Post;
+import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.yaml.snakeyaml.events.Event;
 
+import javax.net.ssl.SSLEngineResult;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class PostService {
 
 
     private PostRepository postRepository;
+
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
@@ -115,6 +117,7 @@ public class PostService {
         return current;
     }
 
+
     public Post editPost(Long id,
                          String new_content)
             throws NoSuchElementException, IOException {
@@ -156,17 +159,28 @@ public class PostService {
         return current;
     }
 
-    public ResponseEntity<Long> deletePostByID(Long id) {
+    public String deletePostByID(Long id) {
 
-        try{
-            Post result = postRepository.findPostByID(id);
-            postRepository.delete(result);
+        Post result = postRepository.findPostByID(id);
+        postRepository.delete(result);
 
-        }
-        catch (IllegalArgumentException e){
-            new Exception("Post does not exist!");
-        }
-
-        return new ResponseEntity<>(id, HttpStatus.OK);
+        return "Deleted";
     }
+
+    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
+
+//        Returns the posts that contain the company and isBusinessAccount = true
+
+        return postRepository.findAll().stream()
+                .map(Post::isBusinessAccount)
+                .filter(s -> s.equals(isBusinessAccount))
+                .toList();
+    }
+
+//    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
+//        return postRepository.findAll().stream()
+//                .map(Post::isBusinessAccount)
+//                .filter(s -> s.equals(isBusinessAccount))
+//                .toList();
+//    }
 }

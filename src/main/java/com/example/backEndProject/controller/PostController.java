@@ -26,11 +26,11 @@ public class PostController {
 
     private PostService postService;
 
-    public PostController(PostService postService){
+    public PostController(PostService postService) {
         this.postService = postService;
     }
 
-//    Mapping Methods
+//    Get Mapping Methods
 
     @GetMapping("/list_all_posts")
     public List<Post> getAll() {
@@ -52,6 +52,16 @@ public class PostController {
         return postService.searchPostsForKeyword(keyword);
     }
 
+    @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}")
+    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") boolean isBusinessAccount) {
+        return postService.searchAllBusinessAccountPosts(isBusinessAccount);
+    }
+
+//    @GetMapping("/searchAllBusinessAccountPosts/{post_type_id}")
+//    public List search
+
+
+
 //    Put Methods
 
     @PutMapping("/addLikeToPost/{id}")
@@ -60,16 +70,17 @@ public class PostController {
         return postService.updateLikeCount(id);
     }
 
+    @PutMapping("/addSuperlikeToPost/{id}")
+    public Post superLikePost(@PathVariable("id") Long id) throws NoSuchElementException {
+
+        return postService.superLikePost(id);
+    }
+
     @PutMapping("/editOldPost/{id}")
     public Post editPost(@RequestBody String new_content, @PathVariable("id") Long id)
             throws NoSuchElementException, IOException {
         return postService.editPost(id, new_content);
     }
-
-//    @PostMapping("/posts")
-//    public Post addPost(@RequestParam String content_text){
-//        return postService.
-//    }
 
     @DeleteMapping("/post/{id}")
     public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {

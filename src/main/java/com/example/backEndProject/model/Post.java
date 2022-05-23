@@ -1,6 +1,9 @@
 package com.example.backEndProject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -16,19 +19,31 @@ public class Post {
     @Column(name = "post_types_id")
     private int post_types_id;
 
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
+    private boolean isBusinessAccount;
+
+//    @Column(name = "business_acc_id")
+//    private int businessAccID;
+
 //    Relationship Mapping
 
     @ManyToOne
     private User user;
 
+    @JsonIgnoreProperties({"post"})
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comment> postComments;
+
 //    Constructors
 
     public Post() {}
 
-    public Post(Long id, String content_text, int number_of_likes) {
+    public Post(Long id, String content_text, int number_of_likes, boolean isBusinessAccount) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
+//        this.businessAccID = businessAccID;
+        this.isBusinessAccount = isBusinessAccount;
     }
 
 
@@ -67,5 +82,27 @@ public class Post {
         this.user = user;
     }
 
+    public int getPost_types_id() {
+        return post_types_id;
+    }
 
+    public void setPost_types_id(int post_types_id) {
+        this.post_types_id = post_types_id;
+    }
+
+    public boolean isBusinessAccount() {
+        return isBusinessAccount;
+    }
+
+    public void setBusinessAccount(boolean businessAccount) {
+        isBusinessAccount = businessAccount;
+    }
+
+//    public int getBusinessAccID() {
+//        return businessAccID;
+//    }
+//
+//    public void setBusinessAccID(int businessAccID) {
+//        this.businessAccID = businessAccID;
+//    }
 }

@@ -35,28 +35,6 @@ CREATE TABLE interest_types (
 
 
 
-INSERT INTO interest_types (interests) VALUES ('SOFTWARE_ENGINEERING');
-INSERT INTO interest_types (interests) VALUES ('MACHINE_LEARNING');
-INSERT INTO interest_types (interests) VALUES ('AI');
-INSERT INTO interest_types (interests) VALUES ('ROBOTICS');
-INSERT INTO interest_types (interests) VALUES ('FULL_STACK_DEVELOPMENT');
-INSERT INTO interest_types (interests) VALUES ('BACK_END_DEVELOPMENT');
-INSERT INTO interest_types (interests) VALUES ('FRONT_END_DEVELOPMENT');
-INSERT INTO interest_types (interests) VALUES ('BUSINESS_DEVELOPMENT');
-INSERT INTO interest_types (interests) VALUES ('ENTREPRENEURSHIP');
-INSERT INTO interest_types (interests) VALUES ('ART');
-INSERT INTO interest_types (interests) VALUES ('LITERATURE');
-INSERT INTO interest_types (interests) VALUES ('LOCAL_EVENTS');
-INSERT INTO interest_types (interests) VALUES ('INVESTING');
-INSERT INTO interest_types (interests) VALUES ('STARTING_A_BUSINESS');
-INSERT INTO interest_types (interests) VALUES ('WOMEN_IN_TECH');
-INSERT INTO interest_types (interests) VALUES ('BAME_IN_TECH');
-INSERT INTO interest_types (interests) VALUES ('VETERANS_IN_TECH');
-INSERT INTO interest_types (interests) VALUES ('BANKING_AND_FINANCE');
-INSERT INTO interest_types (interests) VALUES ('MEDITATION_AND_SPIRITUALITY');
-INSERT INTO interest_types (interests) VALUES ('PHOTOGRAPHY');
-
-
 CREATE TABLE interests_mapper (
 
 
@@ -76,13 +54,6 @@ CREATE TABLE post_types (
 );
 
 
-
-
-INSERT INTO post_types (post_type) VALUES ('ADVERTISEMENT');
-INSERT INTO post_types (post_type) VALUES ('EVENT');
-INSERT INTO post_types (post_type) VALUES ('LIFESTYLE');
-INSERT INTO post_types (post_type) VALUES ('FUNDRAISER');
-INSERT INTO post_types (post_type) VALUES ('EVENT_PLAN');
 
 ALTER TABLE posts ADD FOREIGN KEY (post_types_id) REFERENCES post_types (id);
 

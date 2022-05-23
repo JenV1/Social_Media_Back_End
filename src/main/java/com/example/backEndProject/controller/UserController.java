@@ -60,6 +60,13 @@ public ResponseEntity<User> addUser(@RequestBody User user) {
         return userService.searchUsersForKeyword(keyword);
     }
 
+//    MESSAGING METHODS
+
+//    @GetMapping("/getAllMessagesFromInbox")
+//    public List<String> getAllMessagesFromInbox() {
+//        return userService.getAllMessagesFromInbox();
+//    }
+
 
 ///    Put Methods
 
