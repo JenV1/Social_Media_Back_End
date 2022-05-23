@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -49,7 +49,7 @@ public class UserController {
 //        User savedUser = userService.save(user);
 //    }
 @PostMapping("/addUsers")
-public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
+public ResponseEntity<User> addUser(@RequestBody User user) {
     User newUser = userService.save(user);
 
     return new ResponseEntity< >(newUser, HttpStatus.CREATED);
@@ -68,6 +68,22 @@ public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
     public User editName(@PathVariable("id") Long id,
                          @RequestBody String new_name){
 
+        return userService.editName(id, new_name);
+    }
+
+
+    @GetMapping("/searchForUserByName/{keyword}")
+    public List<String> searchUsersForKeyword(@PathVariable("keyword") String keyword) {
+        return userService.searchUsersForKeyword(keyword);
+    }
+
+
+///    Put Methods
+
+
+    @PutMapping("/editName/{id}")
+    public User editName(@PathVariable("id") Long id,
+                         @RequestBody String new_name){
         return userService.editName(id, new_name);
     }
 
@@ -95,7 +111,4 @@ public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
         return userService.editDOB(id, new_DOB);
 
     }
-
-
-
 }

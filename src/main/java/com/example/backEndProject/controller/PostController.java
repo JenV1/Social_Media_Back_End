@@ -25,13 +25,12 @@ public class PostController {
 
 
     private PostService postService;
-    private Post post;
 
-    public PostController(PostService postService) {
+    public PostController(PostService postService){
         this.postService = postService;
     }
 
-//    Get Mapping Methods
+//    Mapping Methods
 
     @GetMapping("/list_all_posts")
     public List<Post> getAll() {
