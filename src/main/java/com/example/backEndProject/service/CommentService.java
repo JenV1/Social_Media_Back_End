@@ -89,6 +89,15 @@ public class CommentService {
 
     }
 
+    public void changeCommentContent(String commentContent,Long id){
+
+        Comment resultComment = commentRepository.findCommentByID(id);
+
+        resultComment.setCommentContent(commentContent);
+
+        commentRepository.save(resultComment);
+    }
+
 
 
 }

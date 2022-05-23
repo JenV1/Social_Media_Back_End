@@ -48,6 +48,25 @@ public class CommentController {
 
     }
 
+    @PutMapping("changeCommentContent/{id}")
+    public String changeCommentContent(@RequestParam String change_comment_content_to,
+            @PathVariable("id") Long id){
+
+        try{
+            commentService.changeCommentContent(change_comment_content_to,id);
+        }catch(NullPointerException e){
+
+            return "This comment does not exist";
+        }
+
+        return "Comment successfully updated";
+
+
+    }
+
+
+
+
     @PostMapping("postComment")
     public void addComment(
                              @RequestParam int numberOfLikes,
