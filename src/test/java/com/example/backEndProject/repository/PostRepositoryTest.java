@@ -1,25 +1,20 @@
 package com.example.backEndProject.repository;
 
-import com.example.backEndProject.model.Post;
-import com.example.backEndProject.service.PostService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-
 
 @SpringBootTest
 class PostRepositoryTest {
 
     @Autowired
     private PostRepository postRepository;
+
+
 
     @Test
     void findPostByID() {
@@ -34,5 +29,4 @@ class PostRepositoryTest {
         postList.add(2, post2);
         postRepository.deletePostByID(post1.getId());
         assertThat(postRepository.count()).isEqualTo(1);
-    }
 }
