@@ -10,6 +10,8 @@ import java.util.List;
 @RestController
 public class CommentController {
 
+//    INJECTION MAPPING START
+
     private CommentService commentService;
 
     public CommentController(CommentService commentService){
@@ -17,14 +19,17 @@ public class CommentController {
     }
 
 
+//    INJECTION MAPPING END
+//
+//
+//    GET MAPPING START
+
+
     @GetMapping("showAllComments")
     public List<Comment> showAllComments(){
-
         return commentService.showAllComments();
 
     }
-
-
 
 
     @GetMapping("findCommentById/{id}")
@@ -33,6 +38,12 @@ public class CommentController {
         return commentService.findCommentByID(id);
 
     }
+
+
+//    GET MAPPING END
+//
+//
+//    PUT MAPPING START
 
 
     @PutMapping("heartComment")
@@ -45,10 +56,8 @@ public class CommentController {
 
         return commentService.heartComment(user_id,user_name,password,postId,Id_of_comment_to_be_hearted);
 
-
-
-
     }
+
 
     @PutMapping("changeCommentContent/{id}")
     public String changeCommentContent(@RequestParam String change_comment_content_to,
@@ -56,17 +65,19 @@ public class CommentController {
 
         try{
             commentService.changeCommentContent(change_comment_content_to,id);
-        }catch(NullPointerException e){
+        } catch(NullPointerException e) {
 
             return "This comment does not exist";
         }
 
         return "Comment successfully updated";
 
-
     }
 
-
+//    PUT MAPPING END
+//
+//
+//    POST MAPPING START
 
 
     @PostMapping("postComment")
@@ -76,6 +87,13 @@ public class CommentController {
 
         commentService.addComment(post_id,user_id,commentContent);
     }
+
+
+//    POST MAPPING END
+//
+//
+//    DELETE MAPPING START
+
 
     @DeleteMapping("deleteCommentById/{id}")
     public String deleteCommentById(@PathVariable("id") Long id){
@@ -89,5 +107,12 @@ public class CommentController {
 
         return "Comment Deleted";
     }
+
+
+//    DELETE MAPPING END
+//
+//
+//    END OF FILE
+
 
 }
