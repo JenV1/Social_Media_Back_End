@@ -3,7 +3,6 @@ package com.example.backEndProject.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +30,18 @@ public class User {
 
 //    Constructors
 
-    public User() {}
+    public User() {
+    }
+
+    public User(int i, String admin, String connect, String password, String now, Object o) {}
+
+    private final ArrayList<Post> adminPosts = new ArrayList<>();
+    @Transient
+    User admin = new User(999, "admin", "Connect", "password", "now", adminPosts);
+
+    public User getAdmin() {
+        return admin;
+    }
 
     public User(Long id, String name, String company, Interests interests, String password,
                 String date_of_birth, ArrayList<Post> allPostsByUser) {
