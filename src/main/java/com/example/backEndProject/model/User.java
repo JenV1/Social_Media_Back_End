@@ -18,7 +18,7 @@ public class User {
     private String name;
     private String company;
     private String role;
-    private InterestsEnum interests;
+
     private String password;
     private String date_of_birth;
 
@@ -48,15 +48,14 @@ public class User {
 
     public User() {}
 
-    public User(int i, String admin, String connect, String password, String now, Object o) {}
 
-    private final ArrayList<Post> adminPosts = new ArrayList<>();
-//    @Transient
-//    User admin = new User(999, "admin", "Connect", "password", "now", adminPosts);
-
-//    public User getAdmin() {
-//        return admin;
-//    }
+//    private final ArrayList<Post> adminPosts = new ArrayList<>();
+////    @Transient
+////    User admin = new User(999, "admin", "Connect", "password", "now", adminPosts);
+//
+////    public User getAdmin() {
+////        return admin;
+////    }
 
 
     public User(Long id, String name, String company, String role, String password,
@@ -116,13 +115,7 @@ public class User {
         this.role = role;
     }
 
-    public InterestsEnum getInterests() {
-        return interests;
-    }
 
-    public void setInterests(InterestsEnum interests) {
-        this.interests = interests;
-    }
 
     public String getPassword() {
         return password;
