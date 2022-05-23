@@ -8,6 +8,8 @@ import com.example.backEndProject.repository.PostRepository;
 import com.example.backEndProject.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentService {
 
@@ -23,6 +25,11 @@ public class CommentService {
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
 
+    }
+
+    public List<Comment> showAllComments(){
+
+        return commentRepository.findAll();
     }
 
 

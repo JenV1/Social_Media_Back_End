@@ -4,6 +4,8 @@ import com.example.backEndProject.model.Comment;
 import com.example.backEndProject.service.CommentService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class CommentController {
 
@@ -12,6 +14,15 @@ public class CommentController {
     public CommentController(CommentService commentService){
         this.commentService = commentService;
     }
+
+    @GetMapping("showAllComments")
+    public List<Comment> showAllComments(){
+
+        return commentService.showAllComments();
+    }
+
+
+
 
     @GetMapping("findCommentById/{id}")
     public Comment findCommentByID(@PathVariable("id") Long id){
