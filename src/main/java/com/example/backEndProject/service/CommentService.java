@@ -1,41 +1,44 @@
 package com.example.backEndProject.service;
 
-import com.example.backEndProject.EntityManager.EMF;
-import com.example.backEndProject.model.Comment;
 import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
+import com.example.backEndProject.repository.PostRepository;
+import com.example.backEndProject.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 @Service
 public class CommentService {
 
-    public String heartComment(int user_id, String user_name, String password, int postId ){
+    private UserRepository userRepository;
+    private PostRepository postRepository;
 
-
-        EntityManager em =  EMF.get().createEntityManager();
-        User user = em.createQuery("SELECT user FROM users WHERE id = ?1",User.class)
-                .setParameter(1,user_id)
-                .getSingleResult();
-
-
-        Query getPostUserIdQuery = em.createNativeQuery("SELECT user_id FROM posts WHERE id = ?1");
-        getPostUserIdQuery.setParameter(1,postId);
-        int postUserId = ( (Number) getPostUserIdQuery.getSingleResult()).intValue();
+    public CommentService(UserRepository userRepository, PostRepository postRepository){
+        this.userRepository = userRepository;
+        this.postRepository = postRepository;
+    }
 
 
 
-        if(user.getName().equals(user_name) && user.getPassword().equals(password) && postUserId == user_id){
+    public String heartComment(Long user_id, String user_name, String password, Long postId){
 
-            return "Access Granted, comment hearted";
+
+
+
+        User result_user = userRepository.findByID(user_id);
+        Post result_post = postRepository.findPostByID(postId);
+
+
+        if(result_user.getName().equals(user_name)
+                && result_user.getPassword().equals(password)
+                && result_post.getUser().getId().equals(postId)){
+
+            return "hearted";
 
 
         }
 
-        return "Access denied";
+            return "not hearted";
+
 
     }
 
