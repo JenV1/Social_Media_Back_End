@@ -41,6 +41,7 @@ public class UserController {
         User savedUser = userService.save(user);
     }
 
+
     @GetMapping("/searchForUserByName/{keyword}")
     public List<String> searchUsersForKeyword(@PathVariable("keyword") String keyword) {
         return userService.searchUsersForKeyword(keyword);

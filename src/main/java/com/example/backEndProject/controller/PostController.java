@@ -65,6 +65,8 @@ public class PostController {
         return postService.editPost(id, new_content);
     }
 
+
+
     @DeleteMapping("/post/{id}")
     public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
         postService.deletePostByID(id);
@@ -74,5 +76,7 @@ public class PostController {
     public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
         return postService.deletePostByID(id);
     }
+
+
 }
 
