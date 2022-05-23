@@ -18,4 +18,6 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
             "VALUES (?1 , ?2, ?3, ?4)",nativeQuery = true)
     void addComment(int numberOfLikes,Long PostId, Long userId,String commentContent);
 
+
+
 }

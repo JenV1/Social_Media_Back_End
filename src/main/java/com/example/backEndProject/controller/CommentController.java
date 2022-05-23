@@ -2,6 +2,7 @@ package com.example.backEndProject.controller;
 
 import com.example.backEndProject.model.Comment;
 import com.example.backEndProject.service.CommentService;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,6 +56,19 @@ public class CommentController {
                              @RequestParam String commentContent){
 
         commentService.addComment(numberOfLikes,post_id,user_id,commentContent);
+    }
+
+    @DeleteMapping("deleteCommentById/{id}")
+    public String deleteCommentById(@PathVariable("id") Long id){
+
+        try{
+            commentService.deleteCommentById(id);
+        }catch(EmptyResultDataAccessException e){
+            return "This comment doesn't exist";
+        }
+
+
+        return "Comment Deleted";
     }
 
 }
