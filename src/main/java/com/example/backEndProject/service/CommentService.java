@@ -56,7 +56,7 @@ public class CommentService {
             }
 
         }catch(NullPointerException e){
-            return "user does not exist";
+            return "user/post does not exist";
         }
 
            return "Incorrect login details";
