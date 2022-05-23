@@ -3,10 +3,11 @@ package com.example.backEndProject.service;
 import com.example.backEndProject.model.Post;
 import com.example.backEndProject.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.net.ssl.SSLEngineResult;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import java.util.NoSuchElementException;
 @Service
 public class PostService {
 
-    @Autowired
+
     private PostRepository postRepository;
 
     public PostService(PostRepository postRepository) {
@@ -36,7 +37,6 @@ public class PostService {
     public Post findPostByID(Long id){
         return postRepository.findPostByID(id);
     }
-
 
     public int findLikesByID(Long id) {
 
@@ -67,6 +67,7 @@ public class PostService {
     //    Put Methods
 
 
+
     public Post updateLikeCount(Long id)
             throws NoSuchElementException {
 
@@ -88,9 +89,32 @@ public class PostService {
         return current;
     }
 
+    public Post superLikePost(Long id)
+            throws NoSuchElementException {
+
+//        Same as above but with 2 likes added.
+//        Adds like to specific post by id.
+//        Try catch statement for the scenario where id is not found.
+//        Created current outside of try catch to ensure it was within scope for the return statement.
+
+        Post current = null;
+        try {
+            current = postRepository.findById(id).get();
+            current.setNumber_of_likes(current.getNumber_of_likes() + 2);
+            postRepository.save(current);
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            System.out.println("No matching post could be found for id: " + id);
+        }
+
+        return current;
+    }
+
+
     public Post editPost(Long id,
                          String new_content)
-                        throws NoSuchElementException, IOException {
+            throws NoSuchElementException, IOException {
 
 //        Edits already established post by id.
 //        Try catch statement for the scenario where id is not found.
@@ -127,6 +151,20 @@ public class PostService {
         printWriter.close();
 
         return current;
+    }
+
+    public ResponseEntity<Long> deletePostByID(Long id) {
+
+        try{
+            Post result = postRepository.findPostByID(id);
+            postRepository.delete(result);
+
+        }
+        catch (IllegalArgumentException e){
+            new Exception("Post does not exist!");
+        }
+
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
 }

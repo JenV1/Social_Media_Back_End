@@ -4,6 +4,7 @@ import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.UserRepository;
 import com.example.backEndProject.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +14,12 @@ import java.util.stream.Collectors;
 @RestController
 public class UserController {
 
+
     private UserService userService;
-    public UserController(UserService userService) {this.userService = userService;}
+
+    public UserController(UserService userService){
+        this.userService = userService;
+    }
 
 //    Mapping Methods
 

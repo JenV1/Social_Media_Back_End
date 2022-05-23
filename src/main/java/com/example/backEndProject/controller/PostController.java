@@ -1,20 +1,13 @@
 package com.example.backEndProject.controller;
 
 import com.example.backEndProject.model.Post;
-import com.example.backEndProject.model.User;
-import com.example.backEndProject.repository.PostRepository;
 import com.example.backEndProject.service.PostService;
-import org.apache.tomcat.jni.Address;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -23,7 +16,7 @@ public class PostController {
 
     private PostService postService;
 
-    public PostController(PostService postService){
+    public PostController(PostService postService) {
         this.postService = postService;
     }
 
@@ -35,7 +28,7 @@ public class PostController {
     }
 
     @GetMapping("/post/{id}")
-    public Post findPostByID(@PathVariable("id") Long id){
+    public Post findPostByID(@PathVariable("id") Long id) {
         return postService.findPostByID(id);
     }
 
@@ -49,8 +42,7 @@ public class PostController {
         return postService.searchPostsForKeyword(keyword);
     }
 
-
-    //    Put Mapping Methods
+//    Put Methods
 
     @PutMapping("/addLikeToPost/{id}")
     public Post updateLikeCount(@PathVariable("id") Long id) throws NoSuchElementException {
@@ -58,11 +50,21 @@ public class PostController {
         return postService.updateLikeCount(id);
     }
 
+    @PutMapping("/addSuperlikeToPost/{id}")
+    public Post superLikePost(@PathVariable("id") Long id) throws NoSuchElementException {
+
+        return postService.superLikePost(id);
+    }
+
     @PutMapping("/editOldPost/{id}")
-    public Post editPost(@PathVariable("id") Long id,
-                         @RequestBody String new_content) throws NoSuchElementException, IOException {
+    public Post editPost(@RequestBody String new_content, @PathVariable("id") Long id)
+            throws NoSuchElementException, IOException {
         return postService.editPost(id, new_content);
     }
 
-
+    @DeleteMapping("/deletePost/{id}")
+    public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
+        return postService.deletePostByID(id);
+    }
 }
+
