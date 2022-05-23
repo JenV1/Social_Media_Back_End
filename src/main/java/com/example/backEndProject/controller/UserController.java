@@ -72,20 +72,9 @@ public ResponseEntity<User> addUser(@RequestBody User user) {
     }
 
 
-    @GetMapping("/searchForUserByName/{keyword}")
-    public List<String> searchUsersForKeyword(@PathVariable("keyword") String keyword) {
-        return userService.searchUsersForKeyword(keyword);
-    }
-
-
 ///    Put Methods
 
 
-    @PutMapping("/editName/{id}")
-    public User editName(@PathVariable("id") Long id,
-                         @RequestBody String new_name){
-        return userService.editName(id, new_name);
-    }
 
     @PutMapping("/editCompany/{id}")
     public User editCompany(@PathVariable("id") Long id,
