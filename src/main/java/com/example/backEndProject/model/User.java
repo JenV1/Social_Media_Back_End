@@ -21,6 +21,12 @@ public class User {
     private String password;
     private String date_of_birth;
 
+//    Inbox/Messages
+
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Message> inbox;
+
 //    Relationship Mapping
 
     @JsonIgnoreProperties({"user"})
@@ -52,6 +58,7 @@ public class User {
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
+        this.inbox = new ArrayList<Message>();
     }
 
 
@@ -114,7 +121,15 @@ public class User {
         this.allPostsByUser = allPostsByUser;
     }
 
-//    Methods
+    public List<Message> getInbox() {
+        return inbox;
+    }
+
+    public void setInbox(List<Message> inbox) {
+        this.inbox = inbox;
+    }
+
+    //    Methods
 
 //    Adding this to Post, simply add like to post to begin
 
