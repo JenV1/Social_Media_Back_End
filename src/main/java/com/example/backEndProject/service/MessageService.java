@@ -9,11 +9,22 @@ import java.util.List;
 @Service
 public class MessageService {
 
+
+//    DEPENDENCY INJECTION
+
+
     private MessageRepository messageRepository;
 
     public MessageService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
     }
+
+
+//    END OF DEPENDENCY INJECTION
+//
+//
+//    START OF METHODS
+
 
     public List<Message> getAll() {
         return messageRepository.findAll();
@@ -22,4 +33,10 @@ public class MessageService {
     public Message save(Message message) {
         return messageRepository.save(message);
     }
+
+
+//    END OF METHODS
+//
+//
+//    END OF FILE
 }
