@@ -165,7 +165,7 @@ public class PostService {
         return "Deleted";
     }
 
-    public List searchForAllBusinessAccountPosts(boolean isBusinessAccount) {
+    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
 
 //        Returns the posts that contain the company and isBusinessAccount = true
 
