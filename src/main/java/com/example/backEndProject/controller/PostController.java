@@ -25,6 +25,7 @@ public class PostController {
 
 
     private PostService postService;
+    private Post post;
 
     public PostController(PostService postService) {
         this.postService = postService;
@@ -65,6 +66,11 @@ public class PostController {
             throws NoSuchElementException, IOException {
         return postService.editPost(id, new_content);
     }
+
+//    @PostMapping("/posts")
+//    public Post addPost(@RequestParam String content_text){
+//        return postService.
+//    }
 
     @DeleteMapping("/post/{id}")
     public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {

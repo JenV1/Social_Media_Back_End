@@ -5,9 +5,12 @@ import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.UserRepository;
 import com.example.backEndProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,10 +44,16 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PostMapping("/users")
-    public void createUser(@RequestBody User user){
-        User savedUser = userService.save(user);
-    }
+//    @PostMapping("/users")
+//    public void createUser(@RequestBody User user){
+//        User savedUser = userService.save(user);
+//    }
+@PostMapping("/addUsers")
+public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
+    User newUser = userService.save(user);
+
+    return new ResponseEntity< >(newUser, HttpStatus.CREATED);
+}
 
     @GetMapping("/searchForUserByName/{keyword}")
     public List<String> searchUsersForKeyword(@PathVariable("keyword") String keyword) {
