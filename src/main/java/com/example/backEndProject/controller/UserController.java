@@ -103,9 +103,19 @@ public class UserController {
     }
 
     @PutMapping("logUserIn")
-    public String logUserIn(@RequestParam("username") String user_name,@RequestParam("password") String password){
+    public String logUserIn(@RequestParam("username") String user_name,
+                            @RequestParam("password") String password){
 
         return userService.logUserIn(user_name,password);
+
+
+    }
+
+    @PutMapping("logUserOut")
+    public String logUserOut(@RequestParam("username") String user_name,
+                            @RequestParam("password") String password){
+
+        return userService.logUserOut(user_name,password);
 
 
     }

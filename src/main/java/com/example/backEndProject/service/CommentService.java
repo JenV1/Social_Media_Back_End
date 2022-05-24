@@ -77,45 +77,49 @@ public class CommentService {
 
     }
 
-    public String heartComment(Long user_id, Long postId,String user_name, String password, Long commentId){
+    public String heartComment(String user_name, Long commentId){
+
+
 
         try{
 
 
+            if(userRepository.findUserByName(user_name).isUserLoggedIn()==false){
+
+                return "User not logged in. Please log in to heart a comment.";
+
+            }
 
 
 
-            User result_user = userRepository.findByID(user_id);
-            Post result_post = postRepository.findPostByID(postId);
+            User result_user = userRepository.findUserByName(user_name);
             Comment result_comment = commentRepository.findCommentByID(commentId);
 
-
-            if(result_user.getName().equals(user_name)
-                    && result_user.getPassword().equals(password)
-                    && result_post.getUser().getId().equals(user_id)
-                    && result_comment.getPost().getId().equals(postId)){
+            if(result_user.getId()==
+                    result_comment.getPost().getUser().getId()){
 
                 result_comment.setHeartByUser(Boolean.TRUE);
                 commentRepository.save(result_comment);
-
-
-
-                return "hearted";
-
+                return "Comment hearted";
 
             }
 
+
+
         }catch(NullPointerException e){
-            if(userRepository.findByID(user_id)==null && postRepository.findPostByID(postId)!=null){
+            if(userRepository.findUserByName(user_name)==null
+                    && commentRepository.findCommentByID(commentId) != null){
                 return "You may not heart this comment as: User does not exist";
-            } else if (postRepository.findPostByID(postId)==null && userRepository.findByID(user_id)!=null) {
-                return "You may not heart this comment as: Post does not exist";
-            } else if(userRepository.findByID(user_id)==null && postRepository.findPostByID(postId)==null){
-                return "You may not heart this comment as: User and post do not exist";
+            } else if (commentRepository.findCommentByID(commentId)==null
+                    && userRepository.findUserByName(user_name)!=null) {
+                return "You may not heart this comment as: Comment does not exist";
+            } else if(userRepository.findUserByName(user_name)==null
+                    && commentRepository.findCommentByID(commentId) == null){
+                return "You may not heart this comment as: User and comment do not exist";
             }
         }
 
-           return "Incorrect login details";
+           return "You may not heart this comment as: You didn't create this post";
 
 
     }

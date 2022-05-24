@@ -168,6 +168,25 @@ public class UserService {
 
     }
 
+    public String logUserOut(String username, String password){
+
+        User resultUser = userRepository.findUserByUsernameAndPassword(username,password);
+
+        if(resultUser!=null && resultUser.isUserLoggedIn()==true){
+
+            resultUser.setUserLoggedIn(Boolean.FALSE);
+            userRepository.save(resultUser);
+
+            return "User logged out";
+
+        }
+
+        return "User already logged out";
+
+
+
+    }
+
 //    MESSAGING METHODS
 
 //    public List<String> getAllMessagesFromInbox() {

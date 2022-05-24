@@ -14,6 +14,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM users WHERE name = ?1 AND password = ?2",nativeQuery = true)
     User findUserByUsernameAndPassword(String username,String password);
 
+    @Query(value = "SELECT * FROM users WHERE name = ?",nativeQuery = true)
+    User findUserByName(String username);
+
     @Transactional
     @Modifying
     @Query(value = "INSERT INTO users (company,date_of_birth,is_business_account,name,password,role) " +
