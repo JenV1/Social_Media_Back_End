@@ -47,6 +47,10 @@ public class User {
     private boolean isBusinessAccount;
 
 
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE",name = "user_logged_in")
+    private boolean isUserLoggedIn;
+
+
 //    Constructors
 
     public User() {}
@@ -62,7 +66,7 @@ public class User {
 
 
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Post> allPostsByUser, boolean isBusinessAccount) {
+                String date_of_birth, ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -72,6 +76,7 @@ public class User {
         this.allPostsByUser = allPostsByUser;
         this.inbox = new ArrayList<Message>();
         this.isBusinessAccount = isBusinessAccount;
+        this.isUserLoggedIn = isUserLoggedIn;
     }
 
 
@@ -161,4 +166,11 @@ public class User {
         post.setNumber_of_likes(newLikeTotal);
     }
 
+    public boolean isUserLoggedIn() {
+        return isUserLoggedIn;
+    }
+
+    public void setUserLoggedIn(boolean userLoggedIn) {
+        isUserLoggedIn = userLoggedIn;
+    }
 }

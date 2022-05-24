@@ -151,11 +151,18 @@ public class UserService {
 
     public String logUserIn(String username, String password){
 
-        if(userRepository.findUserByUsernameAndPassword(username,password)!=null){
-            return "user logged in";
+        User resultUser = userRepository.findUserByUsernameAndPassword(username,password);
+
+        if(resultUser!=null && !resultUser.isUserLoggedIn()){
+
+            resultUser.setUserLoggedIn(Boolean.TRUE);
+            userRepository.save(resultUser);
+
+            return "User logged in";
+
         }
 
-        return "user not logged in";
+        return "User already logged in";
 
 
 
