@@ -37,9 +37,18 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public Post save(Post post) {
-        return postRepository.save(post);
-    }
+//    public Post save(Post post) {
+//        return postRepository.save(post);
+//    }
+public void addPost(
+        Long id,
+        String content_text,
+        int number_of_likes,
+        boolean isBusinessAccount) {
+
+    Post post = new Post(id, content_text, number_of_likes, isBusinessAccount);
+    postRepository.save(post);
+}
 
     public Post findPostByID(Long id){
         return postRepository.findPostByID(id);

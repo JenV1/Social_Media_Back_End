@@ -48,12 +48,24 @@ public class UserController {
 //    public void createUser(@RequestBody User user){
 //        User savedUser = userService.save(user);
 //    }
-@PostMapping("/addUsers")
-public ResponseEntity<User> addUser(@RequestBody User user) {
-    User newUser = userService.save(user);
+//@PostMapping("/addUser")
+//public ResponseEntity<User> addUser(@RequestBody User user) {
+//    User newUser = userService.save(user);
+//
+//    return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+//}
+    @PostMapping("/addUser")
+    public void addUser(@RequestParam(required = false) Long id,
+                        @RequestParam String name,
+                        @RequestParam String company,
+                        @RequestParam String role,
+                        @RequestParam String password,
+                        @RequestParam String date_of_birth,
+                         @RequestParam boolean isBusinessAccount){
+    userService.addUser(id, name, company, role, password, date_of_birth, isBusinessAccount);
+    }
 
-    return new ResponseEntity< >(newUser, HttpStatus.CREATED);
-}
+
 
     @GetMapping("/searchForUserByName/{keyword}")
     public List<String> searchUsersForKeyword(@PathVariable("keyword") String keyword) {

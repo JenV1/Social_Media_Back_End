@@ -1,23 +1,13 @@
 package com.example.backEndProject.controller;
 
 import com.example.backEndProject.model.Post;
-import com.example.backEndProject.model.User;
-import com.example.backEndProject.repository.PostRepository;
 import com.example.backEndProject.service.PostService;
-import org.apache.tomcat.jni.Address;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -82,6 +72,17 @@ public class PostController {
         return postService.editPost(id, new_content);
     }
 
+    @PostMapping("/addNewPost")
+    public void addPost(@RequestParam Long id,
+                        @RequestParam String content_text,
+                        @RequestParam int number_of_likes,
+                        @RequestParam(required = false) boolean isBusinessAccount){
+
+        postService.addPost(id, content_text, number_of_likes, isBusinessAccount);
+    }
+
+
+
     @DeleteMapping("/post/{id}")
     public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
         postService.deletePostByID(id);
@@ -89,7 +90,7 @@ public class PostController {
     }
 
     @DeleteMapping("/deletePost/{id}")
-    public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
+    public String deletePostByID(@PathVariable("post_id") Long id) {
         return postService.deletePostByID(id);
     }
 }

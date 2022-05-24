@@ -1,22 +1,20 @@
 package com.example.backEndProject.service;
 
+import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
 
 
     private UserRepository userRepository;
+
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -26,9 +24,25 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User save(User user) {
-        return userRepository.save(user);
+//    public User save(User user) {
+//        return userRepository.save(user);
+//    }
+    public void addUser(
+            Long id,
+            String name,
+            String company,
+            String role,
+            String password,
+            String date_of_birth,
+            boolean isBusinessAccount){
+
+            User user = new User(id, name, company, role, password, date_of_birth, null, isBusinessAccount);
+//             public User(Long id, String name, String company, String role, String password,
+//                String date_of_birth, ArrayList<Post> allPostsByUser, boolean isBusinessAccount)
+        userRepository.save(user);
+
     }
+
 
     public User findById(Long id){
         return userRepository.findByID(id);
