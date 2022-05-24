@@ -70,9 +70,9 @@ public class CommentController {
 
 
     @PostMapping("postComment")
-    public void addComment(@RequestParam Long post_id,
-                             @RequestParam Long user_id,
-                             @RequestParam String commentContent){
+    public void addComment(@RequestParam("postID") Long post_id,
+                             @RequestParam("userID") Long user_id,
+                             @RequestParam("content") String commentContent){
 
         commentService.addComment(post_id,user_id,commentContent);
     }
