@@ -26,11 +26,13 @@ public class PostController {
 
 //    Dependency Injection START
 
+
     private PostService postService;
 
     public PostController(PostService postService) {
         this.postService = postService;
     }
+
 
 //    Dependency Injection END
 //
@@ -90,10 +92,7 @@ public class PostController {
 //
 //    Delete Methods START
 
-//    @DeleteMapping("/deletePost/{id}")
-//    public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
-//        return postService.deletePostByID(id);
-//    }
+
 
     @DeleteMapping("/post/{id}")
     public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
