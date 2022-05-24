@@ -26,8 +26,8 @@ public class User {
 
 //    Inbox/Messages
 
-    @JsonIgnoreProperties({"user"})
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "userS", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> inbox;
 
 //    Relationship Mapping
@@ -53,7 +53,7 @@ public class User {
     public User() {}
 
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Post> allPostsByUser, Boolean isBusinessAccount) {
+                String date_of_birth, ArrayList<Message> inbox, ArrayList<Post> allPostsByUser, Boolean isBusinessAccount) {
         this.id = id;
         this.name = name;
         this.company = company;

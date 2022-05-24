@@ -60,11 +60,12 @@ public class MessageService {
 
         Message newMessage = null;
 
-        newMessage = new Message(message_content, name_of_sender, receiver);
+        newMessage = new Message(message_content, sender, receiver);
 
 
         receiver.getInbox().add(newMessage);
-        newMessage.setUser(receiver);
+        newMessage.setUserR(receiver);
+        newMessage.setUserS(sender);
 
 
         return messageRepository.save(newMessage);
