@@ -38,7 +38,15 @@ public class CommentService {
 
         for(int i = 0; i < posts.size(); i++){
 
-            result.put(posts.get(i).getContent_text(),comments.get(i).getCommentContent());
+            Post currentPostInForLoop = posts.get(i);
+            List<Comment> commentsCorrespondingToCurrentPost = comments.stream().filter(comment -> comment
+                    .getPost().getId() == currentPostInForLoop.getId()).toList();
+
+            List<String> commentContent = commentsCorrespondingToCurrentPost.stream().map(comment -> comment.getCommentContent()).toList();
+
+            result.put("POST: " + currentPostInForLoop.getContent_text() + " || POSTED BY: " + currentPostInForLoop.getUser().getName()
+                    + " || LIKES: " + currentPostInForLoop.getNumber_of_likes(),"COMMENTS(S): "
+                    + commentContent);
         }
 
         return result;
