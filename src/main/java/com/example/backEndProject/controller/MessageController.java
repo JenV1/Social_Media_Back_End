@@ -39,44 +39,25 @@ public class MessageController {
                                      @RequestParam String name_of_sender,
                                      @RequestParam Long id) {
 
-        User receiver = userRepository.findByID(id);
-
-        Message newMessage = new Message(message_content, name_of_sender, receiver);
-
-        receiver.getInbox().add(newMessage);
-
-
-        return messageRepository.save(newMessage);
+        return messageService.sendMessageToUser(message_content, name_of_sender, id);
     }
 
     @GetMapping("/checkUserInbox/{id}")
     public List<Message> getAllMessagesFromInbox(@PathVariable("id") Long id) {
-        return userRepository.findByID(id).getInbox();
+        return messageService.getAllMessagesFromInbox(id);
     }
 
     @PutMapping("/editSentMessage/{message_id}")
     public Message editSentMessage(@RequestParam Long message_id,
                                    @RequestParam String newMessageContent
                                    ) {
-
-        Message editedMessage = messageRepository.findById(message_id).get();
-        editedMessage.setMessage_content(newMessageContent);
-
-        return messageRepository.save(editedMessage);
+        return messageService.editSentMessage(message_id, newMessageContent);
     }
 
     @DeleteMapping("/deleteASentMessage/{id}")
     public String deleteMessage(@PathVariable("id") Long id) {
 
-        String outputMessage = "Successfully deleted message with id: " + id;
-
-        try {
-            messageRepository.deleteById(id);
-        } catch (Exception e) {
-            outputMessage = "Could not find message id";
-        }
-
-        return outputMessage;
+        return messageService.deleteMessage(id);
     }
 
 

@@ -26,7 +26,6 @@ public class MessageService {
     private UserRepository userRepository;
 
 
-
 //    END OF DEPENDENCY INJECTION
 //
 //
@@ -54,6 +53,31 @@ public class MessageService {
 
 
         return messageRepository.save(newMessage);
+    }
+
+    public List<Message> getAllMessagesFromInbox(Long id) {
+        return userRepository.findByID(id).getInbox();
+    }
+
+    public Message editSentMessage(Long message_id,
+                                   String newMessageContent) {
+
+        Message editedMessage = messageRepository.findById(message_id).get();
+        editedMessage.setMessage_content(newMessageContent);
+
+        return messageRepository.save(editedMessage);
+    }
+
+    public String deleteMessage(Long id) {
+        String outputMessage = "Successfully deleted message with id: " + id;
+
+        try {
+            messageRepository.deleteById(id);
+        } catch (Exception e) {
+            outputMessage = "Could not find message id";
+        }
+
+        return outputMessage;
     }
 
 
