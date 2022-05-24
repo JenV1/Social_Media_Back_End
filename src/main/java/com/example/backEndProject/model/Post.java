@@ -47,12 +47,12 @@ public class Post {
 
     public Post() {}
 
-    public Post(Long id, String content_text, int number_of_likes, Boolean isBusinessAccount) {
+    public Post(Long id, String content_text, int number_of_likes, Boolean isBusinessAccount, int post_types_id) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
-//        this.businessAccID = businessAccID;
         this.isBusinessAccount = isBusinessAccount;
+        this.post_types_id = post_types_id;
     }
 
 
