@@ -66,7 +66,7 @@ public class CommentService {
 
     }
 
-    public String heartComment(Long user_id, String user_name, String password, Long postId, Long commentId){
+    public String heartComment(Long user_id,  Long postId,String user_name, String password, Long commentId){
 
         try{
             User result_user = userRepository.findByID(user_id);

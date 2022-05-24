@@ -41,22 +41,22 @@ public class CommentController {
 
     @PutMapping("heartComment")
     public String heartComment(@RequestParam("userID_of_person_that_created_post") Long user_id,
+                               @RequestParam("postID_of_post_this_user_created") Long postId,
                                @RequestParam("userName") String user_name,
                                @RequestParam("password") String password,
-                               @RequestParam("postID") Long postId,
                                @RequestParam("ID_of_comment_to_be_hearted") Long Id_of_comment_to_be_hearted
                                ){
 
-        return commentService.heartComment(user_id,user_name,password,postId,Id_of_comment_to_be_hearted);
+        return commentService.heartComment(user_id,postId,user_name,password,Id_of_comment_to_be_hearted);
 
 
 
 
     }
 
-    @PutMapping("changeCommentContent/{id}")
-    public String changeCommentContent(@RequestParam String change_comment_content_to,
-            @PathVariable("id") Long id){
+    @PutMapping("changeCommentContent")
+    public String changeCommentContent(@RequestParam("change_comment_content_to") String change_comment_content_to,
+            @RequestParam("comment_id") Long id){
 
         try{
             commentService.changeCommentContent(change_comment_content_to,id);
@@ -75,7 +75,7 @@ public class CommentController {
 
     @PostMapping("postComment")
     public void addComment(@RequestParam("postID") Long post_id,
-                             @RequestParam("userID") Long user_id,
+                             @RequestParam("commenter_userID") Long user_id,
                              @RequestParam("content") String commentContent){
 
         commentService.addComment(post_id,user_id,commentContent);
