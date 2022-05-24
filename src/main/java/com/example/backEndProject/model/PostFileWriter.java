@@ -5,8 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class PostFileWriter {
 
+//  POSTFILEWRITER - PLEASE DO NOT TOUCH!
+
+public class PostFileWriter {
 
     public static void main(String[] args) throws IOException {
 
@@ -23,12 +25,6 @@ public class PostFileWriter {
         printWriter.close();
 
     }
-
-
-
-
-
-
-
-
 }
+
+//  POSTFILEWRITER - PLEASE DO NOT TOUCH!

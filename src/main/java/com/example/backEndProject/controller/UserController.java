@@ -9,13 +9,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.*;
-import java.util.stream.Collectors;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
 public class UserController {
+
+
+//    INJECTION DEPENDENCY START
 
 
     private UserService userService;
@@ -44,27 +46,18 @@ public class UserController {
         return userService.findById(id);
     }
 
-//    @PostMapping("/users")
-//    public void createUser(@RequestBody User user){
-//        User savedUser = userService.save(user);
-//    }
-//@PostMapping("/addUser")
-//public ResponseEntity<User> addUser(@RequestBody User user) {
-//    User newUser = userService.save(user);
+    @PostMapping("/addNewUser")
+    public String createUser(@RequestParam("username") String name,
+                           @RequestParam("password") String password,
+                           @RequestParam("date_of_birth") String dob,
+                           @RequestParam("company") String company,
+                           @RequestParam("role") String role,
+                           @RequestParam("is_business_account?") Boolean isBusinessAccount
+                           ){
 //
-//    return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-//}
-    @PostMapping("/addUser")
-    public void addUser(@RequestParam(required = false) Long id,
-                        @RequestParam String name,
-                        @RequestParam String company,
-                        @RequestParam String role,
-                        @RequestParam String password,
-                        @RequestParam String date_of_birth,
-                         @RequestParam boolean isBusinessAccount){
-    userService.addUser(id, name, company, role, password, date_of_birth, isBusinessAccount);
-    }
 
+       return userService.save(name,password,dob,company,role,isBusinessAccount);
+    }
 
 
     @GetMapping("/searchForUserByName/{keyword}")
@@ -72,15 +65,11 @@ public class UserController {
         return userService.searchUsersForKeyword(keyword);
     }
 
-//    MESSAGING METHODS
 
-//    @GetMapping("/getAllMessagesFromInbox")
-//    public List<String> getAllMessagesFromInbox() {
-//        return userService.getAllMessagesFromInbox();
-//    }
-
-
-///    Put Methods
+//    GET METHODS END
+//
+//
+//    Put Methods START
 
 
     @PutMapping("/editName/{id}")
@@ -119,4 +108,24 @@ public class UserController {
         return userService.editDOB(id, new_DOB);
 
     }
+
+    @PutMapping("logUserIn")
+    public String logUserIn(@RequestParam("username") String user_name,
+                            @RequestParam("password") String password){
+
+        return userService.logUserIn(user_name,password);
+
+
+    }
+
+    @PutMapping("logUserOut")
+    public String logUserOut(@RequestParam("username") String user_name,
+                            @RequestParam("password") String password){
+
+        return userService.logUserOut(user_name,password);
+
+
+    }
+
+
 }

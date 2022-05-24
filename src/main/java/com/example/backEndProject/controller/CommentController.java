@@ -1,14 +1,18 @@
 package com.example.backEndProject.controller;
 
 import com.example.backEndProject.model.Comment;
+import com.example.backEndProject.model.Post;
 import com.example.backEndProject.service.CommentService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CommentController {
+
+//    INJECTION MAPPING START
 
     private CommentService commentService;
 
@@ -17,8 +21,16 @@ public class CommentController {
     }
 
 
+//    INJECTION MAPPING END
+//
+//
+//    GET MAPPING START
+
+
     @GetMapping("showAllComments")
-    public List<Comment> showAllComments(){
+    public Map<String,String> showAllComments(){
+
+
 
         return commentService.showAllComments();
 
@@ -28,31 +40,35 @@ public class CommentController {
 
 
     @GetMapping("findCommentById/{id}")
-    public Comment findCommentByID(@PathVariable("id") Long id){
+    public String findCommentByID(@PathVariable("id") Long id){
 
         return commentService.findCommentByID(id);
 
     }
 
 
+//    GET MAPPING END
+//
+//
+//    PUT MAPPING START
+
+
     @PutMapping("heartComment")
-    public String heartComment(@RequestParam Long user_id,
-                               @RequestParam String user_name,
-                               @RequestParam String password,
-                               @RequestParam Long postId,
-                               @RequestParam Long Id_of_comment_to_be_hearted
+    public String heartComment(
+                               @RequestParam("userName") String user_name,
+                               @RequestParam("ID_of_comment_to_be_hearted") Long Id_of_comment_to_be_hearted
                                ){
 
-        return commentService.heartComment(user_id,user_name,password,postId,Id_of_comment_to_be_hearted);
+        return commentService.heartComment(user_name,Id_of_comment_to_be_hearted);
 
 
 
 
     }
 
-    @PutMapping("changeCommentContent/{id}")
-    public String changeCommentContent(@RequestParam String change_comment_content_to,
-            @PathVariable("id") Long id){
+    @PutMapping("changeCommentContent")
+    public String changeCommentContent(@RequestParam("change_comment_content_to") String change_comment_content_to,
+            @RequestParam("comment_id") Long id){
 
         try{
             commentService.changeCommentContent(change_comment_content_to,id);
@@ -63,19 +79,30 @@ public class CommentController {
 
         return "Comment successfully updated";
 
-
     }
 
-
+//    PUT MAPPING END
+//
+//
+//    POST MAPPING START
 
 
     @PostMapping("postComment")
-    public void addComment(@RequestParam Long post_id,
-                             @RequestParam Long user_id,
-                             @RequestParam String commentContent){
+    public String addComment(@RequestParam("postID") Long post_id,
+                             @RequestParam("commenter_userID") Long user_id,
+                             @RequestParam("content") String commentContent){
 
-        commentService.addComment(post_id,user_id,commentContent);
+
+
+        return commentService.addComment(post_id,user_id,commentContent);
     }
+
+
+//    POST MAPPING END
+//
+//
+//    DELETE MAPPING START
+
 
     @DeleteMapping("deleteCommentById/{id}")
     public String deleteCommentById(@PathVariable("id") Long id){
@@ -89,5 +116,12 @@ public class CommentController {
 
         return "Comment Deleted";
     }
+
+
+//    DELETE MAPPING END
+//
+//
+//    END OF FILE
+
 
 }

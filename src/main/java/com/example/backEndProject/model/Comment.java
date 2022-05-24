@@ -10,27 +10,37 @@ import java.util.List;
 @Table(name = "comments")
 public class Comment {
 
+
+//    ATTRIBUTES START
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "number_of_likes")
+    @Column(nullable = false,columnDefinition = "INTEGER DEFAULT 0")
     private int likes;
 
+    @Column(nullable=false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean heartByUser;
 
     private String commentContent;
-
 
     @ManyToOne
     private Post post;
 
     @ManyToOne
+    @JoinColumn(name = "commenter_UserID")
     private User user;
 
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"comment"})
     private List<Reply> commentReplies;
+
+
+//    ATTRIBUTES END
+//
+//
+//    CONSTRUCTORS START
 
 
     public Comment() {
@@ -42,6 +52,13 @@ public class Comment {
         this.heartByUser = heartByUser;
 
     }
+
+
+//    CONSTRUCTORS END
+//
+//
+//    GETTERS AND SETTERS START
+
 
     public Long getId() {
         return id;
@@ -82,4 +99,11 @@ public class Comment {
     public void setPost(Post post) {
         this.post = post;
     }
+
+
+//    GETTERS AND SETTERS END
+//
+//
+//    END OF FILE
+
 }

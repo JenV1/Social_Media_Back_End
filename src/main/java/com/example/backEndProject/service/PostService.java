@@ -3,16 +3,10 @@ package com.example.backEndProject.service;
 import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.PostRepository;
+import com.example.backEndProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.yaml.snakeyaml.events.Event;
 
-import javax.net.ssl.SSLEngineResult;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,18 +14,28 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Map;
 
 @Service
 public class PostService {
 
 
-    private PostRepository postRepository;
+//    DEPENDENCY INJECTION
 
+    @Autowired
+    private UserRepository userRepository;
+
+    private PostRepository postRepository;
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
+
+
+//    END OF DEPENDENCY INJECTION
+//
+//
+//    START OF METHODS
+
 
     public List<Post> getAll() {
         return postRepository.findAll();
@@ -54,9 +58,8 @@ public void addPost(
         return postRepository.findPostByID(id);
     }
 
-    public int findLikesByID(Long id) {
 
-//        Inspired by the way likes are shown on posts on social media applications
+    public int findLikesByID(Long id) {
 
         Post current = null;
         try {
@@ -69,6 +72,7 @@ public void addPost(
         return current.getNumber_of_likes();
     }
 
+
     public List searchPostsForKeyword(String keyword) {
 
 //        Returns the posts that contain the relevant keyword
@@ -78,9 +82,6 @@ public void addPost(
                 .filter(s -> s.contains(keyword))
                 .toList();
     }
-
-
-    //    Put Methods
 
 
     public Post updateLikeCount(Long id)
@@ -103,6 +104,7 @@ public void addPost(
 
         return current;
     }
+
 
     public Post superLikePost(Long id)
             throws NoSuchElementException {
@@ -168,6 +170,7 @@ public void addPost(
         return current;
     }
 
+
     public String deletePostByID(Long id) {
 
         Post result = postRepository.findPostByID(id);
@@ -176,20 +179,55 @@ public void addPost(
         return "Deleted";
     }
 
-    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
 
-//        Returns the posts that contain the company and isBusinessAccount = true
+    public Post addPost(
+            Long id,
+            String content_text,
+            Integer number_of_likes,
+            boolean isBusinessAccount,
+            Integer post_type_id,
+            Long user_id) throws IOException {
 
-        return postRepository.findAll().stream()
-                .map(Post::isBusinessAccount)
-                .filter(s -> s.equals(isBusinessAccount))
-                .toList();
+
+        Post post = new Post(id, content_text, number_of_likes, isBusinessAccount, post_type_id);
+        postRepository.save(post);
+
+        File myFile = new File("src/all_posts_and_post_edits.txt");
+        if (!myFile.exists()) {
+            try {
+                myFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        User postUser = userRepository.findByID(user_id);
+        FileWriter fileWriter = new FileWriter(myFile, true);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.println(post.getContent_text());
+        printWriter.println(LocalDateTime.now());
+        printWriter.println(postUser.getName());
+        printWriter.println("");
+
+        printWriter.close();
+
+        return postRepository.save(post);
     }
 
-//    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
-//        return postRepository.findAll().stream()
-//                .map(Post::isBusinessAccount)
-//                .filter(s -> s.equals(isBusinessAccount))
-//                .toList();
-//    }
+
+
+
+
+
+//    END OF METHODS
+//
+//
+//    CODE IN PROGRESS
+
+
+
+//    END OF CODE IN PROGRESS
+//
+//
+//    END OF FILE
 }

@@ -14,8 +14,4 @@ public class BackEndProjectApplication {
 		SpringApplication.run(BackEndProjectApplication.class, args);
 	}
 
-	//first commit test cem branch
-
-
-
 }

@@ -64,4 +64,8 @@ class PostControllerTest {
     @Test
     void deletePostByID() {
     }
+
+    @Test
+    void addPost() {
+    }
 }

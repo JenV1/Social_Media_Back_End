@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Entity
 @Table(name = "posts")
 public class Post {
+
+//    ATTRIBUTES START
 
 
     @Id
@@ -21,7 +24,7 @@ public class Post {
     private Integer post_types_id;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
-    private boolean isBusinessAccount;
+    private Boolean isBusinessAccount;
 
 //    @Column(name = "business_acc_id")
 //    private int businessAccID;
@@ -35,20 +38,29 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> postComments;
 
-//    Constructors
+
+
+//    ATTRIBUTES END
+//
+//
+//    CONSTRUCTORS START
+
 
     public Post() {}
 
-    public Post(Long id, String content_text, int number_of_likes, boolean isBusinessAccount) {
+    public Post(Long id, String content_text, int number_of_likes, Boolean isBusinessAccount, int post_types_id) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
-//        this.businessAccID = businessAccID;
         this.isBusinessAccount = isBusinessAccount;
+        this.post_types_id = post_types_id;
     }
 
 
-//    Getters and Setters
+//    CONSTRUCTORS END
+//
+//
+//    GETTERS AND SETTERS START
 
 
     public Long getId() {
@@ -91,13 +103,19 @@ public class Post {
         this.post_types_id = post_types_id;
     }
 
-    public boolean isBusinessAccount() {
+    public Boolean getBusinessAccount() {
         return isBusinessAccount;
     }
 
-    public void setBusinessAccount(boolean businessAccount) {
+    public void setBusinessAccount(Boolean businessAccount) {
         isBusinessAccount = businessAccount;
     }
+
+    //    GETTERS AND SETTERS END
+//
+//
+//    CODE BEING TESTED...
+
 
 //    public int getBusinessAccID() {
 //        return businessAccID;
@@ -106,4 +124,12 @@ public class Post {
 //    public void setBusinessAccID(int businessAccID) {
 //        this.businessAccID = businessAccID;
 //    }
+
+
+//    CODE BEING TESTED...
+//
+//
+//    END OF FILE
+
+//    private Predicate<Post> isPostFromBusinessAccount = f -> f.getBusinessAccount().equals(true);
 }

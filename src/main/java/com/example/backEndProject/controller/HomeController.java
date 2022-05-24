@@ -1,5 +1,5 @@
-package com.example.backEndProject.controller;
-
+//package com.example.backEndProject.controller;
+//
 //import com.example.backEndProject.model.Post;
 //import com.example.backEndProject.model.User;
 //import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,7 +11,11 @@ package com.example.backEndProject.controller;
 //import java.util.ArrayList;
 //import java.util.HashMap;
 //import java.util.Map;
-
+//
+//
+//// THIS IS FOR AUTHENTICATION LOGIN! PLEASE DON'T TOUCH!
+//
+//
 //@Controller
 //public class HomeController {
 //
@@ -30,3 +34,5 @@ package com.example.backEndProject.controller;
 //        return "home";
 //    }
 //}
+//
+//// THIS IS FOR AUTHENTICATION LOGIN! PLEASE DON'T TOUCH!
