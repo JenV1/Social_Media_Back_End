@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MessageService {
@@ -42,18 +43,30 @@ public class MessageService {
 
     public Message sendMessageToUser(String message_content,
                                      String name_of_sender,
-                                     Long receiver_id) {
+                                     String receiver_name) {
 
-        User receiver = userRepository.findByID(receiver_id);
 
-        Message newMessage = new Message(message_content, name_of_sender, receiver);
+        String finalReceiver_name = receiver_name.toLowerCase();
+        User receiver = userRepository.findAll().stream()
+                .filter(recipient -> (finalReceiver_name).equals(recipient.getName().toLowerCase()))
+                .findFirst()
+                .orElse(null);
+
+
+        Message newMessage = null;
+
+        newMessage = new Message(message_content, name_of_sender, receiver);
+
 
         receiver.getInbox().add(newMessage);
-        newMessage.setUser(userRepository.findByID(receiver_id));
+        newMessage.setUser(receiver);
 
 
         return messageRepository.save(newMessage);
     }
+
+
+
 
     public List<Message> getAllMessagesFromInbox(Long id) {
         return userRepository.findByID(id).getInbox();

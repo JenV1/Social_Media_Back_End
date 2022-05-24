@@ -37,9 +37,9 @@ public class MessageController {
     public Message sendMessageToUser(
                                      @RequestParam String message_content,
                                      @RequestParam String name_of_sender,
-                                     @RequestParam Long id) {
+                                     @RequestParam String receiver_name) {
 
-        return messageService.sendMessageToUser(message_content, name_of_sender, id);
+        return messageService.sendMessageToUser(message_content, name_of_sender, receiver_name);
     }
 
     @GetMapping("/checkUserInbox/{id}")
