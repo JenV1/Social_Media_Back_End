@@ -22,8 +22,8 @@ public class Post {
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private Boolean isBusinessAccount;
 
-//    @Column(name = "business_acc_id")
-//    private int businessAccID;
+    @Column(nullable = false, name = "company_id")
+    private int companyId;
 
 //    Relationship Mapping
 
@@ -38,17 +38,22 @@ public class Post {
 
     public Post() {}
 
-    public Post(Long id, String content_text, int number_of_likes, Boolean isBusinessAccount) {
+    public Post(Long id, String content_text, int number_of_likes, int companyId, Boolean isBusinessAccount) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
-//        this.businessAccID = businessAccID;
+        this.companyId = companyId;
         this.isBusinessAccount = isBusinessAccount;
     }
 
 
 //    Getters and Setters
 
+
+
+    public void setBusinessAccount(Boolean businessAccount) {
+        isBusinessAccount = businessAccount;
+    }
 
     public Long getId() {
         return id;
@@ -94,15 +99,11 @@ public class Post {
         return isBusinessAccount;
     }
 
-    public void setBusinessAccount(Boolean businessAccount) {
-        isBusinessAccount = businessAccount;
+    public int getCompanyId() {
+        return companyId;
     }
 
-//    public int getBusinessAccID() {
-//        return businessAccID;
-//    }
-//
-//    public void setBusinessAccID(int businessAccID) {
-//        this.businessAccID = businessAccID;
-//    }
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
 }

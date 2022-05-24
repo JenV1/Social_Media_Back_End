@@ -43,6 +43,8 @@ public class User {
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private Boolean isBusinessAccount;
 
+    @Column(nullable = false, name = "company_id")
+    private int companyId;
 
 //    Constructors
 
@@ -59,7 +61,7 @@ public class User {
 
 
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Post> allPostsByUser, Boolean isBusinessAccount) {
+                String date_of_birth, ArrayList<Post> allPostsByUser, Boolean isBusinessAccount, int companyId) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -69,6 +71,7 @@ public class User {
         this.allPostsByUser = allPostsByUser;
         this.inbox = new ArrayList<Message>();
         this.isBusinessAccount = isBusinessAccount;
+        this.companyId = companyId;
     }
 
 
@@ -85,6 +88,14 @@ public class User {
 
     public void setBusinessAccount(Boolean businessAccount) {
         isBusinessAccount = businessAccount;
+    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     public void setId(Long id) {

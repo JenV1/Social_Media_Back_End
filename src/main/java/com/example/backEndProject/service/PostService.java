@@ -171,11 +171,20 @@ public class PostService {
     public List searchAllBusinessAccountPosts(Boolean isBusinessAccount) {
 
 //        Returns the posts that contain the company and isBusinessAccount = true
+            return postRepository.findAll().stream()
+                    .map(Post::isBusinessAccount)
+                    .filter(s -> s == Boolean.TRUE)
+                    .toList();
 
-        return postRepository.findAll().stream()
-                .map(Post::isBusinessAccount)
-                .filter(s -> s == Boolean.TRUE)
-                .toList();
+    }
+
+    public List<Post> searchSpecificBusinessAccountPosts(Boolean isBusinessAccount, int companyId) {
+//        return postRepository.findAll().stream()
+//                .map(Post::isBusinessAccount)
+//                .filter(s -> s == Boolean.TRUE)
+//                .filter(s -> false)
+//                .toList();
+        return postRepository.searchForSpecificBusinessAccountPosts(isBusinessAccount,companyId);
     }
 
 //    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {

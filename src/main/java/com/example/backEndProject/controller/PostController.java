@@ -52,13 +52,15 @@ public class PostController {
         return postService.searchPostsForKeyword(keyword);
     }
 
-    @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}")
+    @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}/")
     public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount) {
         return postService.searchAllBusinessAccountPosts(isBusinessAccount);
     }
 
-//    @GetMapping("/searchAllBusinessAccountPosts/{post_type_id}")
-//    public List search
+    @GetMapping("/searchSpecificBusinessAccountPosts/{is_business_account}")
+    public List<Post>  searchSpecificBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount, int companyId) {
+        return postService.searchSpecificBusinessAccountPosts(isBusinessAccount, companyId);
+    }
 
 
 
@@ -82,14 +84,9 @@ public class PostController {
         return postService.editPost(id, new_content);
     }
 
-    @DeleteMapping("/post/{id}")
-    public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
-        postService.deletePostByID(id);
-        return new ResponseEntity<>(id, HttpStatus.OK);
-    }
 
     @DeleteMapping("/deletePost/{id}")
-    public ResponseEntity<Long> deletePostByID(@PathVariable("post_id") Long id) {
+    public String deletePostByID(@PathVariable("id") Long id) {
         return postService.deletePostByID(id);
     }
 }
