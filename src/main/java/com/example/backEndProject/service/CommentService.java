@@ -36,6 +36,11 @@ public class CommentService {
         List<Post> posts = commentRepository.findAll().stream().map(comment -> comment.getPost()).toList();
         List<Comment> comments = commentRepository.findAll();
 
+        if(comments.isEmpty()){
+            result.put("No comments to show","try posting a comment");
+            return result;
+        }
+
         for(int i = 0; i < posts.size(); i++){
 
             Post currentPostInForLoop = posts.get(i);
@@ -55,13 +60,19 @@ public class CommentService {
 
     public String findCommentByID(Long id){
 
-        Comment resultComment =  commentRepository.findCommentByID(id);
+        try{
+            Comment resultComment =  commentRepository.findCommentByID(id);
 
 
-        return "COMMENT ID: " + resultComment.getId()
-                + " || COMMENT CONTENT: " + resultComment.getCommentContent()
-                + " || LIKES: " + resultComment.getLikes()
-                + " || POST: " + resultComment.getPost().getContent_text();
+            return "COMMENT ID: " + resultComment.getId()
+                    + " || COMMENT CONTENT: " + resultComment.getCommentContent()
+                    + " || LIKES: " + resultComment.getLikes()
+                    + " || POST: " + resultComment.getPost().getContent_text();
+        }catch(NullPointerException e){
+
+            return "This comment does not exist, input a valid comment ID";
+        }
+
 
 
     }
@@ -90,7 +101,7 @@ public class CommentService {
             }
 
         }catch(NullPointerException e){
-            return "user/post does not exist";
+            return "User/post does not exist";
         }
 
            return "Incorrect login details";
