@@ -52,6 +52,11 @@ public class MessageService {
                 .findFirst()
                 .orElse(null);
 
+        String finalSender_name = name_of_sender.toLowerCase();
+        User sender = userRepository.findAll().stream()
+                .filter(s -> (finalSender_name).equals(s.getName().toLowerCase()))
+                .findFirst()
+                .orElse(null);
 
         Message newMessage = null;
 

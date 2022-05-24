@@ -15,7 +15,10 @@ public class Message {
     private String nameOfSender;
 
     @ManyToOne
-    private User user;
+    private User userR;
+
+    @ManyToOne
+    private User userS;
 
 
 //    ATTRIBUTES END
@@ -27,7 +30,7 @@ public class Message {
     public Message() {
     }
 
-    public Message(String message_content, String nameOfSender, User user) {
+    public Message(String message_content, String nameOfSender, User userR, User userS) {
         this.message_content = message_content;
         this.nameOfSender = nameOfSender;
     }
