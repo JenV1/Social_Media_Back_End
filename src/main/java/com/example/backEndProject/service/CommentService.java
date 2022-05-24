@@ -77,9 +77,14 @@ public class CommentService {
 
     }
 
-    public String heartComment(Long user_id,  Long postId,String user_name, String password, Long commentId){
+    public String heartComment(Long user_id, Long postId,String user_name, String password, Long commentId){
 
         try{
+
+
+
+
+
             User result_user = userRepository.findByID(user_id);
             Post result_post = postRepository.findPostByID(postId);
             Comment result_comment = commentRepository.findCommentByID(commentId);
@@ -101,7 +106,13 @@ public class CommentService {
             }
 
         }catch(NullPointerException e){
-            return "User/post does not exist";
+            if(userRepository.findByID(user_id)==null && postRepository.findPostByID(postId)!=null){
+                return "You may not heart this comment as: User does not exist";
+            } else if (postRepository.findPostByID(postId)==null && userRepository.findByID(user_id)!=null) {
+                return "You may not heart this comment as: Post does not exist";
+            } else if(userRepository.findByID(user_id)==null && postRepository.findPostByID(postId)==null){
+                return "You may not heart this comment as: User and post do not exist";
+            }
         }
 
            return "Incorrect login details";
@@ -109,14 +120,27 @@ public class CommentService {
 
     }
 
-    public void addComment(
+    public String addComment(
 
                              Long post_id,
                              Long user_id,
                              String commentContent){
 
 
+        if(userRepository.findByID(user_id)==null && postRepository.findPostByID(post_id)!=null){
+            return "You may not post this comment as: User does not exist";
+        } else if (postRepository.findPostByID(post_id)==null && userRepository.findByID(user_id)!=null) {
+            return "You may not post this comment as: Post does not exist";
+        } else if(userRepository.findByID(user_id)==null && postRepository.findPostByID(post_id)==null){
+            return "You may not post this comment as: User and post do not exist";
+        }
+
+
         commentRepository.addComment(post_id,user_id,commentContent);
+
+
+        return "Comment posted";
+
 
 
     }

@@ -74,11 +74,13 @@ public class CommentController {
 
 
     @PostMapping("postComment")
-    public void addComment(@RequestParam("postID") Long post_id,
+    public String addComment(@RequestParam("postID") Long post_id,
                              @RequestParam("commenter_userID") Long user_id,
                              @RequestParam("content") String commentContent){
 
-        commentService.addComment(post_id,user_id,commentContent);
+
+
+        return commentService.addComment(post_id,user_id,commentContent);
     }
 
     @DeleteMapping("deleteCommentById/{id}")
