@@ -27,6 +27,7 @@ public class Comment {
     private Post post;
 
     @ManyToOne
+    @JoinColumn(name = "commenter_UserID")
     private User user;
 
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)

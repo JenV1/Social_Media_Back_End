@@ -53,9 +53,16 @@ public class CommentService {
     }
 
 
-    public Comment findCommentByID(Long id){
+    public String findCommentByID(Long id){
 
-        return commentRepository.findCommentByID(id);
+        Comment resultComment =  commentRepository.findCommentByID(id);
+
+
+        return "COMMENT ID: " + resultComment.getId()
+                + " || COMMENT CONTENT: " + resultComment.getCommentContent()
+                + " || LIKES: " + resultComment.getLikes()
+                + " || POST: " + resultComment.getPost().getContent_text();
+
 
     }
 

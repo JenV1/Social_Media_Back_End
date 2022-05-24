@@ -32,7 +32,7 @@ public class CommentController {
 
 
     @GetMapping("findCommentById/{id}")
-    public Comment findCommentByID(@PathVariable("id") Long id){
+    public String findCommentByID(@PathVariable("id") Long id){
 
         return commentService.findCommentByID(id);
 
@@ -40,11 +40,11 @@ public class CommentController {
 
 
     @PutMapping("heartComment")
-    public String heartComment(@RequestParam Long user_id,
-                               @RequestParam String user_name,
-                               @RequestParam String password,
-                               @RequestParam Long postId,
-                               @RequestParam Long Id_of_comment_to_be_hearted
+    public String heartComment(@RequestParam("userID_of_person_that_created_post") Long user_id,
+                               @RequestParam("userName") String user_name,
+                               @RequestParam("password") String password,
+                               @RequestParam("postID") Long postId,
+                               @RequestParam("ID_of_comment_to_be_hearted") Long Id_of_comment_to_be_hearted
                                ){
 
         return commentService.heartComment(user_id,user_name,password,postId,Id_of_comment_to_be_hearted);
