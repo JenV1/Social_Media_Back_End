@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Entity
 @Table(name = "posts")
@@ -101,7 +102,7 @@ public class Post {
         this.post_types_id = post_types_id;
     }
 
-    public Boolean isBusinessAccount() {
+    public Boolean getBusinessAccount() {
         return isBusinessAccount;
     }
 
@@ -109,8 +110,7 @@ public class Post {
         isBusinessAccount = businessAccount;
     }
 
-
-//    GETTERS AND SETTERS END
+    //    GETTERS AND SETTERS END
 //
 //
 //    CODE BEING TESTED...
@@ -129,4 +129,6 @@ public class Post {
 //
 //
 //    END OF FILE
+
+//    private Predicate<Post> isPostFromBusinessAccount = f -> f.getBusinessAccount().equals(true);
 }

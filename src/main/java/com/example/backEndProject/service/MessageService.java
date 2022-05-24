@@ -1,6 +1,7 @@
 package com.example.backEndProject.service;
 
 import com.example.backEndProject.model.Message;
+import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.MessageRepository;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,10 @@ public class MessageService {
     public Message save(Message message) {
         return messageRepository.save(message);
     }
+
+//    public Message sendMessageToUser(Long id, Message message) {
+//
+//    }
 
 
 //    END OF METHODS

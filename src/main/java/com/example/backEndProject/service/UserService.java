@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -49,14 +50,22 @@ public class UserService {
 
 //        Gets all users and converts to a stream
 //        Extracts the name from each user and maps them
-//        Filters name dependent on whether they contain the specified keyword
+//        Uses to lower case to ensure no name is missed
+//        Filter with lambda is dependent on whether name contains the specified keyword
 //        Returns list of posts
 
-        return userRepository.findAll().stream()
-                .map(User::getName)
-                .filter(s -> s.contains(keyword))
+        List<String> foundUsers = userRepository.findAll().stream()
+                .map(user -> user.getName().toLowerCase())
+                .filter(s -> s.contains(keyword.toLowerCase()))
                 .toList();
 
+        if (foundUsers.isEmpty()) {
+            ArrayList<String> noMatches = new ArrayList<>();
+            noMatches.add("No users found :(");
+            return noMatches;
+        }
+
+        return foundUsers;
     }
 
 
