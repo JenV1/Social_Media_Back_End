@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    @Autowired
-    private InterestsEnum interestsEnum;
+//    @Autowired
+//    private InterestsEnum interestsEnum;
 
 //    @Test
 //    void likePost() {

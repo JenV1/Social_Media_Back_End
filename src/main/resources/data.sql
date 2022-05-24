@@ -111,4 +111,3 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_busi
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account) VALUES ('Hosting a fundraiser for Ukraine this weekend!', 71143, 4, 12, 'true');
 
 
-
