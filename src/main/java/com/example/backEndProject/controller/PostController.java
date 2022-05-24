@@ -24,13 +24,19 @@ import java.util.NoSuchElementException;
 public class PostController {
 
 
+//    Dependency Injection START
+
     private PostService postService;
 
     public PostController(PostService postService) {
         this.postService = postService;
     }
 
-//    Get Mapping Methods
+//    Dependency Injection END
+//
+//
+//    Get Methods START
+
 
     @GetMapping("/list_all_posts")
     public List<Post> getAll() {
@@ -58,13 +64,15 @@ public class PostController {
     }
 
     @GetMapping("/searchSpecificBusinessAccountPosts/{is_business_account}")
-    public List<Post>  searchSpecificBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount, int companyId) {
+    public List<Post> searchSpecificBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount, int companyId) {
         return postService.searchSpecificBusinessAccountPosts(isBusinessAccount, companyId);
     }
 
+//    Get Methods END
+//
+//
+//    Put Methods START
 
-
-//    Put Methods
 
     @PutMapping("/addLikeToPost/{id}")
     public Post updateLikeCount(@PathVariable("id") Long id) throws NoSuchElementException {
@@ -85,9 +93,22 @@ public class PostController {
     }
 
 
+//    Put Methods END
+//
+//
+//    Delete Methods START
+
+
+//    @DeleteMapping("/post/{id}")
+//    public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
+//        postService.deletePostByID(id);
+//        return new ResponseEntity<>(id, HttpStatus.OK);
+//}
+
     @DeleteMapping("/deletePost/{id}")
     public String deletePostByID(@PathVariable("id") Long id) {
         return postService.deletePostByID(id);
     }
 }
 
+//    Delete Methods END

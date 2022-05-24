@@ -9,6 +9,8 @@ import java.util.List;
 @Table(name = "posts")
 public class Post {
 
+//    ATTRIBUTES START
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +36,13 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> postComments;
 
-//    Constructors
+
+
+//    ATTRIBUTES END
+//
+//
+//    CONSTRUCTORS START
+
 
     public Post() {}
 
@@ -47,7 +55,10 @@ public class Post {
     }
 
 
-//    Getters and Setters
+//    CONSTRUCTORS END
+//
+//
+//    GETTERS AND SETTERS START
 
 
 
@@ -106,4 +117,24 @@ public class Post {
     public void setCompanyId(int companyId) {
         this.companyId = companyId;
     }
+
+//    GETTERS AND SETTERS END
+//
+//
+//    CODE BEING TESTED...
+
+
+//    public int getBusinessAccID() {
+//        return businessAccID;
+//    }
+//
+//    public void setBusinessAccID(int businessAccID) {
+//        this.businessAccID = businessAccID;
+//    }
+
+
+//    CODE BEING TESTED...
+//
+//
+//    END OF FILE
 }

@@ -10,6 +10,9 @@ import java.util.List;
 @Table(name = "comments")
 public class Comment {
 
+
+//    ATTRIBUTES START
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +23,6 @@ public class Comment {
     private Boolean heartByUser;
 
     private String commentContent;
-
 
     @ManyToOne
     private Post post;
@@ -33,6 +35,12 @@ public class Comment {
     private List<Reply> commentReplies;
 
 
+//    ATTRIBUTES END
+//
+//
+//    CONSTRUCTORS START
+
+
     public Comment() {
     }
 
@@ -42,6 +50,13 @@ public class Comment {
         this.heartByUser = heartByUser;
 
     }
+
+
+//    CONSTRUCTORS END
+//
+//
+//    GETTERS AND SETTERS START
+
 
     public Long getId() {
         return id;
@@ -82,4 +97,11 @@ public class Comment {
     public void setPost(Post post) {
         this.post = post;
     }
+
+
+//    GETTERS AND SETTERS END
+//
+//
+//    END OF FILE
+
 }

@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name = "replies")
 public class Reply {
 
+//    ATTRIBUTES
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,8 +19,27 @@ public class Reply {
     @ManyToOne
     private Comment comment;
 
+
+//    ATTRIBUTES END
+//
+//
+//    CONSTRUCTORS START
+
+
     public Reply() {
     }
+
+    public Reply(Long id, String reply) {
+        this.id = id;
+        this.reply = reply;
+    }
+
+
+//    CONSTRUCTORS END
+//
+//
+//    GETTERS AND SETTERS START
+
 
     public Long getId() {
         return id;
@@ -36,10 +57,10 @@ public class Reply {
         this.reply = reply;
     }
 
-    public Reply(Long id, String reply) {
 
+//    GETTERS AND SETTERS END
+//
+//
+//    END OF FILE
 
-        this.id = id;
-        this.reply = reply;
-    }
 }

@@ -16,11 +16,21 @@ import java.util.stream.Collectors;
 public class UserService {
 
 
+//    DEPENDENCY INJECTION
+
+
     private UserRepository userRepository;
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
+
+
+//    DEPENDENCY INJECTION END
+//
+//
+//    SERVICE METHODS START
+
 
     public List<User> getAll() {
         return userRepository.findAll();
@@ -33,6 +43,7 @@ public class UserService {
     public User findById(Long id){
         return userRepository.findByID(id);
     }
+
 
     public List<String> searchUsersForKeyword(String keyword) {
 
@@ -47,6 +58,7 @@ public class UserService {
                 .toList();
 
     }
+
 
     public User editName(Long id, String new_name)
             throws NoSuchElementException {
@@ -69,6 +81,7 @@ public class UserService {
         return current;
     }
 
+
     public User editCompany(Long id, String new_company)
             throws NoSuchElementException {
 
@@ -89,6 +102,7 @@ public class UserService {
 
         return current;
     }
+
 
     public User editPassword(Long id, String new_password)
             throws NoSuchElementException {
@@ -112,6 +126,7 @@ public class UserService {
         return current;
     }
 
+
     public User editDOB(Long id, String new_DOB)
             throws NoSuchElementException {
 
@@ -134,10 +149,20 @@ public class UserService {
         return current;
     }
 
+
+//    END OF METHODS
+//
+//
 //    MESSAGING METHODS
+
 
 //    public List<String> getAllMessagesFromInbox() {
 //        return userRepository.findByID(1L).getInbox();
 //    }
 
+
+//    END OF MESSAGING METHODS
+//
+//
+//    END OF FILE
 }

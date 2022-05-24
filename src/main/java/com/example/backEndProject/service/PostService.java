@@ -27,12 +27,21 @@ import java.util.Map;
 public class PostService {
 
 
-    private PostRepository postRepository;
+//    DEPENDENCY INJECTION
 
+
+    private PostRepository postRepository;
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
+
+
+//    END OF DEPENDENCY INJECTION
+//
+//
+//    START OF METHODS
+
 
     public List<Post> getAll() {
         return postRepository.findAll();
@@ -46,9 +55,8 @@ public class PostService {
         return postRepository.findPostByID(id);
     }
 
-    public int findLikesByID(Long id) {
 
-//        Inspired by the way likes are shown on posts on social media applications
+    public int findLikesByID(Long id) {
 
         Post current = null;
         try {
@@ -61,6 +69,7 @@ public class PostService {
         return current.getNumber_of_likes();
     }
 
+
     public List searchPostsForKeyword(String keyword) {
 
 //        Returns the posts that contain the relevant keyword
@@ -70,9 +79,6 @@ public class PostService {
                 .filter(s -> s.contains(keyword))
                 .toList();
     }
-
-
-    //    Put Methods
 
 
     public Post updateLikeCount(Long id)
@@ -95,6 +101,7 @@ public class PostService {
 
         return current;
     }
+
 
     public Post superLikePost(Long id)
             throws NoSuchElementException {
@@ -160,6 +167,7 @@ public class PostService {
         return current;
     }
 
+
     public String deletePostByID(Long id) {
 
         Post result = postRepository.findPostByID(id);
@@ -168,8 +176,18 @@ public class PostService {
         return "Deleted";
     }
 
-    public List searchAllBusinessAccountPosts(Boolean isBusinessAccount) {
 
+//    public List searchAllBusinessAccountPosts(Boolean isBusinessAccount) {
+//
+////        Returns the posts that contain the company and isBusinessAccount = true
+//
+//        return postRepository.findAll().stream()
+//                .map(Post::isBusinessAccount)
+//                .filter(s -> s == Boolean.TRUE)
+//                .toList();
+//    }
+
+    public List searchAllBusinessAccountPosts(Boolean isBusinessAccount) {
 //        Returns the posts that contain the company and isBusinessAccount = true
             return postRepository.findAll().stream()
                     .map(Post::isBusinessAccount)
@@ -187,10 +205,16 @@ public class PostService {
         return postRepository.searchForSpecificBusinessAccountPosts(isBusinessAccount,companyId);
     }
 
-//    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
-//        return postRepository.findAll().stream()
-//                .map(Post::isBusinessAccount)
-//                .filter(s -> s.equals(isBusinessAccount))
-//                .toList();
-//    }
+//    END OF METHODS
+//
+//
+//    CODE IN PROGRESS
+
+    }
+
+
+//    END OF CODE IN PROGRESS
+//
+//
+//    END OF FILE
 }

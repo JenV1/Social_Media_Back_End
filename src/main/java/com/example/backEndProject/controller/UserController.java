@@ -18,13 +18,21 @@ import java.util.stream.Collectors;
 public class UserController {
 
 
+//    INJECTION DEPENDENCY START
+
+
     private UserService userService;
 
     public UserController(UserService userService){
         this.userService = userService;
     }
 
-//    Mapping Methods
+
+//    INJECTION DEPENDENCY START
+//
+//
+//    GET Mapping Methods
+
 
     @GetMapping("/list_all_users")
     public List<User> getAll() {
@@ -44,31 +52,17 @@ public class UserController {
         return userService.findById(id);
     }
 
-//    @PostMapping("/users")
-//    public void createUser(@RequestBody User user){
-//        User savedUser = userService.save(user);
-//    }
-@PostMapping("/addUsers")
-public ResponseEntity<User> addUser(@RequestBody User user) {
-    User newUser = userService.save(user);
-
-    return new ResponseEntity< >(newUser, HttpStatus.CREATED);
-}
 
     @GetMapping("/searchForUserByName/{keyword}")
     public List<String> searchUsersForKeyword(@PathVariable("keyword") String keyword) {
         return userService.searchUsersForKeyword(keyword);
     }
 
-//    MESSAGING METHODS
 
-//    @GetMapping("/getAllMessagesFromInbox")
-//    public List<String> getAllMessagesFromInbox() {
-//        return userService.getAllMessagesFromInbox();
-//    }
-
-
-///    Put Methods
+//    GET METHODS END
+//
+//
+//    Put Methods START
 
 
     @PutMapping("/editName/{id}")
@@ -77,10 +71,6 @@ public ResponseEntity<User> addUser(@RequestBody User user) {
 
         return userService.editName(id, new_name);
     }
-
-
-///    Put Methods
-
 
 
     @PutMapping("/editCompany/{id}")
@@ -107,4 +97,37 @@ public ResponseEntity<User> addUser(@RequestBody User user) {
         return userService.editDOB(id, new_DOB);
 
     }
+
+
+//    Put Methods END
+//
+//
+//    POST METHODS START
+
+
+    @PostMapping("/users")
+    public void createUser(@RequestBody User user){
+        User savedUser = userService.save(user);
+    }
+
+    @PostMapping("/addUsers")
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User newUser = userService.save(user);
+
+        return new ResponseEntity< >(newUser, HttpStatus.CREATED);
+    }
+
+
+//    Put Methods END
+//
+//
+//    POST METHODS START
+
+
+//    MESSAGING METHODS
+
+//    @GetMapping("/getAllMessagesFromInbox")
+//    public List<String> getAllMessagesFromInbox() {
+//        return userService.getAllMessagesFromInbox();
+//    }
 }

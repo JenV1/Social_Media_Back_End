@@ -13,10 +13,20 @@ import java.util.List;
 @Service
 public class CommentService {
 
+
+//    DEPENDENCY INJECTIONS
+
+
     private UserRepository userRepository;
     private PostRepository postRepository;
-
     private CommentRepository commentRepository;
+
+
+//    END OF DEPENDENCY INJECTIONS
+//
+//
+//    CONSTRUCTORS
+
 
     public CommentService(UserRepository userRepository, PostRepository postRepository,
                            CommentRepository commentRepository){
@@ -27,16 +37,20 @@ public class CommentService {
 
     }
 
-    public List<Comment> showAllComments(){
 
+//    END OF CONSTRUCTORS
+//
+//
+//    START OF METHODS
+
+
+    public List<Comment> showAllComments(){
         return commentRepository.findAll();
     }
 
 
     public Comment findCommentByID(Long id){
-
         return commentRepository.findCommentByID(id);
-
     }
 
     public String heartComment(Long user_id, String user_name, String password, Long postId, Long commentId){
@@ -47,7 +61,7 @@ public class CommentService {
             Comment result_comment = commentRepository.findCommentByID(commentId);
 
 
-            if(result_user.getName().equals(user_name)
+            if (result_user.getName().equals(user_name)
                     && result_user.getPassword().equals(password)
                     && result_post.getUser().getId().equals(user_id)
                     && result_comment.getPost().getId().equals(postId)){
@@ -55,39 +69,32 @@ public class CommentService {
                 result_comment.setHeartByUser(Boolean.TRUE);
                 commentRepository.save(result_comment);
 
-
-
                 return "hearted";
-
 
             }
 
-        }catch(NullPointerException e){
+        }catch (NullPointerException e) {
+
             return "user/post does not exist";
         }
 
            return "Incorrect login details";
 
-
     }
 
-    public void addComment(
 
+    public void addComment(
                              Long post_id,
                              Long user_id,
                              String commentContent){
 
-
         commentRepository.addComment(post_id,user_id,commentContent);
-
-
     }
 
     public void deleteCommentById(Long id){
-
         commentRepository.deleteById(id);
-
     }
+
 
     public void changeCommentContent(String commentContent,Long id){
 
@@ -99,5 +106,8 @@ public class CommentService {
     }
 
 
-
+//    END OF METHODS
+//
+//
+//    END OF FILE
 }

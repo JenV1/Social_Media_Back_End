@@ -19,5 +19,4 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
     void addComment(Long PostId, Long userId,String commentContent);
 
 
-
 }
