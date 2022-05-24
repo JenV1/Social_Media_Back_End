@@ -8,7 +8,9 @@ import com.example.backEndProject.repository.PostRepository;
 import com.example.backEndProject.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CommentService {
@@ -27,9 +29,19 @@ public class CommentService {
 
     }
 
-    public List<Comment> showAllComments(){
+    public Map<String,String> showAllComments(){
 
-        return commentRepository.findAll();
+
+        Map<String,String> result = new HashMap<>();
+        List<Post> posts = commentRepository.findAll().stream().map(comment -> comment.getPost()).toList();
+        List<Comment> comments = commentRepository.findAll();
+
+        for(int i = 0; i < posts.size(); i++){
+
+            result.put(posts.get(i).getContent_text(),comments.get(i).getCommentContent());
+        }
+
+        return result;
     }
 
 

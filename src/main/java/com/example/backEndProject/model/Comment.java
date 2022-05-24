@@ -14,9 +14,10 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "number_of_likes")
+    @Column(nullable = false,columnDefinition = "INTEGER DEFAULT 0")
     private int likes;
 
+    @Column(nullable=false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean heartByUser;
 
     private String commentContent;

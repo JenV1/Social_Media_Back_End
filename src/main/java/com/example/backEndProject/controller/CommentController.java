@@ -1,11 +1,13 @@
 package com.example.backEndProject.controller;
 
 import com.example.backEndProject.model.Comment;
+import com.example.backEndProject.model.Post;
 import com.example.backEndProject.service.CommentService;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CommentController {
@@ -18,7 +20,9 @@ public class CommentController {
 
 
     @GetMapping("showAllComments")
-    public List<Comment> showAllComments(){
+    public Map<String,String> showAllComments(){
+
+
 
         return commentService.showAllComments();
 
