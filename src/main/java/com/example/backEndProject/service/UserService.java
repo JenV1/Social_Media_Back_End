@@ -1,5 +1,6 @@
 package com.example.backEndProject.service;
 
+import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class UserService {
 
 
     private UserRepository userRepository;
+
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -55,6 +58,7 @@ public class UserService {
 
         return "User Added";
     }
+
 
     public User findById(Long id){
         return userRepository.findByID(id);
@@ -150,7 +154,6 @@ public class UserService {
         return current;
     }
 
-
     public User editDOB(Long id, String new_DOB)
             throws NoSuchElementException {
 
@@ -214,17 +217,6 @@ public class UserService {
 
 //    END OF METHODS
 //
-//
-//    MESSAGING METHODS
 
-
-//    public List<String> getAllMessagesFromInbox() {
-//        return userRepository.findByID(1L).getInbox();
-//    }
-
-
-//    END OF MESSAGING METHODS
-//
-//
 //    END OF FILE
 }

@@ -26,12 +26,7 @@ public class UserController {
         this.userService = userService;
     }
 
-
-//    INJECTION DEPENDENCY START
-//
-//
-//    GET Mapping Methods
-
+//    Mapping Methods
 
     @GetMapping("/list_all_users")
     public List<User> getAll() {
@@ -59,10 +54,11 @@ public class UserController {
                            @RequestParam("role") String role,
                            @RequestParam("is_business_account?") Boolean isBusinessAccount
                            ){
-
+//
 
        return userService.save(name,password,dob,company,role,isBusinessAccount);
     }
+
 
     @GetMapping("/searchForUserByName/{keyword}")
     public List<String> searchUsersForKeyword(@PathVariable("keyword") String keyword) {
@@ -82,6 +78,10 @@ public class UserController {
 
         return userService.editName(id, new_name);
     }
+
+
+///    Put Methods
+
 
 
     @PutMapping("/editCompany/{id}")

@@ -17,10 +17,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content_text;
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private int number_of_likes;
 
     @Column(name = "post_types_id")
-    private int post_types_id;
+    private Integer post_types_id;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private Boolean isBusinessAccount;
