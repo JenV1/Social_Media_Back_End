@@ -10,14 +10,13 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-//    Attributes
+
+//    ATTRIBUTES START
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
-
     private String name;
     private String company;
     private String role;
@@ -27,8 +26,8 @@ public class User {
 
 //    Inbox/Messages
 
-    @JsonIgnoreProperties({"user"})
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"userS"})
+    @OneToMany(mappedBy = "userS", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> inbox;
 
 //    Relationship Mapping
@@ -52,21 +51,16 @@ public class User {
 
 
 //    Constructors
+//    ATTRIBUTES END
+//
+//
+//    CONSTRUCTORS START
+
 
     public User() {}
 
-
-//    private final ArrayList<Post> adminPosts = new ArrayList<>();
-////    @Transient
-////    User admin = new User(999, "admin", "Connect", "password", "now", adminPosts);
-//
-////    public User getAdmin() {
-////        return admin;
-////    }
-
-
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
+                String date_of_birth, ArrayList<Message> inbox,ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -74,25 +68,28 @@ public class User {
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
-        this.inbox = new ArrayList<Message>();
+        this.inbox = new ArrayList<>();
         this.isBusinessAccount = isBusinessAccount;
         this.isUserLoggedIn = isUserLoggedIn;
     }
 
 
+//    CONSTRUCTORS ENDS
+//
+//
+//    GETTERS AND SETTERS START
 
-//    Getters and Setters
-
-    public boolean isBusinessAccount() {
-        return isBusinessAccount;
-    }
-
-    public void setBusinessAccount(boolean businessAccount) {
-        isBusinessAccount = businessAccount;
-    }
 
     public Long getId() {
         return id;
+    }
+
+    public Boolean isBusinessAccount() {
+        return isBusinessAccount;
+    }
+
+    public void setBusinessAccount(Boolean businessAccount) {
+        isBusinessAccount = businessAccount;
     }
 
     public void setId(Long id) {
@@ -122,8 +119,6 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-
-
 
     public String getPassword() {
         return password;
@@ -157,9 +152,6 @@ public class User {
         this.inbox = inbox;
     }
 
-    //    Methods
-
-//    Adding this to Post, simply add like to post to begin
 
     public void likePost(Post post) {
         int newLikeTotal = post.getNumber_of_likes() + 1;
@@ -173,4 +165,8 @@ public class User {
     public void setUserLoggedIn(boolean userLoggedIn) {
         isUserLoggedIn = userLoggedIn;
     }
+//    GETTERS AND SETTERS END
+//
+//
+//    FILE END
 }

@@ -12,6 +12,10 @@
 //import java.util.HashMap;
 //import java.util.Map;
 //
+//
+//// THIS IS FOR AUTHENTICATION LOGIN! PLEASE DON'T TOUCH!
+//
+//
 //@Controller
 //public class HomeController {
 //
@@ -30,3 +34,5 @@
 //        return "home";
 //    }
 //}
+//
+//// THIS IS FOR AUTHENTICATION LOGIN! PLEASE DON'T TOUCH!

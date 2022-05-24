@@ -5,6 +5,8 @@ import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.UserRepository;
 import com.example.backEndProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,13 +17,21 @@ import java.util.stream.Collectors;
 public class UserController {
 
 
+//    INJECTION DEPENDENCY START
+
+
     private UserService userService;
 
     public UserController(UserService userService){
         this.userService = userService;
     }
 
-//    Mapping Methods
+
+//    INJECTION DEPENDENCY START
+//
+//
+//    GET Mapping Methods
+
 
     @GetMapping("/list_all_users")
     public List<User> getAll() {
@@ -59,15 +69,11 @@ public class UserController {
         return userService.searchUsersForKeyword(keyword);
     }
 
-//    MESSAGING METHODS
 
-//    @GetMapping("/getAllMessagesFromInbox")
-//    public List<String> getAllMessagesFromInbox() {
-//        return userService.getAllMessagesFromInbox();
-//    }
-
-
-///    Put Methods
+//    GET METHODS END
+//
+//
+//    Put Methods START
 
 
     @PutMapping("/editName/{id}")
@@ -76,6 +82,7 @@ public class UserController {
 
         return userService.editName(id, new_name);
     }
+
 
     @PutMapping("/editCompany/{id}")
     public User editCompany(@PathVariable("id") Long id,

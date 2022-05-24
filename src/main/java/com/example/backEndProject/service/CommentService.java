@@ -15,10 +15,21 @@ import java.util.Map;
 @Service
 public class CommentService {
 
+
+//    DEPENDENCY INJECTIONS
+
+
     private UserRepository userRepository;
     private PostRepository postRepository;
 
     private CommentRepository commentRepository;
+
+
+//    END OF DEPENDENCY INJECTIONS
+//
+//
+//    CONSTRUCTORS
+
 
     public CommentService(UserRepository userRepository, PostRepository postRepository,
                            CommentRepository commentRepository){
@@ -121,8 +132,8 @@ public class CommentService {
 
            return "You may not heart this comment as: You didn't create this post";
 
-
     }
+
 
     public String addComment(
 
@@ -150,10 +161,9 @@ public class CommentService {
     }
 
     public void deleteCommentById(Long id){
-
         commentRepository.deleteById(id);
-
     }
+
 
     public void changeCommentContent(String commentContent,Long id){
 
@@ -165,5 +175,8 @@ public class CommentService {
     }
 
 
-
+//    END OF METHODS
+//
+//
+//    END OF FILE
 }

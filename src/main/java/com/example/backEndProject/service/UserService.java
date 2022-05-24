@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -18,11 +19,21 @@ import java.util.stream.Collectors;
 public class UserService {
 
 
+//    DEPENDENCY INJECTION
+
+
     private UserRepository userRepository;
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
+
+
+//    DEPENDENCY INJECTION END
+//
+//
+//    SERVICE METHODS START
+
 
     public List<User> getAll() {
         return userRepository.findAll();
@@ -49,19 +60,29 @@ public class UserService {
         return userRepository.findByID(id);
     }
 
+
     public List<String> searchUsersForKeyword(String keyword) {
 
 //        Gets all users and converts to a stream
 //        Extracts the name from each user and maps them
-//        Filters name dependent on whether they contain the specified keyword
+//        Uses to lower case to ensure no name is missed
+//        Filter with lambda is dependent on whether name contains the specified keyword
 //        Returns list of posts
 
-        return userRepository.findAll().stream()
-                .map(User::getName)
-                .filter(s -> s.contains(keyword))
+        List<String> foundUsers = userRepository.findAll().stream()
+                .map(user -> user.getName().toLowerCase())
+                .filter(s -> s.contains(keyword.toLowerCase()))
                 .toList();
 
+        if (foundUsers.isEmpty()) {
+            ArrayList<String> noMatches = new ArrayList<>();
+            noMatches.add("No users found :(");
+            return noMatches;
+        }
+
+        return foundUsers;
     }
+
 
     public User editName(Long id, String new_name)
             throws NoSuchElementException {
@@ -84,6 +105,7 @@ public class UserService {
         return current;
     }
 
+
     public User editCompany(Long id, String new_company)
             throws NoSuchElementException {
 
@@ -104,6 +126,7 @@ public class UserService {
 
         return current;
     }
+
 
     public User editPassword(Long id, String new_password)
             throws NoSuchElementException {
@@ -126,6 +149,7 @@ public class UserService {
 
         return current;
     }
+
 
     public User editDOB(Long id, String new_DOB)
             throws NoSuchElementException {
@@ -187,10 +211,20 @@ public class UserService {
 
     }
 
+
+//    END OF METHODS
+//
+//
 //    MESSAGING METHODS
+
 
 //    public List<String> getAllMessagesFromInbox() {
 //        return userRepository.findByID(1L).getInbox();
 //    }
 
+
+//    END OF MESSAGING METHODS
+//
+//
+//    END OF FILE
 }

@@ -12,11 +12,19 @@ import java.util.Map;
 @RestController
 public class CommentController {
 
+//    INJECTION MAPPING START
+
     private CommentService commentService;
 
     public CommentController(CommentService commentService){
         this.commentService = commentService;
     }
+
+
+//    INJECTION MAPPING END
+//
+//
+//    GET MAPPING START
 
 
     @GetMapping("showAllComments")
@@ -37,6 +45,12 @@ public class CommentController {
         return commentService.findCommentByID(id);
 
     }
+
+
+//    GET MAPPING END
+//
+//
+//    PUT MAPPING START
 
 
     @PutMapping("heartComment")
@@ -65,10 +79,12 @@ public class CommentController {
 
         return "Comment successfully updated";
 
-
     }
 
-
+//    PUT MAPPING END
+//
+//
+//    POST MAPPING START
 
 
     @PostMapping("postComment")
@@ -80,6 +96,13 @@ public class CommentController {
 
         return commentService.addComment(post_id,user_id,commentContent);
     }
+
+
+//    POST MAPPING END
+//
+//
+//    DELETE MAPPING START
+
 
     @DeleteMapping("deleteCommentById/{id}")
     public String deleteCommentById(@PathVariable("id") Long id){
@@ -93,5 +116,12 @@ public class CommentController {
 
         return "Comment Deleted";
     }
+
+
+//    DELETE MAPPING END
+//
+//
+//    END OF FILE
+
 
 }
