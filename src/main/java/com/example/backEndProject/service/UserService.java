@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -26,8 +28,21 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User save(User user) {
-        return userRepository.save(user);
+    public String save(String name,
+                       String password,
+                       String dob,
+                       String company,
+                       String role,
+                       Boolean isBusinessAccount) {
+
+        if(userRepository.findUserByUsernameAndPassword(name,password) != null){
+            return "User already exists";
+        }
+
+        userRepository.addUser(company, dob, isBusinessAccount, name, password, role);
+
+
+        return "User Added";
     }
 
     public User findById(Long id){
@@ -132,6 +147,18 @@ public class UserService {
         }
 
         return current;
+    }
+
+    public String logUserIn(String username, String password){
+
+        if(userRepository.findUserByUsernameAndPassword(username,password)!=null){
+            return "user logged in";
+        }
+
+        return "user not logged in";
+
+
+
     }
 
 //    MESSAGING METHODS

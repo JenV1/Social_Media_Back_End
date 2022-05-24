@@ -41,9 +41,17 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PostMapping("/users")
-    public void createUser(@RequestBody User user){
-        User savedUser = userService.save(user);
+    @PostMapping("/addNewUser")
+    public String createUser(@RequestParam("username") String name,
+                           @RequestParam("password") String password,
+                           @RequestParam("date_of_birth") String dob,
+                           @RequestParam("company") String company,
+                           @RequestParam("role") String role,
+                           @RequestParam("is_business_account?") Boolean isBusinessAccount
+                           ){
+
+
+       return userService.save(name,password,dob,company,role,isBusinessAccount);
     }
 
     @GetMapping("/searchForUserByName/{keyword}")
@@ -94,6 +102,13 @@ public class UserController {
 
     }
 
+    @PutMapping("logUserIn")
+    public String logUserIn(@RequestParam("username") String user_name,@RequestParam("password") String password){
+
+        return userService.logUserIn(user_name,password);
+
+
+    }
 
 
 }
