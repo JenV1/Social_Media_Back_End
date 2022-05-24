@@ -115,6 +115,7 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES 
 
 
 INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('This is a test message!', 'Lewis', 3);
+INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('Check it out, another test message!', 'Lewis', 3);
 
 INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('Letsss gooooooo', 'Mohamed', 5);
 INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('Projects going great so far, loving this messaging service', 'Scott', 3);

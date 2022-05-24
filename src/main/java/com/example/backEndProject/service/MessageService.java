@@ -35,9 +35,7 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
-//    public Message sendMessageToUser(Long id, Message message) {
-//
-//    }
+    public Message
 
 
 //    END OF METHODS

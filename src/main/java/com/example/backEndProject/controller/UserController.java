@@ -124,10 +124,4 @@ public class UserController {
 //    POST METHODS START
 
 
-//    MESSAGING METHODS
-
-//    @GetMapping("/getAllMessagesFromInbox")
-//    public List<String> getAllMessagesFromInbox() {
-//        return userService.getAllMessagesFromInbox();
-//    }
 }

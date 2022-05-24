@@ -27,7 +27,7 @@ public class Message {
     public Message() {
     }
 
-    public Message(String message_content, String nameOfSender) {
+    public Message(String message_content, String nameOfSender, User user) {
         this.message_content = message_content;
         this.nameOfSender = nameOfSender;
     }

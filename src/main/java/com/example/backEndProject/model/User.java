@@ -61,7 +61,7 @@ public class User {
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
-        this.inbox = new ArrayList<Message>();
+        this.inbox = new ArrayList<>();
         this.isBusinessAccount = isBusinessAccount;
     }
 
