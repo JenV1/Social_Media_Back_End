@@ -58,9 +58,7 @@ public class MessageService {
                 .findFirst()
                 .orElse(null);
 
-        Message newMessage = null;
-
-        newMessage = new Message(message_content, sender, receiver);
+        Message newMessage = new Message(message_content, sender, receiver);
 
 
         receiver.getInbox().add(newMessage);

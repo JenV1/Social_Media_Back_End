@@ -34,10 +34,7 @@ public class Message {
     public Message() {
     }
 
-    public Message(String message_content, User sender, User receiver) {
-    }
-
-    public Message(String message_content, String nameOfSender, User userR, User userS) {
+    public Message(String message_content, User userR, User userS) {
         this.message_content = message_content;
     }
 
