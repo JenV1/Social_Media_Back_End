@@ -12,10 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Map;
 
 @Service
 public class PostService {
@@ -46,17 +44,6 @@ public class PostService {
     public Post save(Post post) {
         return postRepository.save(post);
     }
-
-
-public void addPost(
-        Long id,
-        String content_text,
-        int number_of_likes,
-        boolean isBusinessAccount) {
-
-    Post post = new Post(id, content_text, number_of_likes, isBusinessAccount);
-    postRepository.save(post);
-}
 
     public Post findPostByID(Long id){
         return postRepository.findPostByID(id);

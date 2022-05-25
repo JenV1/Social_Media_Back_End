@@ -75,7 +75,6 @@ public class MessageService {
         newMessage.setUserS(sender);
         messageRepository.save(newMessage);
 
-
         return newMessage.getMessage_content() +
                 "\nMessage to " + receiver.getName() + " sent successfully! \n" +
                 "Message sent at: " + LocalDateTime.now() +

@@ -45,7 +45,7 @@ public class Post {
 //    CONSTRUCTORS START
 
 
-    public Post(String content_text, int number_of_likes, boolean isBusinessAccount) {}
+    public Post(Long id, String content_text, int number_of_likes, boolean isBusinessAccount, Integer post_type_id) {}
 
     public Post(Long id, String content_text, int number_of_likes, int companyId, Boolean isBusinessAccount, int post_types_id) {
         this.id = id;
