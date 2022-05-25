@@ -26,7 +26,7 @@ public class User {
 
 //    Inbox/Messages
 
-    @JsonIgnoreProperties({"userS"})
+    @JsonIgnoreProperties({"userS", "userR"})
     @OneToMany(mappedBy = "userS", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> inbox;
 

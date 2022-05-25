@@ -162,7 +162,7 @@ public class PostService {
 
         return fileWriter.addPostWriter(id,
                 content_text, number_of_likes, isBusinessAccount, post_type_id, user_id);
-
+    }
 
 //    END OF METHODS
 //
@@ -174,5 +174,5 @@ public class PostService {
 //
 //
 //    END OF FILE
-    }
+
 }

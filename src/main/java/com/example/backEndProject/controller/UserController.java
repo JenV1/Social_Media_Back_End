@@ -47,12 +47,12 @@ public class UserController {
     }
 
     @PostMapping("/addNewUser")
-    public String createUser(@RequestParam("username") String name,
+    public String createUser(@RequestParam("name") String name,
                            @RequestParam("password") String password,
                            @RequestParam("date_of_birth") String dob,
                            @RequestParam("company") String company,
                            @RequestParam("role") String role,
-                           @RequestParam("is_business_account?") Boolean isBusinessAccount
+                           @RequestParam("isBusinessAccount") Boolean isBusinessAccount
                            ){
 //
 

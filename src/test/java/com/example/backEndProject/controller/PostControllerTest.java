@@ -67,5 +67,10 @@ class PostControllerTest {
 
     @Test
     void addPost() {
+        // Given
+
+        // When
+
+        // Then
     }
 }
