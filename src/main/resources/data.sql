@@ -109,7 +109,6 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_busi
 
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account,company_id) VALUES ('Why have they put Atos first in the table? Still impressed though', 252, 3, 12, 'true',9);
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account,company_id) VALUES ('Hosting a fundraiser for Ukraine this weekend!', 71143, 4, 12, 'true',9);
-INSERT INTO message (message_content, name_of_sender, user_id, company_id) VALUES ('This is a test message!', 'Lewis', 3, 1);
 
 -- Inserts for the message table
 INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('This multidirectional mapping thing is pretty cool', 2, 3);
