@@ -14,10 +14,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query(value = "SELECT * FROM posts WHERE id = ?",nativeQuery = true)
     Post findPostByID(Long id);
 
+    // delete query to delete a post by a specific post_id
     @Query(value = "DELETE FROM posts WHERE post_id = ?", nativeQuery = true)
     String deletePostByID(Long id);
 
-    // delete query to delete a post by a specific post_id
+
     @Query(value = "SELECT * FROM posts WHERE is_business_account = ?", nativeQuery = true)
     Post searchAllBusinessAccountPosts(Boolean isBusinessAccount);
 

@@ -29,11 +29,11 @@ INSERT INTO interest_types (interests) VALUES ('MEDITATION_AND_SPIRITUALITY');
 INSERT INTO interest_types (interests) VALUES ('PHOTOGRAPHY');
 
 
-INSERT INTO users (company,date_of_birth,name,password) VALUES
-('Peppermint','1999','Cem','password');
-
-INSERT INTO posts (content_text,number_of_likes,post_types_id,user_id) VALUES
-('hello','1',3,1);
+--INSERT INTO users (company,date_of_birth,name,password,company_id) VALUES
+--('Bnta','1999','Cem','password',10);
+--
+--INSERT INTO posts (content_text,number_of_likes,post_types_id,user_id,company_id) VALUES
+--('hello','1',3,1,);
 
 --INSERT INTO posts (content_text,number_of_likes,post_types_id,user_id) VALUES
 --('hello','1',3,1);

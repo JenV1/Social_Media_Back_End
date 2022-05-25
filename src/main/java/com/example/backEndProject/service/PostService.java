@@ -19,6 +19,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Map;
@@ -170,6 +171,8 @@ public class PostService {
 
     public String deletePostByID(Long id) {
 
+        // deletes a specific post by the post id
+
         Post result = postRepository.findPostByID(id);
         postRepository.delete(result);
 
@@ -177,19 +180,13 @@ public class PostService {
     }
 
 
-//    public List searchAllBusinessAccountPosts(Boolean isBusinessAccount) {
-//
-////        Returns the posts that contain the company and isBusinessAccount = true
-//
-//        return postRepository.findAll().stream()
-//                .map(Post::isBusinessAccount)
-//                .filter(s -> s == Boolean.TRUE)
-//                .toList();
-//    }
-
     public List searchAllBusinessAccountPosts(Boolean isBusinessAccount) {
-//        Returns the posts that contain the company and isBusinessAccount = true
-            return postRepository.findAll().stream()
+
+        // firstly, method finds all posts and converts this to a stream
+        // Extracts the boolean value of isBusinessAccount from each post and maps them
+        // Returns the posts that contain isBusinessAccount = true
+
+             return postRepository.findAll().stream()
                     .map(Post::isBusinessAccount)
                     .filter(s -> s == Boolean.TRUE)
                     .toList();
@@ -197,6 +194,7 @@ public class PostService {
     }
 
     public List<Post> searchSpecificBusinessAccountPosts(Boolean isBusinessAccount, int companyId) {
+//
 //        return postRepository.findAll().stream()
 //                .map(Post::isBusinessAccount)
 //                .filter(s -> s == Boolean.TRUE)
@@ -209,8 +207,6 @@ public class PostService {
 //
 //
 //    CODE IN PROGRESS
-
-    }
 
 
 //    END OF CODE IN PROGRESS

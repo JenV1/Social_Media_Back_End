@@ -31,3 +31,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 }
 
 // THIS IS FOR AUTHENTICATION LOGIN! PLEASE DON'T TOUCH!
+
