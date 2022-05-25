@@ -4,6 +4,8 @@ package com.example.backEndProject.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Entity
@@ -24,6 +26,10 @@ public class Comment {
     private Boolean heartByUser;
 
     private String commentContent;
+
+//    @Min(1)
+//    @Max(500)
+//    private int numberOfCharacters;
 
     @ManyToOne
     private Post post;
@@ -46,15 +52,13 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Long id, int likes, Boolean heartByUser, String replies) {
-        this.id = id;
-        this.likes = likes;
-        this.heartByUser = heartByUser;
-
+    public Comment(String commentContent, Post post, User user) {
+        this.commentContent = commentContent;
+        this.post = post;
+        this.user = user;
     }
 
-
-//    CONSTRUCTORS END
+    //    CONSTRUCTORS END
 //
 //
 //    GETTERS AND SETTERS START

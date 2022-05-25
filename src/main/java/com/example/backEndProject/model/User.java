@@ -73,8 +73,17 @@ public class User {
         this.isUserLoggedIn = isUserLoggedIn;
     }
 
+    //simplified constructor
 
-//    CONSTRUCTORS ENDS
+    public User(String name, String company, String role, String password, String date_of_birth) {
+        this.name = name;
+        this.company = company;
+        this.role = role;
+        this.password = password;
+        this.date_of_birth = date_of_birth;
+    }
+
+    //    CONSTRUCTORS ENDS
 //
 //
 //    GETTERS AND SETTERS START
