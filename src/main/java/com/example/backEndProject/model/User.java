@@ -43,7 +43,7 @@ public class User {
 
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
-    private Boolean isBusinessAccount;
+    private boolean isBusinessAccount;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE",name = "user_logged_in")
     private boolean isUserLoggedIn;
@@ -62,7 +62,7 @@ public class User {
     public User() {}
 
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Message> inbox,ArrayList<Post> allPostsByUser, Boolean isBusinessAccount, boolean isUserLoggedIn) {
+                String date_of_birth, ArrayList<Message> inbox,ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -87,11 +87,11 @@ public class User {
         return id;
     }
 
-    public Boolean isBusinessAccount() {
+    public boolean isBusinessAccount() {
         return isBusinessAccount;
     }
 
-    public void setBusinessAccount(Boolean businessAccount) {
+    public void setBusinessAccount(boolean businessAccount) {
         isBusinessAccount = businessAccount;
     }
 

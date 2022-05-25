@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -171,31 +172,32 @@ public class PostService {
         Post result = postRepository.findPostByID(id);
         postRepository.delete(result);
 
-        return "Deleted";
+        return "Deleted Post " + result.getId() + ". If this was a mistake, you can add a new post using the Add post function!";
     }
 
 
-    public List searchAllBusinessAccountPosts(Boolean isBusinessAccount) {
-
-        // firstly, method finds all posts and converts this to a stream
+    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
+        return postRepository.searchAllBusinessAccountPosts(isBusinessAccount).stream().toList();
+        // firstly, List results finds all posts corresponding to a list containing and converts this to a stream
         // Extracts the boolean value of isBusinessAccount from each post and maps them
         // Returns the posts that contain isBusinessAccount = true
-
-             return postRepository.findAll().stream()
-                    .map(Post::isBusinessAccount)
-                    .filter(s -> s == Boolean.TRUE)
-                    .toList();
-
     }
 
-    public List<Post> searchSpecificBusinessAccountPosts(Boolean isBusinessAccount, int companyId) {
-//
-//        return postRepository.findAll().stream()
-//                .map(Post::isBusinessAccount)
-//                .filter(s -> s == Boolean.TRUE)
-//                .filter(s -> false)
-//                .toList();
-        return postRepository.searchForSpecificBusinessAccountPosts(isBusinessAccount,companyId);
+    public List searchSpecificBusinessAccountPosts(int company_id) {
+//        List companyAccount = postRepository.searchForSpecificBusinessAccountPosts(isBusinessAccount, company_id).stream().toList();
+//        if (companyAccount) {
+//            return companyAccount;
+//        } else if (!isBusinessAccount){
+//            ArrayList noBusinessAccountList = new ArrayList<>();
+//            noBusinessAccountList.add("No business account posts found with this ID.");
+//            noBusinessAccountList.add("Check that the business account exists for the ID you are using!");
+//            return noBusinessAccountList;
+//        }
+//        ArrayList emptyList = new ArrayList<>();
+//        noBusinessAccountList.add("No business account posts found with this ID.");
+//        noBusinessAccountList.add("Check that the business account exists for the ID you are using!");
+//        return noBusinessAccountList;
+        return null;
     }
 
     public Post addPost(

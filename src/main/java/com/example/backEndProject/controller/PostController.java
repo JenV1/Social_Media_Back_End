@@ -59,13 +59,13 @@ public class PostController {
     }
 
     @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}/")
-    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount) {
+    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") boolean isBusinessAccount) {
         return postService.searchAllBusinessAccountPosts(isBusinessAccount);
     }
 
-    @GetMapping("/searchSpecificBusinessAccountPosts/{is_business_account}")
-    public List<Post> searchSpecificBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount, int companyId) {
-        return postService.searchSpecificBusinessAccountPosts(isBusinessAccount, companyId);
+    @GetMapping("/searchSpecificBusinessAccountPosts/{company_id}")
+    public List searchSpecificBusinessAccountPosts(@PathVariable("company_id") int companyId) {
+        return postService.searchSpecificBusinessAccountPosts(companyId);
     }
 
 //    Get Methods END
@@ -101,20 +101,9 @@ public class PostController {
 //    Delete Methods START
 
 
-
-    @PostMapping("/addNewPost")
-    public void addPost(@RequestParam Long id,
-                        @RequestParam String content_text,
-                        @RequestParam int number_of_likes,
-                        @RequestParam(required = false) boolean isBusinessAccount){
-
-        postService.addPost(id, content_text, number_of_likes, isBusinessAccount);
-    }
-
-
-
     @DeleteMapping("/deletePost/{id}")
     public String deletePostByID(@PathVariable("id") Long id) {
+
         return postService.deletePostByID(id);
     }
 
@@ -133,5 +122,6 @@ public class PostController {
 
         return postService.addPost(id, content_text, number_of_likes, isBusinessAccount, post_type_id, user_id);
 
+    }
 }
 

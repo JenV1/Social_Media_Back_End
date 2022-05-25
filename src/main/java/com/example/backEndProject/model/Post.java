@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.function.Predicate;
 
 @Entity
 @Table(name = "posts")
@@ -24,7 +23,7 @@ public class Post {
     private Integer post_types_id;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
-    private Boolean isBusinessAccount;
+    private boolean isBusinessAccount;
 
     @Column(name = "company_id")
     private int companyId;
@@ -46,9 +45,12 @@ public class Post {
 //    CONSTRUCTORS START
 
 
-    public Post() {}
+    public Post() {
+    }
 
-    public Post(Long id, String content_text, int number_of_likes, int companyId, Boolean isBusinessAccount, int post_types_id) {
+    public Post(Long id, String content_text, Integer number_of_likes, boolean isBusinessAccount, Integer post_type_id) {}
+
+    public Post(Long id, String content_text, int number_of_likes, int companyId, boolean isBusinessAccount, int post_types_id) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
@@ -105,11 +107,11 @@ public class Post {
         this.post_types_id = post_types_id;
     }
 
-    public Boolean isBusinessAccount() {
+    public boolean isBusinessAccount() {
         return isBusinessAccount;
     }
 
-    public void setBusinessAccount(Boolean businessAccount) {
+    public void setBusinessAccount(boolean businessAccount) {
         isBusinessAccount = businessAccount;
     }
 
