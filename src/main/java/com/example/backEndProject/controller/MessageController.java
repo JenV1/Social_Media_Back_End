@@ -1,7 +1,6 @@
 package com.example.backEndProject.controller;
 
 import com.example.backEndProject.model.Message;
-import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.MessageRepository;
 import com.example.backEndProject.repository.UserRepository;
 import com.example.backEndProject.service.MessageService;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class MessageController {
@@ -34,16 +32,17 @@ public class MessageController {
 //    MESSAGING FEATURES START
 
     @PostMapping("/sendMessageToUser")
-    public Message sendMessageToUser(
+    public String sendMessageToUser(
                                      @RequestParam String message_content,
                                      @RequestParam String name_of_sender,
+                                     @RequestParam String password,
                                      @RequestParam String receiver_name) {
 
-        return messageService.sendMessageToUser(message_content, name_of_sender, receiver_name);
+        return messageService.sendMessageToUser(message_content, name_of_sender, password, receiver_name);
     }
 
     @GetMapping("/checkUserInbox/{id}")
-    public List<Message> getAllMessagesFromInbox(@PathVariable("id") Long id) {
+    public List<String> getAllMessagesFromInbox(@PathVariable("id") Long id) {
         return messageService.getAllMessagesFromInbox(id);
     }
 

@@ -7,7 +7,10 @@ import com.example.backEndProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,10 +44,10 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
-    public Message sendMessageToUser(String message_content,
+    public String sendMessageToUser(String message_content,
                                      String name_of_sender,
+                                     String password_of_sender,
                                      String receiver_name) {
-
 
         String finalReceiver_name = receiver_name.toLowerCase();
         User receiver = userRepository.findAll().stream()
@@ -58,22 +61,41 @@ public class MessageService {
                 .findFirst()
                 .orElse(null);
 
+        if (sender == null) {
+            return "We could not find your username.";
+        } else if (!Objects.equals(sender.getPassword(), password_of_sender)) {
+            return "Incorrect password.";
+        } else if (receiver == null) {
+            return "Could not find the message recipient, please try again.";
+        }
+
         Message newMessage = new Message(message_content, sender, receiver);
-
-
         receiver.getInbox().add(newMessage);
         newMessage.setUserR(receiver);
         newMessage.setUserS(sender);
+        messageRepository.save(newMessage);
 
 
-        return messageRepository.save(newMessage);
+        return newMessage.getMessage_content() +
+                "\nMessage to " + receiver.getName() + " sent successfully! \n" +
+                "Message sent at: " + LocalDateTime.now() +
+                ". \nThanks for using connect :)";
     }
 
 
 
 
-    public List<Message> getAllMessagesFromInbox(Long id) {
-        return userRepository.findByID(id).getInbox();
+    public List<String> getAllMessagesFromInbox(Long id) {
+
+        int noOfMessage = userRepository.findByID(id).getInbox().size();
+        User userInbox = userRepository.findByID(id);
+        ArrayList<String> inboxMessages = new ArrayList<>();
+
+        for (int i = 0; i < noOfMessage; i++) {
+            inboxMessages.add(userInbox.getInbox().get(i).getMessage_content());
+        }
+
+        return inboxMessages;
     }
 
     public Message editSentMessage(Long message_id,

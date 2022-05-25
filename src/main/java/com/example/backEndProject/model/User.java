@@ -40,17 +40,13 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> allCommentsByUser;
 
-
-
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private boolean isBusinessAccount;
-
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE",name = "user_logged_in")
     private boolean isUserLoggedIn;
 
 
-//    Constructors
 //    ATTRIBUTES END
 //
 //
@@ -60,7 +56,7 @@ public class User {
     public User() {}
 
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Message> inbox,ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
+                String date_of_birth, ArrayList<Message> inbox, ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -148,14 +144,8 @@ public class User {
         return inbox;
     }
 
-    public void setInbox(List<Message> inbox) {
+    public void setInbox(ArrayList<Message> inbox) {
         this.inbox = inbox;
-    }
-
-
-    public void likePost(Post post) {
-        int newLikeTotal = post.getNumber_of_likes() + 1;
-        post.setNumber_of_likes(newLikeTotal);
     }
 
     public boolean isUserLoggedIn() {
@@ -165,6 +155,8 @@ public class User {
     public void setUserLoggedIn(boolean userLoggedIn) {
         isUserLoggedIn = userLoggedIn;
     }
+
+
 //    GETTERS AND SETTERS END
 //
 //

@@ -60,10 +60,10 @@ public class PostController {
         return postService.searchPostsForKeyword(keyword);
     }
 
-    @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}")
-    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") boolean isBusinessAccount) {
-        return postService.searchAllBusinessAccountPosts(isBusinessAccount);
-    }
+//    @GetMapping("/searchAllBusinessAccountPosts/{is_business_account}")
+//    public List searchAllBusinessAccountPosts(@PathVariable("is_business_account") boolean isBusinessAccount) {
+//        return postService.searchAllBusinessAccountPosts(isBusinessAccount);
+//    }
 
 //    @GetMapping("/searchAllBusinessAccountPosts/{post_type_id}")
 //    public List search
@@ -101,18 +101,6 @@ public class PostController {
 //    Delete Methods START
 
 
-
-    @PostMapping("/addNewPost")
-    public void addPost(@RequestParam Long id,
-                        @RequestParam String content_text,
-                        @RequestParam int number_of_likes,
-                        @RequestParam(required = false) boolean isBusinessAccount){
-
-        postService.addPost(id, content_text, number_of_likes, isBusinessAccount);
-    }
-
-
-
     @DeleteMapping("/post/{id}")
     public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
         postService.deletePostByID(id);
@@ -133,9 +121,12 @@ public class PostController {
                         @RequestParam(required = true) Long user_id) throws IOException {
 
         return postService.addPost(id, content_text, number_of_likes, isBusinessAccount, post_type_id, user_id);
+    }
+
     @DeleteMapping("/deletePost/{id}")
-    public String deletePostByID(@PathVariable("post_id") Long id) {
+    public String deletePostByID (@PathVariable("post_id") Long id){
         return postService.deletePostByID(id);
     }
+
 }
 
