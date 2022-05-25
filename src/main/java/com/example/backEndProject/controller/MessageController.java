@@ -41,9 +41,9 @@ public class MessageController {
         return messageService.sendMessageToUser(message_content, name_of_sender, password, receiver_name);
     }
 
-    @GetMapping("/checkUserInbox/{id}")
-    public List<String> getAllMessagesFromInbox(@PathVariable("id") Long id) {
-        return messageService.getAllMessagesFromInbox(id);
+    @GetMapping("/getMessageByID/{id}")
+    public String getMessageByID(@PathVariable("id") int id) {
+        return messageService.getAll().get(id).getMessage_content();
     }
 
     @PutMapping("/editSentMessage/{message_id}")
