@@ -23,7 +23,8 @@ public class PostService {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    FileWriter fileWriter;
     private PostRepository postRepository;
 
     public PostService(PostRepository postRepository) {
@@ -137,7 +138,7 @@ public class PostService {
 //        Try catch statement for the scenario where id is not found.
 //        Created current outside of try catch to ensure it was within scope for the return statement.
 
-        return com.example.backEndProject.method.FileWriter.fileWriter(id, new_content);
+        return fileWriter.fileWriter(id, new_content);
 
     }
 
@@ -159,7 +160,7 @@ public class PostService {
             Integer post_type_id,
             Long user_id) throws IOException {
 
-        return FileWriter.addPostWriter(id,
+        return fileWriter.addPostWriter(id,
                 content_text, number_of_likes, isBusinessAccount, post_type_id, user_id);
 
 

@@ -4,6 +4,8 @@ import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.PostRepository;
 import com.example.backEndProject.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,18 +13,19 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
-public abstract class FileWriter {
-    private static UserRepository userRepository;
-    private static PostRepository postRepository;
+@Service
+public class FileWriter {
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PostRepository postRepository;
 
     public FileWriter(UserRepository userRepository, PostRepository postRepository) throws IOException {
         this.userRepository = userRepository;
         this.postRepository = postRepository;
     }
-    Post post;
-    Long user_id;
 
-    public static Post fileWriter(Long id,
+    public Post fileWriter(Long id,
                          String new_content)
             throws NoSuchElementException, IOException {
         Post current = null;
@@ -41,7 +44,7 @@ public abstract class FileWriter {
             try {
                 myFile.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
         java.io.FileWriter fileWriter = new java.io.FileWriter(myFile, true);
@@ -54,7 +57,7 @@ public abstract class FileWriter {
         return current;
     }
 
-    public static Post addPostWriter(
+    public Post addPostWriter(
             Long id,
             String content_text,
             Integer number_of_likes,
@@ -71,10 +74,9 @@ public abstract class FileWriter {
             try {
                 myFile.createNewFile();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
-
         User postUser = userRepository.findByID(user_id);
         java.io.FileWriter fileWriter = new java.io.FileWriter(myFile, true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
