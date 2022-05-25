@@ -26,8 +26,8 @@ public class User {
 
 //    Inbox/Messages
 
-    @JsonIgnoreProperties({"user"})
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"userS"})
+    @OneToMany(mappedBy = "userS", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> inbox;
 
 //    Relationship Mapping
@@ -40,12 +40,19 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> allCommentsByUser;
 
+
+
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private Boolean isBusinessAccount;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE",name = "user_logged_in")
+    private boolean isUserLoggedIn;
 
     @Column(name = "company_id")
     private int companyId;
 
+
+//    Constructors
 //    ATTRIBUTES END
 //
 //
@@ -55,7 +62,7 @@ public class User {
     public User() {}
 
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Post> allPostsByUser, Boolean isBusinessAccount, int companyId) {
+                String date_of_birth, ArrayList<Message> inbox,ArrayList<Post> allPostsByUser, Boolean isBusinessAccount, boolean isUserLoggedIn) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -63,8 +70,9 @@ public class User {
         this.password = password;
         this.date_of_birth = date_of_birth;
         this.allPostsByUser = allPostsByUser;
-        this.inbox = new ArrayList<Message>();
+        this.inbox = new ArrayList<>();
         this.isBusinessAccount = isBusinessAccount;
+        this.isUserLoggedIn = isUserLoggedIn;
         this.companyId = companyId;
     }
 
@@ -156,6 +164,13 @@ public class User {
     }
 
 
+    public boolean isUserLoggedIn() {
+        return isUserLoggedIn;
+    }
+
+    public void setUserLoggedIn(boolean userLoggedIn) {
+        isUserLoggedIn = userLoggedIn;
+    }
 //    GETTERS AND SETTERS END
 //
 //

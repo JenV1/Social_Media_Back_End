@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Entity
 @Table(name = "posts")
@@ -16,10 +17,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content_text;
+    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private int number_of_likes;
 
     @Column(name = "post_types_id")
-    private int post_types_id;
+    private Integer post_types_id;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private Boolean isBusinessAccount;
@@ -46,12 +48,13 @@ public class Post {
 
     public Post() {}
 
-    public Post(Long id, String content_text, int number_of_likes, int companyId, Boolean isBusinessAccount) {
+    public Post(Long id, String content_text, int number_of_likes, int companyId, Boolean isBusinessAccount, int post_types_id) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
         this.companyId = companyId;
         this.isBusinessAccount = isBusinessAccount;
+        this.post_types_id = post_types_id;
     }
 
 
@@ -61,10 +64,6 @@ public class Post {
 //    GETTERS AND SETTERS START
 
 
-
-    public void setBusinessAccount(Boolean businessAccount) {
-        isBusinessAccount = businessAccount;
-    }
 
     public Long getId() {
         return id;
@@ -108,6 +107,10 @@ public class Post {
 
     public Boolean isBusinessAccount() {
         return isBusinessAccount;
+    }
+
+    public void setBusinessAccount(Boolean businessAccount) {
+        isBusinessAccount = businessAccount;
     }
 
     public int getCompanyId() {

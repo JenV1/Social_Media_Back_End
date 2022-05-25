@@ -17,9 +17,10 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "number_of_likes")
+    @Column(nullable = false,columnDefinition = "INTEGER DEFAULT 0")
     private int likes;
 
+    @Column(nullable=false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean heartByUser;
 
     private String commentContent;
@@ -28,6 +29,7 @@ public class Comment {
     private Post post;
 
     @ManyToOne
+    @JoinColumn(name = "commenter_UserID")
     private User user;
 
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)

@@ -9,8 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.*;
-import java.util.stream.Collectors;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,12 +26,7 @@ public class UserController {
         this.userService = userService;
     }
 
-
-//    INJECTION DEPENDENCY START
-//
-//
-//    GET Mapping Methods
-
+//    Mapping Methods
 
     @GetMapping("/list_all_users")
     public List<User> getAll() {
@@ -50,6 +44,19 @@ public class UserController {
     @GetMapping("/users/{id}")
     public User findById(@PathVariable Long id){
         return userService.findById(id);
+    }
+
+    @PostMapping("/addNewUser")
+    public String createUser(@RequestParam("username") String name,
+                           @RequestParam("password") String password,
+                           @RequestParam("date_of_birth") String dob,
+                           @RequestParam("company") String company,
+                           @RequestParam("role") String role,
+                           @RequestParam("is_business_account?") Boolean isBusinessAccount
+                           ){
+//
+
+       return userService.save(name,password,dob,company,role,isBusinessAccount);
     }
 
 
@@ -71,6 +78,10 @@ public class UserController {
 
         return userService.editName(id, new_name);
     }
+
+
+///    Put Methods
+
 
 
     @PutMapping("/editCompany/{id}")
@@ -98,36 +109,23 @@ public class UserController {
 
     }
 
+    @PutMapping("logUserIn")
+    public String logUserIn(@RequestParam("username") String user_name,
+                            @RequestParam("password") String password){
 
-//    Put Methods END
-//
-//
-//    POST METHODS START
+        return userService.logUserIn(user_name,password);
 
 
-    @PostMapping("/users")
-    public void createUser(@RequestBody User user){
-        User savedUser = userService.save(user);
     }
 
-    @PostMapping("/addUsers")
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        User newUser = userService.save(user);
+    @PutMapping("logUserOut")
+    public String logUserOut(@RequestParam("username") String user_name,
+                            @RequestParam("password") String password){
 
-        return new ResponseEntity< >(newUser, HttpStatus.CREATED);
+        return userService.logUserOut(user_name,password);
+
+
     }
 
 
-//    Put Methods END
-//
-//
-//    POST METHODS START
-
-
-//    MESSAGING METHODS
-
-//    @GetMapping("/getAllMessagesFromInbox")
-//    public List<String> getAllMessagesFromInbox() {
-//        return userService.getAllMessagesFromInbox();
-//    }
 }

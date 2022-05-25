@@ -3,6 +3,7 @@ package com.example.backEndProject.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "message")
 public class Message {
 
 //    ATTRIBUTES START
@@ -12,10 +13,16 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message_content;
-    private String nameOfSender;
 
-    @ManyToOne
-    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sender_id")
+    private User userS;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "receiver_id")
+    private User userR;
+
+
 
 
 //    ATTRIBUTES END
@@ -27,9 +34,8 @@ public class Message {
     public Message() {
     }
 
-    public Message(String message_content, String nameOfSender) {
+    public Message(String message_content, User userR, User userS) {
         this.message_content = message_content;
-        this.nameOfSender = nameOfSender;
     }
 
 
@@ -55,24 +61,23 @@ public class Message {
         this.message_content = message_content;
     }
 
-    public String getNameOfSender() {
-        return nameOfSender;
+    public User getUserR() {
+        return userR;
     }
 
-    public void setNameOfSender(String nameOfSender) {
-        this.nameOfSender = nameOfSender;
+    public void setUserR(User userR) {
+        this.userR = userR;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserS() {
+        return userS;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserS(User userS) {
+        this.userS = userS;
     }
 
-
-//    GETTERS AND SETTERS END
+    //    GETTERS AND SETTERS END
 //
 //
 //    END OF FILE

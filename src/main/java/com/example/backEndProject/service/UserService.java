@@ -1,12 +1,17 @@
 package com.example.backEndProject.service;
 
+import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -20,6 +25,7 @@ public class UserService {
 
 
     private UserRepository userRepository;
+
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -36,9 +42,23 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User save(User user) {
-        return userRepository.save(user);
+    public String save(String name,
+                       String password,
+                       String dob,
+                       String company,
+                       String role,
+                       Boolean isBusinessAccount) {
+
+        if(userRepository.findUserByUsernameAndPassword(name,password) != null){
+            return "User already exists";
+        }
+
+        userRepository.addUser(company, dob, isBusinessAccount, name, password, role);
+
+
+        return "User Added";
     }
+
 
     public User findById(Long id){
         return userRepository.findByID(id);
@@ -49,14 +69,22 @@ public class UserService {
 
 //        Gets all users and converts to a stream
 //        Extracts the name from each user and maps them
-//        Filters name dependent on whether they contain the specified keyword
+//        Uses to lower case to ensure no name is missed
+//        Filter with lambda is dependent on whether name contains the specified keyword
 //        Returns list of posts
 
-        return userRepository.findAll().stream()
-                .map(User::getName)
-                .filter(s -> s.contains(keyword))
+        List<String> foundUsers = userRepository.findAll().stream()
+                .map(user -> user.getName().toLowerCase())
+                .filter(s -> s.contains(keyword.toLowerCase()))
                 .toList();
 
+        if (foundUsers.isEmpty()) {
+            ArrayList<String> noMatches = new ArrayList<>();
+            noMatches.add("No users found :(");
+            return noMatches;
+        }
+
+        return foundUsers;
     }
 
 
@@ -126,7 +154,6 @@ public class UserService {
         return current;
     }
 
-
     public User editDOB(Long id, String new_DOB)
             throws NoSuchElementException {
 
@@ -149,20 +176,47 @@ public class UserService {
         return current;
     }
 
+    public String logUserIn(String username, String password){
+
+        User resultUser = userRepository.findUserByUsernameAndPassword(username,password);
+
+        if(resultUser!=null && !resultUser.isUserLoggedIn()){
+
+            resultUser.setUserLoggedIn(Boolean.TRUE);
+            userRepository.save(resultUser);
+
+            return "User logged in";
+
+        }
+
+        return "User already logged in";
+
+
+
+    }
+
+    public String logUserOut(String username, String password){
+
+        User resultUser = userRepository.findUserByUsernameAndPassword(username,password);
+
+        if(resultUser!=null && resultUser.isUserLoggedIn()==true){
+
+            resultUser.setUserLoggedIn(Boolean.FALSE);
+            userRepository.save(resultUser);
+
+            return "User logged out";
+
+        }
+
+        return "User already logged out";
+
+
+
+    }
+
 
 //    END OF METHODS
 //
-//
-//    MESSAGING METHODS
 
-
-//    public List<String> getAllMessagesFromInbox() {
-//        return userRepository.findByID(1L).getInbox();
-//    }
-
-
-//    END OF MESSAGING METHODS
-//
-//
 //    END OF FILE
 }

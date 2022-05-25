@@ -74,6 +74,8 @@ public class PostController {
 //    Put Methods START
 
 
+//    Put Methods
+
     @PutMapping("/addLikeToPost/{id}")
     public Post updateLikeCount(@PathVariable("id") Long id) throws NoSuchElementException {
 
@@ -99,16 +101,37 @@ public class PostController {
 //    Delete Methods START
 
 
-//    @DeleteMapping("/post/{id}")
-//    public ResponseEntity<Long> deletePostById(@PathVariable(value = "id") Long id) {
-//        postService.deletePostByID(id);
-//        return new ResponseEntity<>(id, HttpStatus.OK);
-//}
+
+    @PostMapping("/addNewPost")
+    public void addPost(@RequestParam Long id,
+                        @RequestParam String content_text,
+                        @RequestParam int number_of_likes,
+                        @RequestParam(required = false) boolean isBusinessAccount){
+
+        postService.addPost(id, content_text, number_of_likes, isBusinessAccount);
+    }
+
+
 
     @DeleteMapping("/deletePost/{id}")
     public String deletePostByID(@PathVariable("id") Long id) {
         return postService.deletePostByID(id);
     }
-}
 
 //    Delete Methods END
+//
+//
+//    POST METHODS START
+
+    @PostMapping("/addNewPost")
+    public Post addPost(@RequestParam(required = false) Long id,
+                        @RequestParam String content_text,
+                        @RequestParam(required = false) Integer number_of_likes,
+                        @RequestParam(required = false) boolean isBusinessAccount,
+                        @RequestParam(required = true) Integer post_type_id,
+                        @RequestParam(required = true) Long user_id) throws IOException {
+
+        return postService.addPost(id, content_text, number_of_likes, isBusinessAccount, post_type_id, user_id);
+
+}
+

@@ -29,17 +29,6 @@ INSERT INTO interest_types (interests) VALUES ('MEDITATION_AND_SPIRITUALITY');
 INSERT INTO interest_types (interests) VALUES ('PHOTOGRAPHY');
 
 
---INSERT INTO users (company,date_of_birth,name,password,company_id) VALUES
---('Bnta','1999','Cem','password',10);
---
---INSERT INTO posts (content_text,number_of_likes,post_types_id,user_id,company_id) VALUES
---('hello','1',3,1,);
-
---INSERT INTO posts (content_text,number_of_likes,post_types_id,user_id) VALUES
---('hello','1',3,1);
---INSERT INTO interests_mapper (interests_id,user_id) VALUES (9,1);
-
-
 --users here
 
 INSERT INTO users (company,role,date_of_birth,name,password,company_id)
@@ -120,9 +109,15 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_busi
 
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account,company_id) VALUES ('Why have they put Atos first in the table? Still impressed though', 252, 3, 12, 'true',9);
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account,company_id) VALUES ('Hosting a fundraiser for Ukraine this weekend!', 71143, 4, 12, 'true',9);
-INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('This is a test message!', 'Lewis', 3);
+INSERT INTO message (message_content, name_of_sender, user_id, company_id) VALUES ('This is a test message!', 'Lewis', 3, 1);
 
-INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('Letsss gooooooo', 'Mohamed', 5);
-INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('Projects going great so far, loving this messaging service', 'Scott', 3);
-INSERT INTO message (message_content, name_of_sender, user_id) VALUES ('Wow, Connect is such a good social media app!', 'Cem', 2);
+-- Inserts for the message table
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('This multidirectional mapping thing is pretty cool', 2, 3);
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Damn I just LOVE Spring Boot!', 1, 4);
+
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('I think we will end up hiring all these guys', 11, 12);
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('No... WE are gonna hire all these guys!', 12, 11);
+
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Its always the bloody LAMB SAUCE!!!', 5, 6);
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('New numba, who dis?', 6, 5);
 
