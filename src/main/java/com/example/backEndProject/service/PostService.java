@@ -12,8 +12,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Map;
 
 @Service
 public class PostService {
@@ -40,6 +42,21 @@ public class PostService {
     public List<Post> getAll() {
         return postRepository.findAll();
     }
+
+    public Post save(Post post) {
+        return postRepository.save(post);
+    }
+
+
+public void addPost(
+        Long id,
+        String content_text,
+        int number_of_likes,
+        boolean isBusinessAccount) {
+
+    Post post = new Post(id, content_text, number_of_likes, isBusinessAccount);
+    postRepository.save(post);
+}
 
     public Post findPostByID(Long id){
         return postRepository.findPostByID(id);
@@ -160,12 +177,37 @@ public class PostService {
 
     public String deletePostByID(Long id) {
 
+        // deletes a specific post by the post id
+
         Post result = postRepository.findPostByID(id);
         postRepository.delete(result);
 
         return "Deleted";
     }
 
+
+    public List searchAllBusinessAccountPosts(Boolean isBusinessAccount) {
+
+        // firstly, method finds all posts and converts this to a stream
+        // Extracts the boolean value of isBusinessAccount from each post and maps them
+        // Returns the posts that contain isBusinessAccount = true
+
+             return postRepository.findAll().stream()
+                    .map(Post::isBusinessAccount)
+                    .filter(s -> s == Boolean.TRUE)
+                    .toList();
+
+    }
+
+    public List<Post> searchSpecificBusinessAccountPosts(Boolean isBusinessAccount, int companyId) {
+//
+//        return postRepository.findAll().stream()
+//                .map(Post::isBusinessAccount)
+//                .filter(s -> s == Boolean.TRUE)
+//                .filter(s -> false)
+//                .toList();
+        return postRepository.searchForSpecificBusinessAccountPosts(isBusinessAccount,companyId);
+    }
 
     public Post addPost(
             Long id,

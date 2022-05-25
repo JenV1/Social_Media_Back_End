@@ -40,11 +40,16 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> allCommentsByUser;
 
+
+
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
-    private boolean isBusinessAccount;
+    private Boolean isBusinessAccount;
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE",name = "user_logged_in")
     private boolean isUserLoggedIn;
+
+    @Column(name = "company_id")
+    private int companyId;
 
 
 //    ATTRIBUTES END
@@ -56,7 +61,7 @@ public class User {
     public User() {}
 
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Message> inbox, ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
+                String date_of_birth, ArrayList<Message> inbox,ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -67,6 +72,7 @@ public class User {
         this.inbox = new ArrayList<>();
         this.isBusinessAccount = isBusinessAccount;
         this.isUserLoggedIn = isUserLoggedIn;
+        this.companyId = companyId;
     }
 
 
@@ -86,6 +92,14 @@ public class User {
 
     public void setBusinessAccount(Boolean businessAccount) {
         isBusinessAccount = businessAccount;
+    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     public void setId(Long id) {
@@ -144,9 +158,10 @@ public class User {
         return inbox;
     }
 
-    public void setInbox(ArrayList<Message> inbox) {
+    public void setInbox(List<Message> inbox) {
         this.inbox = inbox;
     }
+
 
     public boolean isUserLoggedIn() {
         return isUserLoggedIn;

@@ -25,8 +25,8 @@ public class Post {
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private Boolean isBusinessAccount;
 
-//    @Column(name = "business_acc_id")
-//    private int businessAccID;
+    @Column(name = "company_id")
+    private int companyId;
 
 //    Relationship Mapping
 
@@ -47,10 +47,11 @@ public class Post {
 
     public Post(String content_text, int number_of_likes, boolean isBusinessAccount) {}
 
-    public Post(Long id, String content_text, int number_of_likes, Boolean isBusinessAccount, int post_types_id) {
+    public Post(Long id, String content_text, int number_of_likes, int companyId, Boolean isBusinessAccount, int post_types_id) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
+        this.companyId = companyId;
         this.isBusinessAccount = isBusinessAccount;
         this.post_types_id = post_types_id;
     }
@@ -60,6 +61,7 @@ public class Post {
 //
 //
 //    GETTERS AND SETTERS START
+
 
 
     public Long getId() {
@@ -102,7 +104,7 @@ public class Post {
         this.post_types_id = post_types_id;
     }
 
-    public Boolean getBusinessAccount() {
+    public Boolean isBusinessAccount() {
         return isBusinessAccount;
     }
 
@@ -110,7 +112,15 @@ public class Post {
         isBusinessAccount = businessAccount;
     }
 
-    //    GETTERS AND SETTERS END
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+//    GETTERS AND SETTERS END
 //
 //
 //    CODE BEING TESTED...
@@ -129,6 +139,4 @@ public class Post {
 //
 //
 //    END OF FILE
-
-//    private Predicate<Post> isPostFromBusinessAccount = f -> f.getBusinessAccount().equals(true);
 }
