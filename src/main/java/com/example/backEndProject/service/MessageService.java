@@ -52,26 +52,37 @@ public class MessageService {
         User receiver = getUserFromName(receiver_name.toLowerCase());
         User sender = getUserFromName(name_of_sender.toLowerCase());
 
+        if (credentialsChecker(password_of_sender, receiver, sender) != null) {
+            return credentialsChecker(password_of_sender, receiver, sender);
+        }
 
+        Message newMessage = createSetAndSaveMessage(message_content, receiver, sender);
+
+        return newMessage.getMessage_content() +
+                "\nMessage to " + receiver.getName() + " sent successfully! \n" +
+                "Message sent at: " + LocalDateTime.now() +
+                ". \nThanks for using connect, " + sender.getName() + " :)";
+    }
+
+    private String credentialsChecker(String password_of_sender, User receiver, User sender) {
         if (sender == null) {
             return "We could not find your username.";
         } else if (!Objects.equals(sender.getPassword(), password_of_sender)) {
             return "Incorrect password.";
         } else if (receiver == null) {
             return "Could not find the message recipient, please try again.";
+        } else {
+            return null;
         }
+    }
 
+    private Message createSetAndSaveMessage(String message_content, User receiver, User sender) {
         Message newMessage = new Message(message_content, sender, receiver);
         receiver.getInbox().add(newMessage);
         newMessage.setUserR(receiver);
         newMessage.setUserS(sender);
         messageRepository.save(newMessage);
-
-
-        return newMessage.getMessage_content() +
-                "\nMessage to " + receiver.getName() + " sent successfully! \n" +
-                "Message sent at: " + LocalDateTime.now() +
-                ". \nThanks for using connect, " + sender.getName() + " :)";
+        return newMessage;
     }
 
     private User getUserFromName(String user_name) {
