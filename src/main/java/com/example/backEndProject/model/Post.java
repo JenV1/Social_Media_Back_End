@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Entity
 @Table(name = "posts")
@@ -45,8 +46,7 @@ public class Post {
 //    CONSTRUCTORS START
 
 
-    public Post() {
-    }
+    public Post() {}
 
     public Post(Long id, String content_text, Integer number_of_likes, boolean isBusinessAccount, Integer post_type_id) {}
 

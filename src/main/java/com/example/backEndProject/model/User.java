@@ -65,6 +65,12 @@ public class User {
 
     public User() {}
 
+    public User(Long id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
+
     public User(Long id, String name, String company, String role, String password,
                 String date_of_birth, ArrayList<Message> inbox, ArrayList<Post> allPostsByUser,
                 boolean isBusinessAccount, boolean isUserLoggedIn, int companyId, Friend friend) {
@@ -196,5 +202,4 @@ public class User {
 //
 //
 //    FILE END
-
 }

@@ -63,10 +63,10 @@ public class PostController {
         return postService.searchAllBusinessAccountPosts(isBusinessAccount);
     }
 
-    @GetMapping("/searchSpecificBusinessAccountPosts/{company_id}")
-    public List searchSpecificBusinessAccountPosts(@PathVariable("company_id") int companyId) {
-        return postService.searchSpecificBusinessAccountPosts(companyId);
-    }
+//    @GetMapping("/searchSpecificBusinessAccountPosts/{is_business_account}")
+//    public List<Post> searchSpecificBusinessAccountPosts(@PathVariable("is_business_account") Boolean isBusinessAccount, int companyId) {
+//        return postService.searchSpecificBusinessAccountPosts(isBusinessAccount, companyId);
+//    }
 
 //    Get Methods END
 //
