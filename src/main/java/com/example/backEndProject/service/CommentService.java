@@ -1,5 +1,6 @@
 package com.example.backEndProject.service;
 
+import com.example.backEndProject.LoginCheckMethod.LoginChecker;
 import com.example.backEndProject.model.Comment;
 import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
@@ -24,6 +25,8 @@ public class CommentService {
 
     private CommentRepository commentRepository;
 
+    private LoginChecker loginChecker;
+
 
 //    END OF DEPENDENCY INJECTIONS
 //
@@ -32,12 +35,11 @@ public class CommentService {
 
 
     public CommentService(UserRepository userRepository, PostRepository postRepository,
-                           CommentRepository commentRepository){
-
+                          CommentRepository commentRepository, LoginChecker loginChecker) {
         this.userRepository = userRepository;
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
-
+        this.loginChecker = loginChecker;
     }
 
     public Map<String,String> showAllComments(){
@@ -95,10 +97,8 @@ public class CommentService {
         try{
 
 
-            if(userRepository.findUserByName(user_name).isUserLoggedIn()==false){
-
-                return "User not logged in. Please log in to heart a comment.";
-
+            if(this.loginChecker.userNotLoggedInChecker(user_name)){
+                return this.loginChecker.returnedMessage();
             }
 
 
@@ -111,7 +111,7 @@ public class CommentService {
 
                 result_comment.setHeartByUser(Boolean.TRUE);
                 commentRepository.save(result_comment);
-                return "Comment hearted";
+                return "Comment \"" + result_comment.getCommentContent() + "\" hearted by " + result_user.getName();
 
             }
 
@@ -138,24 +138,37 @@ public class CommentService {
     public String addComment(
 
                              Long post_id,
-                             Long user_id,
+                             String username,
                              String commentContent){
 
 
-        if(userRepository.findByID(user_id)==null && postRepository.findPostByID(post_id)!=null){
-            return "You may not post this comment as: User does not exist";
-        } else if (postRepository.findPostByID(post_id)==null && userRepository.findByID(user_id)!=null) {
-            return "You may not post this comment as: Post does not exist";
-        } else if(userRepository.findByID(user_id)==null && postRepository.findPostByID(post_id)==null){
-            return "You may not post this comment as: User and post do not exist";
+
+        try{
+
+
+            if(this.loginChecker.userNotLoggedInChecker(username)){
+                return this.loginChecker.returnedMessage();
+            }
+
+
+
+        }catch(NullPointerException e){
+
+            if(userRepository.findUserByName(username)==null && postRepository.findPostByID(post_id)!=null){
+                return "You may not post this comment as: User does not exist";
+            } else if (postRepository.findPostByID(post_id)==null && userRepository.findUserByName(username)!=null) {
+                return "You may not post this comment as: Post does not exist";
+            } else if(userRepository.findUserByName(username)==null && postRepository.findPostByID(post_id)==null){
+                return "You may not post this comment as: User and post do not exist";
+            }
+
+
         }
 
+        commentRepository.addComment(post_id,userRepository.findUserByName(username).getId(),commentContent);
 
-        commentRepository.addComment(post_id,user_id,commentContent);
 
-
-        return "Comment posted";
-
+        return "Comment \"" + commentContent +  "\" posted by " + userRepository.findUserByName(username).getName();
 
 
     }

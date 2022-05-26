@@ -59,8 +59,12 @@ public class Post {
         this.post_types_id = post_types_id;
     }
 
+    public Post(String content_text, User user) {
+        this.content_text = content_text;
+        this.user = user;
+    }
 
-//    CONSTRUCTORS END
+    //    CONSTRUCTORS END
 //
 //
 //    GETTERS AND SETTERS START

@@ -184,22 +184,6 @@ public class PostService {
         // Returns the posts that contain isBusinessAccount = true
     }
 
-    public List searchSpecificBusinessAccountPosts(int company_id) {
-//        List companyAccount = postRepository.searchForSpecificBusinessAccountPosts(isBusinessAccount, company_id).stream().toList();
-//        if (companyAccount) {
-//            return companyAccount;
-//        } else if (!isBusinessAccount){
-//            ArrayList noBusinessAccountList = new ArrayList<>();
-//            noBusinessAccountList.add("No business account posts found with this ID.");
-//            noBusinessAccountList.add("Check that the business account exists for the ID you are using!");
-//            return noBusinessAccountList;
-//        }
-//        ArrayList emptyList = new ArrayList<>();
-//        noBusinessAccountList.add("No business account posts found with this ID.");
-//        noBusinessAccountList.add("Check that the business account exists for the ID you are using!");
-//        return noBusinessAccountList;
-        return null;
-    }
 
     public Post addPost(
             Long id,
