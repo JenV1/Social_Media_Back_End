@@ -143,30 +143,32 @@ public class CommentService {
 
 
 
+        try{
 
 
-        if(this.loginChecker.userNotLoggedInChecker(username)){
-            return this.loginChecker.returnedMessage();
+            if(this.loginChecker.userNotLoggedInChecker(username)){
+                return this.loginChecker.returnedMessage();
+            }
+
+
+
+        }catch(NullPointerException e){
+
+            if(userRepository.findUserByName(username)==null && postRepository.findPostByID(post_id)!=null){
+                return "You may not post this comment as: User does not exist";
+            } else if (postRepository.findPostByID(post_id)==null && userRepository.findUserByName(username)!=null) {
+                return "You may not post this comment as: Post does not exist";
+            } else if(userRepository.findUserByName(username)==null && postRepository.findPostByID(post_id)==null){
+                return "You may not post this comment as: User and post do not exist";
+            }
+
+
         }
-
-        if(userRepository.findUserByName(username)==null && postRepository.findPostByID(post_id)!=null){
-            return "You may not post this comment as: User does not exist";
-        } else if (postRepository.findPostByID(post_id)==null && userRepository.findUserByName(username)!=null) {
-            return "You may not post this comment as: Post does not exist";
-        } else if(userRepository.findUserByName(username)==null && postRepository.findPostByID(post_id)==null){
-            return "You may not post this comment as: User and post do not exist";
-        }
-
-
-
-
-
 
         commentRepository.addComment(post_id,userRepository.findUserByName(username).getId(),commentContent);
 
 
         return "Comment \"" + commentContent +  "\" posted by " + userRepository.findUserByName(username).getName();
-
 
 
     }

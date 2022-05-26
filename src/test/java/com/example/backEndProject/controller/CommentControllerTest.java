@@ -2,6 +2,7 @@ package com.example.backEndProject.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,11 +30,11 @@ class CommentControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void showAllCommentsWorksThroughAllLayers() throws Exception{
+    void showAllComments_WorksThroughAllLayers() throws Exception {
 
 
-        Map<String,String> result = new HashMap<>();
-        result.put("No comments to show","try posting a comment");
+        Map<String, String> result = new HashMap<>();
+        result.put("No comments to show", "try posting a comment");
 
         MvcResult mvcResult = this.mockMvc.perform(get("/showAllComments"))
                 .andExpect(status().isOk())
@@ -44,29 +45,62 @@ class CommentControllerTest {
         String contentAsString = mvcResult.getResponse().getContentAsString();
 
         // map JSON to java
-        Map<String, String> mapFromJSON = objectMapper.readValue(contentAsString, new TypeReference<HashMap<String,String>>() {});
+        Map<String, String> mapFromJSON = objectMapper.readValue(contentAsString, new TypeReference<HashMap<String, String>>() {
+        });
 
         assertNotNull(mapFromJSON.get("No comments to show"));
 
     }
 
     @Test
-    void findCommentByID() {
-    }
+    void findCommentByID_WorksThroughAllLayers() throws Exception {
 
-    @Test
-    void heartComment() {
-    }
+        MvcResult mvcResult = this.mockMvc.perform(get("/findCommentById/{id}", "1"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn();
 
-    @Test
-    void changeCommentContent() {
-    }
+        Assertions.assertEquals("This comment does not exist, input a valid comment ID"
+                , mvcResult.getResponse().getContentAsString());
 
-    @Test
-    void addComment() {
-    }
-
-    @Test
-    void deleteCommentById() {
     }
 }
+
+//    @Test
+//    void heartComment() throws Exception {
+//
+//        MvcResult mvcResult = this.mockMvc.perform(get("/heartComment?userName=Jem&ID_of_comment_to_be_hearted=1"))
+//                .andExpect(status().isOk())
+//                // some extra logging
+//                .andDo(print())
+//                .andReturn();
+//
+//        Assertions.assertEquals("You may not heart this comment as: You didn't create this post"
+//                ,mvcResult.getResponse().getContentAsString());
+//
+//    }
+//
+//    @Test
+//    void changeCommentContent() {
+//    }
+//
+//    @Test
+//    void postComment() throws Exception {
+//
+//        MvcResult mvcResult = this.mockMvc.perform(get("/postComment?postID=1&username=noname&content=I love pizza so much"))
+//                .andExpect(status().isOk())
+//                // some extra logging
+//                .andDo(print())
+//                .andReturn();
+//
+//        Assertions.assertEquals("You may not post this comment as: User does not exist"
+//                ,mvcResult.getResponse().getContentAsString());
+//
+//
+//
+//    }
+//
+//    @Test
+//    void deleteCommentById() {
+//    }
+//}
