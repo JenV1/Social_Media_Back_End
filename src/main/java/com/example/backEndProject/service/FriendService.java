@@ -30,10 +30,11 @@ public class FriendService {
             Friend friendLT = new Friend(userT.getId(), userT.getName(), userT.getCompany(), userT.getRole(), userT.getDate_of_birth(), userT.isBusinessAccount());
             Friend friendLF = new Friend(userF.getId(), userF.getName(), userF.getCompany(), userF.getRole(), userF.getDate_of_birth(), userF.isBusinessAccount());
             //creating two new Users - userT (the target user, who's list we want to update) and the userF (friend to be added)
-            // create a friend, friendL, calling userF's getters
+            //creating two new Friends - friendLT and friendLF for the corresponding users 
+            //the friend objects call getters from the corresponding user class
             friendRepository.save(friendLT);
             friendRepository.save(friendLF);
-            //saving friendL to the repository, containing the data of the friend to add
+            //saving friendLT and friendLF to the repository, containing the data of the friend to add
             userT.setFriendList(friendLF);
             userF.setFriendList(friendLT);
             //setting the friend list of userT to the user info stored in friendL
