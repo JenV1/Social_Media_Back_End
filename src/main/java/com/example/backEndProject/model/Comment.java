@@ -52,7 +52,8 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String commentContent, Post post, User user) {
+    public Comment(Long id,String commentContent, Post post, User user) {
+        this.id = id;
         this.commentContent = commentContent;
         this.post = post;
         this.user = user;
