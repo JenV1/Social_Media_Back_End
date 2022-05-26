@@ -12,8 +12,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Map;
 
 @Service
 public class PostService {
@@ -41,9 +43,9 @@ public class PostService {
         return postRepository.findAll();
     }
 
-//    public Post save(Post post) {
-//        return postRepository.save(post);
-//    }
+    public Post save(Post post) {
+        return postRepository.save(post);
+    }
 
 
     public Post findPostByID(Long id){
@@ -166,6 +168,8 @@ public class PostService {
 
 
     public String deletePostByID(Long id) {
+
+        // deletes a specific post by the post id
 
         Post result = postRepository.findPostByID(id);
         postRepository.delete(result);

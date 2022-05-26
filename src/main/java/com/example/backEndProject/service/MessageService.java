@@ -7,8 +7,10 @@ import com.example.backEndProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 @Service
 public class MessageService {
@@ -16,7 +18,7 @@ public class MessageService {
 
 //    DEPENDENCY INJECTION
 
-
+    @Autowired
     private MessageRepository messageRepository;
 
     public MessageService(MessageRepository messageRepository) {
@@ -41,40 +43,73 @@ public class MessageService {
         return messageRepository.save(message);
     }
 
-    public Message sendMessageToUser(String message_content,
+    public String sendMessageToUser(String message_content,
                                      String name_of_sender,
+                                     String password_of_sender,
                                      String receiver_name) {
 
+        User receiver = getUserFromName(receiver_name.toLowerCase());
+        User sender = getUserFromName(name_of_sender.toLowerCase());
 
-        String finalReceiver_name = receiver_name.toLowerCase();
-        User receiver = userRepository.findAll().stream()
-                .filter(recipient -> (finalReceiver_name).equals(recipient.getName().toLowerCase()))
-                .findFirst()
-                .orElse(null);
+        if (credentialsChecker(password_of_sender, receiver, sender) != null) {
+            return credentialsChecker(password_of_sender, receiver, sender);
+        }
 
-        String finalSender_name = name_of_sender.toLowerCase();
-        User sender = userRepository.findAll().stream()
-                .filter(s -> (finalSender_name).equals(s.getName().toLowerCase()))
-                .findFirst()
-                .orElse(null);
+        Message newMessage = createSetAndSaveMessage(message_content, receiver, sender);
 
+        return newMessage.getMessage_content() +
+                "\nMessage to " + receiver.getName() + " sent successfully! \n" +
+                "Message sent at: " + LocalDateTime.now() +
+                ". \nThanks for using connect, " + sender.getName() + " :)";
+    }
+
+    private String credentialsChecker(String password_of_sender, User receiver, User sender) {
+        if (sender == null) {
+            return "We could not find your username.";
+        } else if (!Objects.equals(sender.getPassword(), password_of_sender)) {
+            return "Incorrect password.";
+        } else if (receiver == null) {
+            return "Could not find the message recipient, please try again.";
+        } else {
+            return null;
+        }
+    }
+
+    private Message createSetAndSaveMessage(String message_content, User receiver, User sender) {
         Message newMessage = new Message(message_content, sender, receiver);
-
-
         receiver.getInbox().add(newMessage);
         newMessage.setUserR(receiver);
         newMessage.setUserS(sender);
+        messageRepository.save(newMessage);
+        userRepository.save(receiver);
+        return newMessage;
+    }
 
-
-        return messageRepository.save(newMessage);
+    private User getUserFromName(String user_name) {
+        return userRepository.findAll().stream()
+                .filter(userX -> user_name.equals(userX.getName().toLowerCase()))
+                .findFirst()
+                .orElse(null);
     }
 
 
 
 
-    public List<Message> getAllMessagesFromInbox(Long id) {
-        return userRepository.findByID(id).getInbox();
+    public List<String> getAllMessagesFromSpecificUsersInbox(String user_name,
+                                                              String user_password) {
+
+        User user = getUserFromName(user_name.toLowerCase());
+        List<String> inboxMessages = new ArrayList<>();
+
+        for (Message msg: userRepository.findByID(user.getId()).getInbox()) {
+            inboxMessages.add(msg.getMessage_content());
+        }
+
+        return inboxMessages;
     }
+
+
+
 
     public Message editSentMessage(Long message_id,
                                    String newMessageContent) {
