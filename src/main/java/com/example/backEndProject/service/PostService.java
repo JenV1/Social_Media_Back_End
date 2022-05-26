@@ -12,8 +12,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -42,18 +45,10 @@ public class PostService {
         return postRepository.findAll();
     }
 
-//    public Post save(Post post) {
-//        return postRepository.save(post);
-//    }
-//public void addPost(
-//        Long id,
-//        String content_text,
-//        int number_of_likes,
-//        boolean isBusinessAccount) {
-//
-//    Post post = new Post(id, content_text, number_of_likes, isBusinessAccount);
-//    postRepository.save(post);
-//}
+    public Post save(Post post) {
+        return postRepository.save(post);
+    }
+
 
     public Post findPostByID(Long id) {
         return postRepository.findPostByID(id);
@@ -145,10 +140,20 @@ public class PostService {
 
     public String deletePostByID(Long id) {
 
+        // deletes a specific post by the post id
+
         Post result = postRepository.findPostByID(id);
         postRepository.delete(result);
 
-        return "Deleted";
+        return "Deleted Post " + result.getId() + ". If this was a mistake, you can add a new post using the Add post function!";
+    }
+
+
+    public List searchAllBusinessAccountPosts(boolean isBusinessAccount) {
+        return postRepository.searchAllBusinessAccountPosts(isBusinessAccount).stream().toList();
+        // firstly, List results finds all posts corresponding to a list containing and converts this to a stream
+        // Extracts the boolean value of isBusinessAccount from each post and maps them
+        // Returns the posts that contain isBusinessAccount = true
     }
 
 
@@ -168,6 +173,7 @@ public class PostService {
 //
 //
 //    CODE IN PROGRESS
+
 
 
 //    END OF CODE IN PROGRESS

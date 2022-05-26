@@ -41,13 +41,19 @@ public class User {
     private List<Comment> allCommentsByUser;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "friend_list")
+    private Friend friend;
+
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private boolean isBusinessAccount;
 
-
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE",name = "user_logged_in")
     private boolean isUserLoggedIn;
+
+    @Column(name = "company_id")
+    private int companyId;
 
 
 //    Constructors
@@ -59,8 +65,15 @@ public class User {
 
     public User() {}
 
+    public User(Long id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
+
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Message> inbox,ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
+                String date_of_birth, ArrayList<Message> inbox, ArrayList<Post> allPostsByUser,
+                boolean isBusinessAccount, boolean isUserLoggedIn, int companyId, Friend friend) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -71,10 +84,27 @@ public class User {
         this.inbox = new ArrayList<>();
         this.isBusinessAccount = isBusinessAccount;
         this.isUserLoggedIn = isUserLoggedIn;
+        this.companyId = companyId;
+        this.friend = friend;
     }
 
+    public User(Long id, String name, String company, String role, String date_of_birth, boolean isBusinessAccount) {
+    }
 
-//    CONSTRUCTORS ENDS
+    // NO ARG CONSTRUCTOR FOR FRIENDS TABLE
+
+
+    //simplified constructor
+
+    public User(String name, String company, String role, String password, String date_of_birth) {
+        this.name = name;
+        this.company = company;
+        this.role = role;
+        this.password = password;
+        this.date_of_birth = date_of_birth;
+    }
+
+    //    CONSTRUCTORS ENDS
 //
 //
 //    GETTERS AND SETTERS START
@@ -84,12 +114,20 @@ public class User {
         return id;
     }
 
-    public Boolean isBusinessAccount() {
+    public boolean isBusinessAccount() {
         return isBusinessAccount;
     }
 
-    public void setBusinessAccount(Boolean businessAccount) {
+    public void setBusinessAccount(boolean businessAccount) {
         isBusinessAccount = businessAccount;
+    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     public void setId(Long id) {
@@ -153,11 +191,6 @@ public class User {
     }
 
 
-    public void likePost(Post post) {
-        int newLikeTotal = post.getNumber_of_likes() + 1;
-        post.setNumber_of_likes(newLikeTotal);
-    }
-
     public boolean isUserLoggedIn() {
         return isUserLoggedIn;
     }
@@ -165,7 +198,16 @@ public class User {
     public void setUserLoggedIn(boolean userLoggedIn) {
         isUserLoggedIn = userLoggedIn;
     }
-//    GETTERS AND SETTERS END
+
+    public Friend getFriendList() {
+        return friend;
+    }
+
+    public void setFriendList(Friend friend) {
+        this.friend = friend;
+    }
+
+    //    GETTERS AND SETTERS END
 //
 //
 //    FILE END

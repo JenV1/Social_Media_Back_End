@@ -77,8 +77,8 @@ public class Message {
         this.userS = userS;
     }
 
-    //    GETTERS AND SETTERS END
+//    GETTERS AND SETTERS END
 //
 //
-//    END OF FILE
+//    FILE END
 }

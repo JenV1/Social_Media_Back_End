@@ -88,13 +88,13 @@ public class CommentController {
 
 
     @PostMapping("postComment")
-    public String addComment(@RequestParam("postID") Long post_id,
-                             @RequestParam("commenter_userID") Long user_id,
+    public String postComment(@RequestParam("postID") Long post_id,
+                             @RequestParam("username") String username,
                              @RequestParam("content") String commentContent){
 
 
 
-        return commentService.addComment(post_id,user_id,commentContent);
+        return commentService.addComment(post_id,username,commentContent);
     }
 
 
