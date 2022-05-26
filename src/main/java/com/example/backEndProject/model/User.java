@@ -41,6 +41,10 @@ public class User {
     private List<Comment> allCommentsByUser;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "friend_list")
+    private Friend friend;
+
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private boolean isBusinessAccount;
@@ -62,7 +66,8 @@ public class User {
     public User() {}
 
     public User(Long id, String name, String company, String role, String password,
-                String date_of_birth, ArrayList<Message> inbox,ArrayList<Post> allPostsByUser, boolean isBusinessAccount, boolean isUserLoggedIn) {
+                String date_of_birth, ArrayList<Message> inbox, ArrayList<Post> allPostsByUser,
+                boolean isBusinessAccount, boolean isUserLoggedIn, int companyId, Friend friend) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -74,7 +79,14 @@ public class User {
         this.isBusinessAccount = isBusinessAccount;
         this.isUserLoggedIn = isUserLoggedIn;
         this.companyId = companyId;
+        this.friend = friend;
     }
+
+    public User(Long id, String name, String company, String role, String date_of_birth, boolean isBusinessAccount) {
+    }
+
+    // NO ARG CONSTRUCTOR FOR FRIENDS TABLE
+
 
 
 //    CONSTRUCTORS ENDS
@@ -171,8 +183,18 @@ public class User {
     public void setUserLoggedIn(boolean userLoggedIn) {
         isUserLoggedIn = userLoggedIn;
     }
-//    GETTERS AND SETTERS END
+
+    public Friend getFriendList() {
+        return friend;
+    }
+
+    public void setFriendList(Friend friend) {
+        this.friend = friend;
+    }
+
+    //    GETTERS AND SETTERS END
 //
 //
 //    FILE END
+
 }
