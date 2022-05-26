@@ -4,6 +4,7 @@ import com.example.backEndProject.model.Message;
 import com.example.backEndProject.repository.MessageRepository;
 import com.example.backEndProject.repository.UserRepository;
 import com.example.backEndProject.service.MessageService;
+import com.example.backEndProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,9 @@ public class MessageController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
     private MessageService messageService;
 
     public MessageController(MessageService messageService) {
@@ -44,6 +48,12 @@ public class MessageController {
     @GetMapping("/getMessageByID/{id}")
     public String getMessageByID(@PathVariable("id") int id) {
         return messageService.getAll().get(id).getMessage_content();
+    }
+
+    @GetMapping("/getInboxOfSpecificUserByName")
+    public List<String> getInboxOfSpecificUserByName(@RequestParam String user_name,
+                                                      String user_password) {
+        return messageService.getAllMessagesFromSpecificUsersInbox(user_name, user_password);
     }
 
     @PutMapping("/editSentMessage/{message_id}")

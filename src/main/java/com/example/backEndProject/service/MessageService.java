@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class MessageService {
@@ -19,7 +18,7 @@ public class MessageService {
 
 //    DEPENDENCY INJECTION
 
-
+    @Autowired
     private MessageRepository messageRepository;
 
     public MessageService(MessageRepository messageRepository) {
@@ -82,6 +81,7 @@ public class MessageService {
         newMessage.setUserR(receiver);
         newMessage.setUserS(sender);
         messageRepository.save(newMessage);
+        userRepository.save(receiver);
         return newMessage;
     }
 
@@ -93,18 +93,23 @@ public class MessageService {
     }
 
 
-    public List<String> getAllMessagesFromInbox(Long id) {
 
-        int noOfMessage = userRepository.findByID(id).getInbox().size();
-        User userInbox = userRepository.findByID(id);
-        ArrayList<String> inboxMessages = new ArrayList<>();
 
-        for (int i = 0; i < noOfMessage; i++) {
-            inboxMessages.add(userInbox.getInbox().get(i).getMessage_content());
+    public List<String> getAllMessagesFromSpecificUsersInbox(String user_name,
+                                                              String user_password) {
+
+        User user = getUserFromName(user_name.toLowerCase());
+        List<String> inboxMessages = new ArrayList<>();
+
+        for (Message msg: userRepository.findByID(user.getId()).getInbox()) {
+            inboxMessages.add(msg.getMessage_content());
         }
 
         return inboxMessages;
     }
+
+
+
 
     public Message editSentMessage(Long message_id,
                                    String newMessageContent) {
