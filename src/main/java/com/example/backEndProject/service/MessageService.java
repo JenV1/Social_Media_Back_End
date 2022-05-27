@@ -57,10 +57,14 @@ public class MessageService {
 
         Message newMessage = createSetAndSaveMessage(message_content, receiver, sender);
 
-        return newMessage.getMessage_content() +
-                "\nMessage to " + receiver.getName() + " sent successfully! \n" +
+        return formatMessage(newMessage);
+    }
+
+    public String formatMessage(Message message) {
+        return message.getMessage_content() +
+                "\nMessage to " + message.getUserR().getName() + " sent successfully! \n" +
                 "Message sent at: " + LocalDateTime.now() +
-                ". \nThanks for using connect, " + sender.getName() + " :)";
+                ". \nThanks for using connect, " + message.getUserS().getName() + " :)";
     }
 
     private String credentialsChecker(String password_of_sender, User receiver, User sender) {

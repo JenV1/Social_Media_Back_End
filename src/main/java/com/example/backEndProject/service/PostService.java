@@ -1,5 +1,6 @@
 package com.example.backEndProject.service;
 
+import com.example.backEndProject.method.FileWriter;
 import com.example.backEndProject.model.Post;
 import com.example.backEndProject.model.User;
 import com.example.backEndProject.repository.PostRepository;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
@@ -26,7 +26,8 @@ public class PostService {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    FileWriter fileWriter;
     private PostRepository postRepository;
 
     public PostService(PostRepository postRepository) {
@@ -49,7 +50,7 @@ public class PostService {
     }
 
 
-    public Post findPostByID(Long id){
+    public Post findPostByID(Long id) {
         return postRepository.findPostByID(id);
     }
 
@@ -132,37 +133,8 @@ public class PostService {
 //        Try catch statement for the scenario where id is not found.
 //        Created current outside of try catch to ensure it was within scope for the return statement.
 
-        Post current = null;
-        try {
-            current = postRepository.findById(id).get();
-            current.setContent_text(new_content);
-            postRepository.save(current);
+        return fileWriter.fileWriter(id, new_content);
 
-        } catch (NoSuchElementException e) {
-            e.printStackTrace();
-            System.out.println("No matching post could be found for id: " + id);
-        }
-
-        File myFile = new File("src/all_posts_and_post_edits.txt");
-        if (!myFile.exists()) {
-            try {
-                myFile.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-
-        FileWriter fileWriter = new FileWriter(myFile, true);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.println(current.getContent_text());
-        printWriter.println(LocalDateTime.now());
-        printWriter.println(current.getUser().getName());
-        printWriter.println("");
-
-        printWriter.close();
-
-        return current;
     }
 
 
@@ -193,36 +165,9 @@ public class PostService {
             Integer post_type_id,
             Long user_id) throws IOException {
 
-
-        Post post = new Post(id, content_text, number_of_likes, isBusinessAccount, post_type_id);
-        postRepository.save(post);
-
-        File myFile = new File("src/all_posts_and_post_edits.txt");
-        if (!myFile.exists()) {
-            try {
-                myFile.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        User postUser = userRepository.findByID(user_id);
-        FileWriter fileWriter = new FileWriter(myFile, true);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.println(post.getContent_text());
-        printWriter.println(LocalDateTime.now());
-        printWriter.println(postUser.getName());
-        printWriter.println("");
-
-        printWriter.close();
-
-        return postRepository.save(post);
+        return fileWriter.addPostWriter(id,
+                content_text, number_of_likes, isBusinessAccount, post_type_id, user_id);
     }
-
-
-
-
-
 
 //    END OF METHODS
 //
@@ -235,4 +180,5 @@ public class PostService {
 //
 //
 //    END OF FILE
+
 }

@@ -114,10 +114,18 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_busi
 
 INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('This multidirectional mapping thing is pretty cool', 2, 3);
 INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Damn I just LOVE Spring Boot!', 1, 4);
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('You seen Pingu just dropped a new mixtape?', 4, 1);
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('When you gonna release Full Moon?', 1, 2);
 
 INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('I think we will end up hiring all these guys', 11, 12);
-INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('No... WE are gonna hire all these guys!', 12, 11);
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('No... WE are gonna hire all these guys! Think you should sit this one out', 12, 11);
 
 INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Its always the bloody LAMB SAUCE!!!', 5, 6);
 INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('New numba, who dis?', 6, 5);
+
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Who you got for the champs league?', 3, 2);
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('When I grow up I wanna be Pingu', 1, 2);
+
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Fancy coming round mine for a few beers?', 5, 6);
+INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Soz Gordon getting resurrected tonight', 6, 5);
 

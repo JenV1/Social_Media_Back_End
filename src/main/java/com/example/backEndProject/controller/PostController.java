@@ -26,6 +26,7 @@ public class PostController {
 
 //    Dependency Injection START
 
+
     private PostService postService;
 
     public PostController(PostService postService) {
@@ -115,12 +116,11 @@ public class PostController {
     @PostMapping("/addNewPost")
     public Post addPost(@RequestParam(required = false) Long id,
                         @RequestParam String content_text,
-                        @RequestParam(required = false) Integer number_of_likes,
                         @RequestParam(required = false) boolean isBusinessAccount,
                         @RequestParam(required = true) Integer post_type_id,
                         @RequestParam(required = true) Long user_id) throws IOException {
 
-        return postService.addPost(id, content_text, number_of_likes, isBusinessAccount, post_type_id, user_id);
+        return postService.addPost(id, content_text, 0, isBusinessAccount, post_type_id, user_id);
 
     }
 }

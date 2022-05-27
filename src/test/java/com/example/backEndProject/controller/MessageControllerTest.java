@@ -18,11 +18,8 @@ class MessageControllerTest {
     @Autowired
     MessageController messageController;
 
-
     @Test
     void sendMessageToUser__incorrectPassword() {
-//        Given
-
 //        When
         String output = messageController.sendMessageToUser
                 ("Hi test!","lewis", "koolkoder", "scott");
@@ -32,43 +29,19 @@ class MessageControllerTest {
 
     @Test
     void sendMessageToUser__senderNotFound() {
-//        Given
-
 //        When
         String output = messageController.sendMessageToUser
-                ("Hi test!","lewisss", "koolkoder", "scott");
+                ("Hi test!","lewisss", "koolkode", "scott");
 //        Then
         assertEquals("We could not find your username.", output);
     }
 
     @Test
     void sendMessageToUser__receiverNotFound() {
-//        Given
-
 //        When
         String output = messageController.sendMessageToUser
                 ("Hi test!","lewis", "koolkode", "scottie");
 //        Then
         assertEquals("Could not find the message recipient, please try again.", output);
     }
-
-//    @Test
-//    void sendMessageToUser__allCredentialsCorrect() {
-////        Given
-//
-////        When
-//        String actualOutput = messageController.sendMessageToUser
-//                ("Hi test!","Lewis", "koolkode", "Scott");
-//
-//        String expectedOutput = "Hi test!" +
-//                "\nMessage to " + "Scott" + " sent successfully! \n" +
-//                "Message sent at: " + LocalDateTime.now() +
-//                ". \nThanks for using connect, " + "Lewis" + " :)";
-//
-//
-////        Then
-//        assertEquals(expectedOutput, actualOutput);
-//    }
-
-
 }
