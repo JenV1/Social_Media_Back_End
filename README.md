@@ -42,4 +42,4 @@ As can be seen, most of the database extends out of two central tables, these ta
 ## Quirky Behaviours
 Please note that a lot of the methods produce clean String outputs rather than the expected JSON format, to improve our presentation. This should of course be removed and replaced with the relevant JSON formatting when being used as a 'true' backend API.
 
-We have removed some features, such as spring security and friends to simplify the project. If anything refers to these features please delete/comment them out.
+We have removed some features, namely spring security/thymeleaf, friends, and replies to simplify the project. If anything refers to these features please delete/comment them out.
