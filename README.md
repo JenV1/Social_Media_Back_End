@@ -105,9 +105,13 @@ The following snippet from application properties is what allows for Spring to r
 spring.sql.init.mode=always
 ```
 
-If this property isn't set to "always", this run through of the schema.sql and data.sql files won't take place, resulting in these tables and data types not being created.
+Without this property, script-based initialization is performed only for embedded databases, such as H2. The schema and data scripts would thus not be used for database inialization.
 
+The following snippet from application properties ensures that Hibernate schema creation is performed, then schema.sql is read for any additional schema changes and, finally, data.sql is used for database population.
 
+```java
+spring.jpa.defer-datasource-initialization=true
+```
 
 
 
