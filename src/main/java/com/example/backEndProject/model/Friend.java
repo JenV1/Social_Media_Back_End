@@ -1,6 +1,10 @@
 package com.example.backEndProject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "friends")
@@ -30,6 +34,9 @@ public class Friend {
 
     @Column
     private boolean isBusinessAccount;
+
+    @OneToOne(mappedBy = "friend", cascade = CascadeType.ALL)
+    private User user;
 
 
     public Friend() {
@@ -82,6 +89,15 @@ public class Friend {
     public void setBusinessAccount(boolean businessAccount) {
         isBusinessAccount = businessAccount;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
 }
 
