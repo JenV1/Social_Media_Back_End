@@ -30,3 +30,7 @@ A Postgres database was used to store all information associated with Connect, s
 As can be seen, most of the database extends out of two central tables, these tables being **Users** and **Posts**.   
 
 **Interest Types** and **Post Types** are tables consisting of only enum data types. **Users** has a many to many relationship with **Interest Types**, so, a mapper table named **Interest Mapper** is used to map a user to his/her particular interest(s). 
+
+## Quirky Behaviours
+Please note that a lot of the methods produce clean String outputs rather than the expected JSON format, to improve our presentation. This should of course be removed and replaced with the relevant JSON formatting when being used as a 'true' backend API.
+We have removed some features, such as spring security and friends to simplify the project. If anything refers to these features please delete/comment them out.
