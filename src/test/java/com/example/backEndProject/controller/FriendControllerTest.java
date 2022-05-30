@@ -1,8 +1,6 @@
 package com.example.backEndProject.controller;
 
 
-import com.example.backEndProject.model.dto.UserDto;
-import com.example.backEndProject.repository.FriendRepository;
 import com.example.backEndProject.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
