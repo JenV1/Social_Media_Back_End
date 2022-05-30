@@ -14,6 +14,14 @@ Connect aims to do this by creating a network of professionals, ready to support
 
 A Postgres database was used to store all information associated with Connect, such as user information, comments, posts, interests etc. **Figure 1** showcases how entities were related to one another in Connect's database. How each table relates to another is summarised in the following list:
 
+## CLASS DIAGRAMS
+
+![alt text]([https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/ERD%20Final%20-%20BEP%20(3).jpg](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/Class%20Diagrams%20-%20BEP.jpg))
+### Figure 2 - Class diagram representing Connect's model, repo, service, and controller classes
+
+Diagram displaying how connect's classes come together from model through to repository.
+
+
 ### Users 
 - Users to Comments : one to many
 - Users to Posts : one to many 
