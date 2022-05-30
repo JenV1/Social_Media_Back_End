@@ -46,12 +46,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Comment> allCommentsByUser;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "friend_list")
-    private Friend friend;
-
-
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private Boolean isBusinessAccount;
 
@@ -79,7 +73,7 @@ public class User {
 
     public User(Long id, String name, String company, String role, String password,
                 String date_of_birth, ArrayList<Message> inbox, ArrayList<Post> allPostsByUser,
-                boolean isBusinessAccount, boolean isUserLoggedIn, int companyId, Friend friend) {
+                boolean isBusinessAccount, boolean isUserLoggedIn, int companyId) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -91,7 +85,6 @@ public class User {
         this.isBusinessAccount = isBusinessAccount;
         this.isUserLoggedIn = isUserLoggedIn;
         this.companyId = companyId;
-        this.friend = friend;
     }
 
     public User(Long id, String name, String company, String role, String date_of_birth, boolean isBusinessAccount) {
@@ -205,13 +198,6 @@ public class User {
         isUserLoggedIn = userLoggedIn;
     }
 
-    public Friend getFriendList() {
-        return friend;
-    }
-
-    public void setFriendList(Friend friend) {
-        this.friend = friend;
-    }
 
     //    GETTERS AND SETTERS END
 //
