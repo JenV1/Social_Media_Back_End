@@ -38,9 +38,6 @@ public class Comment {
     @JoinColumn(name = "commenter_UserID")
     private User user;
 
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({"comment"})
-    private List<Reply> commentReplies;
 
 
 //    ATTRIBUTES END
