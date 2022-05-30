@@ -38,6 +38,35 @@ As can be seen, most of the database extends out of two central tables, these ta
 
 Diagram displaying how connect's classes come together from model through to repository.
 
+
+## DEPENDENCIES, DATABASE INITIALISATION AND APPLICATION PROPERTIES
+
+### CONNECTING TO A POSTGRES DATABASE
+
+The dependencies required to connect to a postgres database with Spring JDBC and Spring JPA  are as follows:
+``` java
+<dependency>
+        <groupId>org.postgresql</groupId>
+	<artifactId>postgresql</artifactId>
+	<version>42.3.6</version>
+	<scope>runtime</scope>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>		
+	
+
+```
+
+
+
 ## Quirky Behaviours
 Please note that a lot of the methods produce clean String outputs rather than the expected JSON format, to improve our presentation. This should of course be removed and replaced with the relevant JSON formatting when being used as a 'true' backend API.
 
