@@ -95,7 +95,7 @@ The following data types and tables are created using the schema.sql file automa
 
 The **Posts** table is also altered using the schema.sql file, adding a foreign key referencing the **Post_Types** table.
 
-In order to stop Spring from recreating duplicates of these tables and data types on each application start-up (and in the process, producing an error), the tables and data types are drpped at the start of the file. This was a quick fix to the problem of duplicate values, and may add to the time taken for the application to run.
+In order to stop Spring from recreating duplicates of these tables and data types on each application start-up (and in the process, producing an error), the tables and data types are dropped at the start of the file. This was a quick fix to the problem of duplicate values, and may add to the time taken for the application to run.
 
 The tables were then populated using the data.sql file.
 
