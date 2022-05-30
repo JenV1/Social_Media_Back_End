@@ -63,7 +63,7 @@ public class CommentRepositoryTest extends AbstractContainerBaseTest {
 
         //then
 
-        Comment savedComment = commentRepository.findCommentByID(1L);
+        Comment savedComment = commentRepository.findCommentByID(2L);
         Assertions.assertNotNull(savedComment.getId());
 
 

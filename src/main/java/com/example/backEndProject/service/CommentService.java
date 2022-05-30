@@ -168,7 +168,8 @@ public class CommentService {
         commentRepository.addComment(post_id,userRepository.findUserByName(username).getId(),commentContent);
 
 
-        return "Comment \"" + commentContent +  "\" posted by " + userRepository.findUserByName(username).getName();
+        return "Comment \"" + commentContent +  "\" posted by " + userRepository.findUserByName(username).getName() +
+                " on " + postRepository.findPostByID(post_id).getUser().getName() + "'s post";
 
 
     }

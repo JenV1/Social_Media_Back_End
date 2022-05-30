@@ -114,11 +114,11 @@ public class PostController {
 //    POST METHODS START
 
     @PostMapping("/addNewPost")
-    public Post addPost(@RequestParam(required = false) Long id,
-                        @RequestParam String content_text,
-                        @RequestParam(required = false) boolean isBusinessAccount,
-                        @RequestParam(required = true) Integer post_type_id,
-                        @RequestParam(required = true) Long user_id) throws IOException {
+    public Post addPost(@RequestParam("id") Long id,
+                        @RequestParam("content") String content_text,
+                        @RequestParam("isBusiness") boolean isBusinessAccount,
+                        @RequestParam("post_type") Integer post_type_id,
+                        @RequestParam("user_id") Long user_id) throws IOException {
 
         return postService.addPost(id, content_text, 0, isBusinessAccount, post_type_id, user_id);
 

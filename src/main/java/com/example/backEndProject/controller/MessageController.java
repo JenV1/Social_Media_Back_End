@@ -37,10 +37,10 @@ public class MessageController {
 
     @PostMapping("/sendMessageToUser")
     public String sendMessageToUser(
-                                     @RequestParam String message_content,
-                                     @RequestParam String name_of_sender,
-                                     @RequestParam String password,
-                                     @RequestParam String receiver_name) {
+                                     @RequestParam("message_content") String message_content,
+                                     @RequestParam("name_of_sender") String name_of_sender,
+                                     @RequestParam("password") String password,
+                                     @RequestParam("receiver_name") String receiver_name) {
 
         return messageService.sendMessageToUser(message_content, name_of_sender, password, receiver_name);
     }

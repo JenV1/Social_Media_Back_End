@@ -180,6 +180,7 @@ public class UserService {
 
         User resultUser = userRepository.findUserByUsernameAndPassword(username,password);
 
+
         if(resultUser!=null && !resultUser.isUserLoggedIn()){
 
             resultUser.setUserLoggedIn(Boolean.TRUE);
