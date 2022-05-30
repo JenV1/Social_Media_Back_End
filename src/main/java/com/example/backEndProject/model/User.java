@@ -43,7 +43,7 @@ public class User {
 
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
-    private boolean isBusinessAccount;
+    private Boolean isBusinessAccount;
 
 
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE",name = "user_logged_in")
