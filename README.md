@@ -12,8 +12,8 @@ Connect aims to do this by creating a network of professionals, ready to support
 ![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/ERD%20Final%20-%20BEP%20(2).jpg)
 ### Figure 1 - ERD diagram representing Connect's database
 
-A Postgres database was used to store all information associated with Connect, such as user information, comments, posts, interests etc. **Figure 1** showcases how entities were related to one another in Connect's database. 
-<br><br>**Refer to this list for information on exactly how each table is related to another:**<br> 
+A Postgres database was used to store all information associated with Connect, such as user information, comments, posts, interests etc. **Figure 1** showcases how entities were related to one another in Connect's database. **How each table relates to another is described in the following list:**
+
 ### Users 
 - Users to Comments : one to many
 - Users to Posts : one to many 
