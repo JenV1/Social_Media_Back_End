@@ -27,4 +27,4 @@ A Postgres database was used to store all information associated with Connect, s
 - Users to Interest Mapper : one to one
 - Interest Mapper to Interest Types : one to one 
 
-As can be seen, most of the database extends out of two central tables, these tables being Users and Posts. Users have a many to many relationship with Interest Types, so, a mapper table is used to map a user to his/her particular interest(s).  
+As can be seen, most of the database extends out of two central tables, these tables being Users and Posts. Users have a many to many relationship with Interest Types, so, a mapper table named Interest Mapper is used to map a user to his/her particular interest(s).  
