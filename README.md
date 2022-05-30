@@ -112,7 +112,33 @@ The following snippet from application properties ensures that Hibernate schema 
 ```java
 spring.jpa.defer-datasource-initialization=true
 ```
+### POSTGRES TEST CONTAINERS DEPENDENCIES
 
+The following dependencies were procured from the test container's website, enabling repositories to be tested with a postgres test container running in a docker container:
+
+```java
+<dependency>
+    <groupId>org.testcontainers</groupId>
+    <artifactId>testcontainers</artifactId>
+    <version>1.16.3</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.testcontainers</groupId>
+    <artifactId>junit-jupiter</artifactId>
+    <version>1.16.3</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.testcontainers</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>1.16.3</version>
+    <scope>test</scope>
+</dependency>
+```
+In order to properly run the Comment repository tests, docker must be installed and ran.
 
 
 ## Quirky Behaviours
