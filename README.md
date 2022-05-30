@@ -14,14 +14,6 @@ Connect aims to do this by creating a network of professionals, ready to support
 
 A Postgres database was used to store all information associated with Connect, such as user information, comments, posts, interests etc. **Figure 1** showcases how entities were related to one another in Connect's database. How each table relates to another is summarised in the following list:
 
-## CLASS DIAGRAMS
-
-![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/Class%20Diagrams%20-%20BEP.jpg)
-### Figure 2 - Class diagram representing Connect's model, repo, service, and controller classes
-
-Diagram displaying how connect's classes come together from model through to repository.
-
-
 ### Users 
 - Users to Comments : one to many
 - Users to Posts : one to many 
@@ -38,6 +30,13 @@ Diagram displaying how connect's classes come together from model through to rep
 As can be seen, most of the database extends out of two central tables, these tables being **Users** and **Posts**.   
 
 **Interest Types** and **Post Types** are tables consisting of only enum data types. **Users** has a many to many relationship with **Interest Types**, so, a mapper table named **Interest Mapper** is used to map a user to his/her particular interest(s). 
+
+## CLASS DIAGRAMS
+
+![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/Class%20Diagrams%20-%20BEP.jpg)
+### Figure 2 - Class diagram representing Connect's model, repo, service, and controller classes
+
+Diagram displaying how connect's classes come together from model through to repository.
 
 ## Quirky Behaviours
 Please note that a lot of the methods produce clean String outputs rather than the expected JSON format, to improve our presentation. This should of course be removed and replaced with the relevant JSON formatting when being used as a 'true' backend API.
