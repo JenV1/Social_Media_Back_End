@@ -16,7 +16,7 @@ A Postgres database was used to store all information associated with Connect, s
 
 ## CLASS DIAGRAMS
 
-![alt text]([https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/ERD%20Final%20-%20BEP%20(3).jpg](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/Class%20Diagrams%20-%20BEP.jpg))
+![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/Class%20Diagrams%20-%20BEP.jpg)
 ### Figure 2 - Class diagram representing Connect's model, repo, service, and controller classes
 
 Diagram displaying how connect's classes come together from model through to repository.
