@@ -13,7 +13,7 @@ Connect aims to do this by creating a network of professionals, ready to support
 ### Figure 1 - ERD diagram representing Connect's database
 
 A Postgres database was used to store all information associated with Connect, such as user information, comments, posts, interests etc. **Figure 1** showcases how entities were related to one another in Connect's database. 
-**Refer to this list for information on exactly how each table is related to another:**<br> 
+<br><br>**Refer to this list for information on exactly how each table is related to another:**<br> 
 ### Users 
 - Users to Comments : one to many
 - Users to Posts : one to many 
