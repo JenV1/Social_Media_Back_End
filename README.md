@@ -13,4 +13,18 @@ Connect aims to do this by creating a network of professionals, ready to support
 ### Figure 1 - ERD diagram representing Connect's database
 
 A Postgres database was used to store all information associated with Connect, such as user information, comments, posts, interests etc. **Figure 1** showcases how entities were related to one another in Connect's database. 
-Refer to this list for information on exactly how each table is related to another:<br> - Users to Comments : one to many<br> - Users to Posts : one to many <br> - Users to Message : one to many <br> - Users to Interest Mapper : one to one
+**Refer to this list for information on exactly how each table is related to another:**<br> 
+### Users 
+- Users to Comments : one to many
+- Users to Posts : one to many 
+- Users to Message : one to many
+### Posts
+- Posts to Comments : one to many 
+- Posts to Post Types : one to one 
+### Comments
+- Comments to Replies : one to many 
+### Mappers
+- Users to Interest Mapper : one to one
+- Interest Mapper to Interest Types : one to one 
+
+As can be seen, most of the database extends out of two central tables, these tables being Users and Posts. Users have a many to many relationship to Interest Types, so, a mapper table is used to map a user to his/her particular interest(s).  
