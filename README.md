@@ -142,11 +142,17 @@ In order to properly run the Comment repository tests, docker must be installed 
 
 # REQUESTS AND ENDPOINTS
 
-HTTP requests routed through the API were tested mainly using Postman, so it is recommended to have postman installed. Some notable endpoints and commands are demonstrated in the following section. It is also worth mentioning that the returns from these methods were customised for presentation purposes. These returns can be reformatted back into standard JSON returns if need be
+HTTP requests routed through the API were tested mainly using Postman, so it is recommended to have postman installed. Some notable endpoints and commands are demonstrated in the following section. It is also worth mentioning that the returns from these methods were customised for presentation purposes. These returns can be reformatted back into standard JSON returns if need be.
+
+All endpoints should follow from the URL "http://localhost:8080", unless you are using a different port for running this application. 
 
 ## COMMENTS
 
-### @GetMapping
+### @GetMapping Methods
+
+| Endpoint         | Instructions On Use                                             | Output                                                                                                                                                                                                                                                                                                                                                               |
+|------------------|-----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ | /showAllComments | No extra information is required when writing out this endpoint | Will display a hashmap key consisting of Posts, who the Post was created by and the number of likes on that post, along with it's associated value, showcasing all the comments made under that post. If no comments are present in the database, a message will be output in the form of a key value pair, stating : "No comments to show","try posting a comment". |
 
 
 
