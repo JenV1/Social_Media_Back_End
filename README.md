@@ -142,7 +142,7 @@ In order to properly run the Comment repository tests, docker must be installed 
 
 ## REQUESTS AND ENDPOINTS
 
-HTTP requests routed through the API were tested mainly using Postman, so it is recommended to have postman installed. Some notable endpoints and commands are demonstrated in the following section. It is also worth mentioning that the returns from these methods were customised for presentation purposes, these returns can be reformatted back into standard JSON returns if need be
+HTTP requests routed through the API were tested mainly using Postman, so it is recommended to have postman installed. Some notable endpoints and commands are demonstrated in the following section. It is also worth mentioning that the returns from these methods were customised for presentation purposes. These returns can be reformatted back into standard JSON returns if need be
 
 ### COMMENTS
 
