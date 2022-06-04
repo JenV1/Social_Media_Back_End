@@ -153,14 +153,7 @@ All endpoints should follow from the URL "http://localhost:8080", unless you are
 | Endpoint         | Instructions On Use                                                                                           | Output                                                                                                                                                                                                                                                                                                                                                                      |
 |------------------|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
  | /showAllComments | No extra information is required when writing out this endpoint                                               | Will display a hashmap key consisting of Posts, who the Post was created by, and the number of likes on that post. The key's associated value will showcase all the comments made under that post. <br/><br/>If no comments are present in the database, a message will be output in the form of a key value pair, stating : "No comments to show","try posting a comment". |
-|/findCommentById/{id} | E.g, to find a comment with an id value of 1, the endpoint should be written as such: **/findCommentById/1**. | Will return a string showcasing the comment ID, its content, number of likes, and the post it was commented under. <br/><br/> If a comment with that particular id does not exist, a message stating "This comment does not exist, input a valid comment ID" will be returned instead.                                                                                      |
-
-### @PostMapping Methods
-
-| Endpoint | Instructions On Use | Output |
-|----------|---------------------|--------|
-
-
+|/findCommentById/{id} | E.g, to find a comment with an id value of 1, the endpoint should be written as such: **/findCommentById/1**. | Will return a string showcasing the comment ID, its content, number of likes, and the post it was commented under. <br/><br/> If a comment with that particular id does not exist, a message stating "This comment does not exist, input a valid comment ID" will be returned instead. |                                                                                   
 ## MESSAGES
 
 ### Method Examples
