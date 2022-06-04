@@ -33,7 +33,7 @@ As can be seen, most of the database extends out of two central tables, these ta
 
 ## CLASS DIAGRAMS
 
-![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/Class%20Diagrams%20-%20BEP.jpg)
+![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/miscFiles/Class%20Diagrams%20-%20BEP.jpg)
 ### Figure 2 - Class diagram representing Connect's model, repo, service, and controller classes
 
 Diagram displaying how connect's classes come together from model through to repository.
