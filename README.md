@@ -161,6 +161,14 @@ All endpoints should follow from the URL "http://localhost:8080", unless you are
 |----------|---------------------|--------|
 
 
+## MESSAGES
+
+### Method Examples
+| Endpoint | Instructions On Use | Output |
+|----------|---------------------|--------|
+| /sendMessageToUser | Sends a message from a user to a different user. Will update on the database showing who has sent to who, the message content, and the ID of the message. Requires 4 parameters, all using the @RequestParam feature. Nuts and bolts of the method are in MessageService. Ensure to follow the 'external' OOP methods that have been employed to understand the full method. | Output will vary depending on what happens with the message. Look up the credentials checker method to see what happens if credentials are entered incorrectly. If all entered correctly, will get a formatted string detailing the message sending action. The getUserFromName and createSetAndSaveMessage methods are also important here. |
+
+
 ## Quirky Behaviours
 Please note that a lot of the methods produce clean String outputs rather than the expected JSON format, to improve our presentation. This should of course be removed and replaced with the relevant JSON formatting when being used as a 'true' backend API.
 
