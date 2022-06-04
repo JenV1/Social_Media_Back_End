@@ -168,7 +168,8 @@ All endpoints should follow from the URL "http://localhost:8080", unless you are
 |----------|---------------------|--------|
 | /sendMessageToUser (POST) | Sends a message from a user to a different user. Will update on the database showing who has sent to who, the message content, and the ID of the message. Requires 4 parameters, all using the @RequestParam feature. Nuts and bolts of the method are in MessageService. Ensure to follow the 'external' OOP methods that have been employed to understand the full method. | Output will vary depending on what happens with the message. Look up the credentials checker method to see what happens if credentials are entered incorrectly. If all entered correctly, will get a formatted string detailing the message sending action. The getUserFromName and createSetAndSaveMessage methods are also important here. |
 | /getAllMessagesFromSpecificUsersInbox (GET) | Requires name and password from a user, via the @RequestParam notations. Tempremental method, worked for some users and not others. | Simply returned a list of strings that were derived from the users inbox. |
-| /editSendMessage/{message_id} (PUT) | Edits sent messages, requiring the message_id and newMessageContent to do so. | Output is the newly editted message. |
+| /editSendMessage/{message_id} (PUT) | Edits sent messages, requiring the message_id and newMessageContent to do so. | Output is the newly edited message. |
+| /deleteASentMessage/{id} (DELETE) | Deletes a sent message via ID. | Returns a formatted string, determined by whether the message could be found and successfully deleted, or not. |
 
 
 ## Quirky Behaviours
