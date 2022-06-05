@@ -173,8 +173,19 @@ All endpoints should follow from the URL "http://localhost:8080", unless you are
 | Endpoint | Info. & Instructions On Use | Output |
 |----------|-----------------------------|--------|
 |/editPassword/{id} (PUT) | Edits password of users, requiring id and new_password parameters to be entered. Employs an OOP filewriting method. | If the ID can be found, the user is returned. If not, a SOUT will print a message stating the id could not be found. |
+| /searchForUserByName/{keyword} (GET) | Simply enter the keyword for the name you want to search. Uses code to overcome any potential mismatches with capitals. | Output is a list of strings relating to the found users. If no users are found, "No users found :(" will be the output. |
+|/addNewUser (POST) | Requires a range of inputs to create the user. Inputs clearly denoted. | If user exists, "User already exists" - else "User Added". |
 
+## Posts
 
+### Method Examples
+
+| Endpoint | Info. & Instructions On Use | Output |
+|----------|-----------------------------|--------|
+| /addSuperLikeToPost/{id} (PUT) | Simply add the id of the post in question, and the function will add 2 likes to the post (vs. +1 like for normal like function). | Returns the post that was liked. |
+| /deletePost/{id} (DELETE) | ID is the required path variable, and will delete the id of the proposed post. | Returns a formatted string that indicates the post was deleted. |
+| /searchForKeyword/{keyword} (GET) | Requires a keyword that will be contained within a post. e.g. searching Java will return all posts that contain the word Java. | Returns a list of posts that contain the specified keyword from the post repository. |
+| /addPost (POST) | Requires several self-explanatory parameters. Content_text should be below 255 characters, due to the VARCHAR(255) limit. post_type_id refers to a set of enums that the post relates to e.g. Lifestyle, Advert, etc. | Returns the new post and writes the details to a file. |
 
 ## Quirky Behaviours
 Please note that a lot of the methods produce clean String outputs rather than the expected JSON format, to improve our presentation. This should of course be removed and replaced with the relevant JSON formatting when being used as a 'true' backend API.
