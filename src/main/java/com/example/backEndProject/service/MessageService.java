@@ -102,6 +102,8 @@ public class MessageService {
     public List<String> getAllMessagesFromSpecificUsersInbox(String user_name,
                                                               String user_password) {
 
+//        Note this function is a little temperamental, remove if you like.
+
         User user = getUserFromName(user_name.toLowerCase());
         List<String> inboxMessages = new ArrayList<>();
 

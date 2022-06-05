@@ -9,7 +9,7 @@ Connect aims to do this by creating a network of professionals, ready to support
 
 ## ENTITY RELATIONSHIPS
 
-![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/ERD%20Final%20-%20BEP%20(3).jpg)
+![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/miscFiles/ERD%20Final%20-%20BEP%20(3).jpg)
 ### Figure 1 - ERD diagram representing Connect's database
 
 A Postgres database was used to store all information associated with Connect, such as user information, comments, posts, interests etc. **Figure 1** showcases how entities were related to one another in Connect's database. How each table relates to another is summarised in the following list:
@@ -33,7 +33,7 @@ As can be seen, most of the database extends out of two central tables, these ta
 
 ## CLASS DIAGRAMS
 
-![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/Class%20Diagrams%20-%20BEP.jpg)
+![alt text](https://github.com/LMBroadhurst/backEndProjectGroup5/blob/main/miscFiles/Class%20Diagrams%20-%20BEP.jpg)
 ### Figure 2 - Class diagram representing Connect's model, repo, service, and controller classes
 
 Diagram displaying how connect's classes come together from model through to repository.
@@ -157,10 +157,23 @@ All endpoints should follow from the URL "http://localhost:8080", unless you are
 | deletePost/{id}                                     | E.g, to delete a post with an id value of 1, the endpoint should be written as such: **/deletePost/1**.       | Will return a string stating "Deleted post {post id inserted}. If this was a mistake, you can create a new post."                                                                                                                                                                                                                                                           |
 | searchAllBusinessAccountPosts/{business_account_id} | E.g, to find a comment with an id value of 1, the endpoint should be written as such: **/findCommentById/1**. | Will return a string showcasing the comment ID, its content, number of likes, and the post it was commented under. <br/><br/> If a comment with that particular id does not exist, a message stating "This comment does not exist, input a valid comment ID" will be returned instead.                                                                                      |
 
-### @PostMapping Methods
+### Method Examples
 
-| Endpoint | Instructions On Use | Output |
+| Endpoint | Info. & Instructions On Use | Output |
 |----------|---------------------|--------|
+| /sendMessageToUser (POST) | Sends a message from a user to a different user. Will update on the database showing who has sent to who, the message content, and the ID of the message. Requires 4 parameters, all using the @RequestParam feature. Nuts and bolts of the method are in MessageService. Ensure to follow the 'external' OOP methods that have been employed to understand the full method. | Output will vary depending on what happens with the message. Look up the credentials checker method to see what happens if credentials are entered incorrectly. If all entered correctly, will get a formatted string detailing the message sending action. The getUserFromName and createSetAndSaveMessage methods are also important here. |
+| /getAllMessagesFromSpecificUsersInbox (GET) | Requires name and password from a user, via the @RequestParam notations. Tempremental method, worked for some users and not others. | Simply returned a list of strings that were derived from the users inbox. |
+| /editSendMessage/{message_id} (PUT) | Edits sent messages, requiring the message_id and newMessageContent to do so. | Output is the newly edited message. |
+| /deleteASentMessage/{id} (DELETE) | Deletes a sent message via ID. | Returns a formatted string, determined by whether the message could be found and successfully deleted, or not. |
+
+## Users
+
+### Method Examples
+
+| Endpoint | Info. & Instructions On Use | Output |
+|----------|-----------------------------|--------|
+|/editPassword/{id} (PUT) | Edits password of users, requiring id and new_password parameters to be entered. Employs an OOP filewriting method. | If the ID can be found, the user is returned. If not, a SOUT will print a message stating the id could not be found. |
+
 
 
 ## Quirky Behaviours
