@@ -172,6 +172,7 @@ All endpoints should follow from the URL "http://localhost:8080", unless you are
 | Endpoint | Info. & Instructions On Use | Output |
 |----------|-----------------------------|--------|
 |/editPassword/{id} (PUT) | Edits password of users, requiring id and new_password parameters to be entered. Employs an OOP filewriting method. | If the ID can be found, the user is returned. If not, a SOUT will print a message stating the id could not be found. |
+| /searchForUserByName/{keyword} | Simply enter the keyword for the name you want to search. Uses code to overcome any potential mismatches with capitals. | Output is a list of strings relating to the found users. If no users are found, "No users found :(" will be the output. |
 
 
 
