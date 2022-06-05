@@ -175,7 +175,14 @@ All endpoints should follow from the URL "http://localhost:8080", unless you are
 | /searchForUserByName/{keyword} (GET) | Simply enter the keyword for the name you want to search. Uses code to overcome any potential mismatches with capitals. | Output is a list of strings relating to the found users. If no users are found, "No users found :(" will be the output. |
 |/addNewUser (POST) | Requires a range of inputs to create the user. Inputs clearly denoted. | If user exists, "User already exists" - else "User Added". |
 
+## Posts
 
+### Method Examples
+
+| Endpoint | Info. & Instructions On Use | Output |
+|----------|-----------------------------|--------|
+| /addSuperLikeToPost/{id} (PUT) | Simply add the id of the post in question, and the function will add 2 likes to the post (vs. +1 like for normal like function). | Returns the post that was liked. |
+| /deletePost/{id} | ID is the required path variable, and will delete the id of the proposed post. | Returns a formatted string that indicates the post was deleted. |
 
 
 ## Quirky Behaviours
