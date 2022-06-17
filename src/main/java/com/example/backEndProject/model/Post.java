@@ -26,9 +26,6 @@ public class Post {
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE", name = "is_business_account")
     private boolean isBusinessAccount;
 
-    @Column(name = "company_id")
-    private int companyId;
-
 //    Relationship Mapping
 
     @ManyToOne
@@ -50,11 +47,10 @@ public class Post {
 
     public Post(Long id, String content_text, Integer number_of_likes, boolean isBusinessAccount, Integer post_type_id) {}
 
-    public Post(Long id, String content_text, int number_of_likes, int companyId, boolean isBusinessAccount, int post_types_id) {
+    public Post(Long id, String content_text, int number_of_likes, boolean isBusinessAccount, int post_types_id) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
-        this.companyId = companyId;
         this.isBusinessAccount = isBusinessAccount;
         this.post_types_id = post_types_id;
     }
@@ -119,13 +115,6 @@ public class Post {
         isBusinessAccount = businessAccount;
     }
 
-    public int getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
-    }
 
 //    GETTERS AND SETTERS END
 //

@@ -14,6 +14,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class UserController {
 
 

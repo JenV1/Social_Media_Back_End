@@ -52,9 +52,6 @@ public class User {
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE",name = "user_logged_in")
     private boolean isUserLoggedIn;
 
-    @Column(name = "company_id")
-    private int companyId;
-
 
 //    Constructors
 //    ATTRIBUTES END
@@ -73,7 +70,7 @@ public class User {
 
     public User(Long id, String name, String company, String role, String password,
                 String date_of_birth, ArrayList<Message> inbox, ArrayList<Post> allPostsByUser,
-                boolean isBusinessAccount, boolean isUserLoggedIn, int companyId) {
+                boolean isBusinessAccount, boolean isUserLoggedIn) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -84,7 +81,6 @@ public class User {
         this.inbox = new ArrayList<>();
         this.isBusinessAccount = isBusinessAccount;
         this.isUserLoggedIn = isUserLoggedIn;
-        this.companyId = companyId;
     }
 
     public User(Long id, String name, String company, String role, String date_of_birth, boolean isBusinessAccount) {
@@ -119,14 +115,6 @@ public class User {
 
     public void setBusinessAccount(boolean businessAccount) {
         isBusinessAccount = businessAccount;
-    }
-
-    public int getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
     }
 
     public void setId(Long id) {

@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class PostController {
 
 
