@@ -1,5 +1,6 @@
 package com.example.backEndProject.model;
 
+import com.example.backEndProject.repository.UserRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -45,20 +46,22 @@ public class Post {
 
     public Post() {}
 
-    public Post(Long id, String content_text, Integer number_of_likes, boolean isBusinessAccount, Integer post_type_id) {}
+//    public Post(Long id, String content_text, Integer number_of_likes, boolean isBusinessAccount, Integer post_type_id) {}
 
-    public Post(Long id, String content_text, int number_of_likes, boolean isBusinessAccount, int post_types_id) {
+    public Post(Long id, String content_text, int number_of_likes, boolean isBusinessAccount, Integer post_types_id, User user) {
         this.id = id;
         this.content_text = content_text;
         this.number_of_likes = number_of_likes;
         this.isBusinessAccount = isBusinessAccount;
         this.post_types_id = post_types_id;
+        this.user= user;
+
     }
 
-    public Post(String content_text, User user) {
-        this.content_text = content_text;
-        this.user = user;
-    }
+//    public Post(String content_text, User user) {
+//        this.content_text = content_text;
+//        this.user = user;
+//    }
 
     //    CONSTRUCTORS END
 //
