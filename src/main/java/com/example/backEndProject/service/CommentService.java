@@ -42,32 +42,33 @@ public class CommentService {
         this.loginChecker = loginChecker;
     }
 
-    public Map<String,String> showAllComments(){
+    public List<Comment> showAllComments(){
 
+        return commentRepository.findAll();
 
-        Map<String,String> result = new HashMap<>();
-        List<Post> posts = commentRepository.findAll().stream().map(comment -> comment.getPost()).toList();
-        List<Comment> comments = commentRepository.findAll();
-
-        if(comments.isEmpty()){
-            result.put("No comments to show","try posting a comment");
-            return result;
-        }
-
-        for(int i = 0; i < posts.size(); i++){
-
-            Post currentPostInForLoop = posts.get(i);
-            List<Comment> commentsCorrespondingToCurrentPost = comments.stream().filter(comment -> comment
-                    .getPost().getId() == currentPostInForLoop.getId()).toList();
-
-            List<String> commentContent = commentsCorrespondingToCurrentPost.stream().map(comment -> comment.getCommentContent()).toList();
-
-            result.put("POST: " + currentPostInForLoop.getContent_text() + " || POSTED BY: " + currentPostInForLoop.getUser().getName()
-                    + " || LIKES: " + currentPostInForLoop.getNumber_of_likes(),"COMMENTS(S): "
-                    + commentContent);
-        }
-
-        return result;
+//        Map<String,String> result = new HashMap<>();
+//        List<Post> posts = commentRepository.findAll().stream().map(comment -> comment.getPost()).toList();
+//        List<Comment> comments = commentRepository.findAll();
+//
+//        if(comments.isEmpty()){
+//            result.put("No comments to show","try posting a comment");
+//            return result;
+//        }
+//
+//        for(int i = 0; i < posts.size(); i++){
+//
+//            Post currentPostInForLoop = posts.get(i);
+//            List<Comment> commentsCorrespondingToCurrentPost = comments.stream().filter(comment -> comment
+//                    .getPost().getId() == currentPostInForLoop.getId()).toList();
+//
+//            List<String> commentContent = commentsCorrespondingToCurrentPost.stream().map(comment -> comment.getCommentContent()).toList();
+//
+//            result.put("POST: " + currentPostInForLoop.getContent_text() + " || POSTED BY: " + currentPostInForLoop.getUser().getName()
+//                    + " || LIKES: " + currentPostInForLoop.getNumber_of_likes(),"COMMENTS(S): "
+//                    + commentContent);
+//        }
+//
+//        return result;
     }
 
 

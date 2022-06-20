@@ -28,9 +28,7 @@ public class CommentController {
 
 
     @GetMapping("showAllComments")
-    public Map<String,String> showAllComments(){
-
-
+    public List<Comment> showAllComments(){
 
         return commentService.showAllComments();
 
