@@ -65,9 +65,9 @@ public class FileWriter {
             Integer post_type_id,
             Long user_id) throws IOException {
 
+        User user = userRepository.findById(user_id).orElseThrow();
 
-        Post post = new Post(id, content_text, number_of_likes, isBusinessAccount, post_type_id);
-        postRepository.save(post);
+        Post post = new Post(id, content_text, number_of_likes, isBusinessAccount, post_type_id, user);
 
         File myFile = new File("src/all_posts_and_post_edits.txt");
         if (!myFile.exists()) {
