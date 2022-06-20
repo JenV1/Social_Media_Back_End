@@ -40,6 +40,8 @@ VALUES ('BNTA','Software Engineer','13/09/1998', 'Scott', 'chickenfella');
 
 -- posts here
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('As King SQL, I must be head of the round table', 5043, 3, 1);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Nice to meet you internet', 5043, 3, 1);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Currently existing', 0, 3, 2);
 
 -- Inserts for the message table
 
