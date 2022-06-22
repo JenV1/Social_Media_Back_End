@@ -62,10 +62,7 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES 
 --INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Fancy coming round mine for a few beers?', 5, 6);
 --INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Soz Gordon getting resurrected tonight', 6, 5);
 
-INSERT INTO users (company,role,date_of_birth,name,password)
-VALUES ('BNTA','Software Engineer','Wednesday','Jem','password');
-INSERT INTO users (company,role,date_of_birth,name,password)
-VALUES ('BNTA','Software Engineer','13/09/1998', 'Scott', 'chickenfella');
+
 INSERT INTO users (company,role,date_of_birth,name,password)
 VALUES ('BNTA', 'Software Engineer','11/07/1864', 'Lewis', 'koolkode');
 INSERT INTO users (company,role,date_of_birth,name,password)
