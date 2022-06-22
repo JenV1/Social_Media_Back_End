@@ -62,3 +62,40 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES 
 --INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Fancy coming round mine for a few beers?', 5, 6);
 --INSERT INTO message (message_content, receiver_id, sender_id) VALUES ('Soz Gordon getting resurrected tonight', 6, 5);
 
+INSERT INTO users (company,role,date_of_birth,name,password)
+VALUES ('BNTA','Software Engineer','Wednesday','Jem','password');
+INSERT INTO users (company,role,date_of_birth,name,password)
+VALUES ('BNTA','Software Engineer','13/09/1998', 'Scott', 'chickenfella');
+INSERT INTO users (company,role,date_of_birth,name,password)
+VALUES ('BNTA', 'Software Engineer','11/07/1864', 'Lewis', 'koolkode');
+INSERT INTO users (company,role,date_of_birth,name,password)
+VALUES ('BNTA', 'Software Engineer','23/01/2004', 'Mohamed', 'CLIlover');
+INSERT INTO users (company,role,date_of_birth,name,password)
+VALUES ('Woolworths', 'Manager', '24/01/1998', 'Katya', 'secret');
+INSERT INTO users (company,role,date_of_birth,name,password)
+VALUES ('NASA', 'Astronaut', '07/05/1990', 'James', 'cheese');
+INSERT INTO users (company,role,date_of_birth,name,password)
+VALUES ('Netflix', 'Editor', '17/09/1975', 'Jenna', 'yeehaw');
+INSERT INTO users (company,role,date_of_birth,name,password)
+VALUES ('Woofs', 'Dogwalker', '09/12/1984', 'Carol', 'rabbit');
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Javascript is the superior coding language, change my mind', 123,1,1);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('How to make yourself cry, try css styling', 123,1,2);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Travelling abroad, where not to go', 123,1,3);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Feel good friday!', 123,1,4);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Party parrot partied too hard', 123,1,5);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('How to eat cake every morning and get away with it', 123,1,6);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Why is the news always sad', 123,1,7);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Why do buses come in threes', 123,1,8);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Humble pi', 123,1,1);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Schrodingers bug', 123,1,2);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Who wore it best, BNTA trainer edition', 123,1,3);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Farm tycoon: farming made fun', 123,1,4);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Muse360: your go to museum management tool', 123,1,5);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Car sales: functional yet affordable', 123,1,6);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Connect: a broken back end project ', 123,1,7);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Dench pingu is king, fight me', 123,1,8);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Noot noot', 123,1,1);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Pokemon: gotta catch em all using HTML and CSS', 123,1,2);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Why Sheffield is better than London', 123,1,1);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Allez Team Atos', 123,1,3);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('5B is 5 BEST', 123,1,2);
