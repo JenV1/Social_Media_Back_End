@@ -101,9 +101,9 @@ INSERT INTO users (company,role,date_of_birth,name,password,is_business_account)
 VALUES ('BBC', 'Company', 'N/A', 'BBC', 'highSecurity123', 'true');
 INSERT INTO users (company,role,date_of_birth,name,password,is_business_account)
 VALUES ('FakeBook', 'Media Intern', 'N/A', 'FakeBook', 'owners', 'true');
-INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Latest breaking headlines coming from 10 Downing Street - visit bbc.co.uk for more details', 304,1,9);
-INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Who saw that TV cliffhanger coming?', 256,1,9);
-INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Has anyone ever used a better social media site than this one?', 978,1,10);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account) VALUES ('Latest breaking headlines coming from 10 Downing Street - visit bbc.co.uk for more details', 304,1,9, 'true');
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account) VALUES ('Who saw that TV cliffhanger coming?', 256,1,9, 'true');
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id, is_business_account) VALUES ('Has anyone ever used a better social media site than this one?', 978,1,10, 'true');
 INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
 VALUES('hahaha yeah me too', 'false', 0, 7, 5);
 INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
