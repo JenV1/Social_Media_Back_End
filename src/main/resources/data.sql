@@ -96,3 +96,41 @@ INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES 
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Why Sheffield is better than London', 123,1,1);
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Allez Team Atos', 123,1,3);
 INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('5B is 5 BEST', 123,1,2);
+
+INSERT INTO users (company,role,date_of_birth,name,password,is_business_account)
+VALUES ('BBC', 'Company', 'N/A', 'BBC', 'highSecurity123', 'true');
+INSERT INTO users (company,role,date_of_birth,name,password,is_business_account)
+VALUES ('FakeBook', 'Media Intern', 'N/A', 'FakeBook', 'owners', 'true');
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Latest breaking headlines coming from 10 Downing Street - visit bbc.co.uk for more details', 304,1,9);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Who saw that TV cliffhanger coming?', 256,1,9);
+INSERT INTO posts (content_text,number_of_likes, post_types_id, user_id) VALUES ('Has anyone ever used a better social media site than this one?', 978,1,10);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('hahaha yeah me too', 'false', 0, 7, 5);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('I was just thinking about this yesterday!', 'true', 0, 20, 7);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('big mood', 'false', 0, 10, 2);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('Hmm not sure we agree on this tbh', 'false', 0, 9, 1);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('Aren''t we all just', 'true', 0, 3, 8);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('Ugh what now', 'false', 0, 25, 3);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('I support your quest', 'true', 0, 1, 4);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('I''m there if I get a sword for joining in', 'true', 0, 1, 2);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('Don''t let anyone tell you not to', 'true', 0, 9, 6);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('We have some cheerful stories on our site too', 'false', 0, 10, 9);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('The kind of excellence people come to our site for', 'true', 0, 13, 10);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('Ahh I love this game! So much fun!', 'false', 0, 15, 7);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('Truer words were never spoken', 'true', 0, 24, 5);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('friendship', 'false', 0, 11, 1);
+INSERT INTO comments (comment_content, heart_by_user, likes, post_id, commenter_userid)
+VALUES('Effective method', 'false', 0, 5, 3);
